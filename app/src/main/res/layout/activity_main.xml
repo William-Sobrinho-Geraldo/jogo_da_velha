@@ -38,12 +38,12 @@
         android:layout_width="120dp"
         android:layout_height="25dp"
         android:layout_centerHorizontal="true"
-        android:text="@string/tipo_de_jog"
         android:backgroundTint="#00000000"
+        android:text="@string/tipo_de_jog"
+        android:textAlignment="center"
         android:textAppearance="@style/tipo_de_jog"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:textAlignment="center"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,13 +63,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tipo_de_jog" />
 
-<!--    botão vs Jogador-->
+    <!--    botão vs Jogador-->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/vs_jogador"
         android:layout_width="153dp"
         android:layout_height="28dp"
-        android:layout_marginTop="2dp"
         android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
         android:background="@drawable/segment_1"
         app:layout_constraintStart_toStartOf="@+id/segmento_tipo_de_jogo"
         app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />
@@ -78,17 +78,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="2dp"
+        android:lineHeight="20dp"
         android:text="@string/vs_jogador"
         android:textColor="#6821AF"
         android:textSize="13sp"
-        android:lineHeight="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/vs_jogador"
         app:layout_constraintEnd_toEndOf="@+id/vs_jogador"
         app:layout_constraintStart_toStartOf="@+id/segmento_tipo_de_jogo"
         app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />
 
-<!--    botão vs Bot-->
+    <!--    botão vs Bot-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/vs_bot"
+        android:layout_width="153dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/transparente"
+        app:layout_constraintEnd_toEndOf="@+id/segmento_tipo_de_jogo"
+        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:lineHeight="20dp"
+        android:text="@string/vs_bot"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/vs_jogador"
+        app:layout_constraintEnd_toEndOf="@+id/vs_bot"
+        app:layout_constraintStart_toStartOf="@+id/vs_bot"
+        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -111,12 +134,12 @@
         android:id="@+id/appCompatButton4"
         android:layout_width="350dp"
         android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/btn_historico"
         android:lineHeight="22dp"
         android:text="@string/historico_de_partidas"
         android:textColor="#FFFFFF"
         android:textFontWeight="600"
-        android:layout_marginTop="10dp"
 
 
         android:textSize="17sp"

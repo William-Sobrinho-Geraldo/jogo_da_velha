@@ -4,4 +4,5 @@
     <string name="historico_de_partidas">Histórico de partidas</string>
     <string name="tipo_de_jog">Tipo de jogo</string>
     <string name="vs_jogador">vs Jogador</string>
+    <string name="vs_bot">vs Bot</string>
 </resources>
