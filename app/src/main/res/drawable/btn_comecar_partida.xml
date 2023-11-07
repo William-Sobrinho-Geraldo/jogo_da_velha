@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- drawable/button.xml -->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="350dp"
+    android:height="50dp"
+    android:viewportWidth="350"
+    android:viewportHeight="50"
+    >
+    <group>
+        <clip-path
+            android:pathData="M14 0H336C343.732 0 350 6.26801 350 14V36C350 43.732 343.732 50 336 50H14C6.26801 50 0 43.732 0 36V14C0 6.26801 6.26801 0 14 0Z"
+            />
+        <group
+            android:translateX="-0.499"
+            android:translateY="0.499"
+            android:pivotX="175"
+            android:pivotY="25"
+            android:scaleX="2.827"
+            android:scaleY="2.827"
+            android:rotation="0">
+
+<!--            aqui encima era 42 o valor-->
+
+            <path
+                android:pathData="M0 0V50H350V0"
+                >
+                <aapt:attr name="android:fillColor">
+                    <gradient
+                        android:type="linear"
+                        android:startX="87.5"
+                        android:startY="25"
+                        android:endX="262.5"
+                        android:endY="25"
+                        >
+                        <item
+                            android:color="#C2C800"
+                            android:offset="0"
+                            />
+                        <item
+                            android:color="#E3E600"
+                            android:offset="1"
+                            />
+                    </gradient>
+                </aapt:attr>
+            </path>
+        </group>
+    </group>
+</vector>

@@ -1,0 +1,9 @@
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/vector"
+    android:layout_width="219.43dp"
+    android:layout_height="96dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginLeft="85dp"
+    android:layout_marginTop="50dp"
+    android:background="#EBEF00" />

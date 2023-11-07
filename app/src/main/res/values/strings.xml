@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">LETRAS_jogo_da_velha</string>
+    <string name="comecar_partida">Começar Partida</string>
+    <string name="historico_de_partidas">Histórico de partidas</string>
+    <string name="tipo_de_jog">Tipo de jogo</string>
+</resources>
