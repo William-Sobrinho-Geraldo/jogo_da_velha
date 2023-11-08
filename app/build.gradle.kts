@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "william.LETRAS_jogo_da_velha"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "william.LETRAS_jogo_da_velha"
@@ -29,6 +29,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    viewBinding{
+        enable = true
     }
 }
 

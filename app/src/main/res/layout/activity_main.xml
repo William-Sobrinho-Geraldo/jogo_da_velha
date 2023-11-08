@@ -34,7 +34,7 @@
 
 
     <TextView
-        android:id="@+id/tipo_de_jog"
+        android:id="@+id/tipo_de_jogo"
         android:layout_width="120dp"
         android:layout_height="25dp"
         android:layout_centerHorizontal="true"
@@ -61,58 +61,239 @@
         android:background="@drawable/segmentdpi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipo_de_jog" />
+        app:layout_constraintTop_toBottomOf="@+id/tipo_de_jogo" />
 
     <!--    botão vs Jogador-->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/vs_jogador"
-        android:layout_width="153dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/segment_1"
-        app:layout_constraintStart_toStartOf="@+id/segmento_tipo_de_jogo"
-        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />
+    <LinearLayout
+        android:layout_width="310dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tipo_de_jogo">
 
-    <TextView
+        <FrameLayout
+            android:layout_width="155dp"
+            android:layout_height="28dp"
+            android:padding="2dp"
+            android:layout_gravity="center_vertical">
+            <TextView
+                android:id="@+id/textView_btnVsJogador"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/vs_jogador"
+                android:textColor="@color/roxo"
+                android:elevation="3dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnVsJogador"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_button_white"
+                 />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="155dp"
+            android:layout_height="28dp"
+            android:padding="2dp"
+            android:layout_gravity="center_vertical">
+            <TextView
+                android:id="@+id/textView_btnVsBot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/vs_bot"
+                android:textColor="@color/white"
+                android:elevation="3dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnVsBot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_button_transparente"
+                 />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
+    <!--        android:id="@+id/vs_jogador"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:layout_width="153dp"-->
+    <!--        android:layout_height="28dp"-->
+    <!--        android:layout_marginStart="2dp"-->
+    <!--        android:layout_marginTop="2dp"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/segmento_tipo_de_jogo"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />-->
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:elevation="2dp"-->
+    <!--        android:lineHeight="20dp"-->
+    <!--        android:text="@string/vs_jogador"-->
+    <!--        android:textColor="#6821AF"-->
+    <!--        android:textSize="13sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/vs_jogador"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/vs_jogador"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/segmento_tipo_de_jogo"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />-->
+
+    <!--    &lt;!&ndash;    botão vs Bot&ndash;&gt;-->
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
+    <!--        android:id="@+id/vs_bot"-->
+    <!--        android:layout_width="153dp"-->
+    <!--        android:layout_height="28dp"-->
+    <!--        android:layout_marginTop="2dp"-->
+    <!--        android:layout_marginEnd="2dp"-->
+    <!--        android:background="@color/transparente"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/segmento_tipo_de_jogo"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />-->
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:elevation="2dp"-->
+    <!--        android:lineHeight="20dp"-->
+    <!--        android:text="@string/vs_bot"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textSize="13sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/vs_jogador"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/vs_bot"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/vs_bot"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />-->
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="2dp"
-        android:lineHeight="20dp"
-        android:text="@string/vs_jogador"
-        android:textColor="#6821AF"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/vs_jogador"
-        app:layout_constraintEnd_toEndOf="@+id/vs_jogador"
-        app:layout_constraintStart_toStartOf="@+id/segmento_tipo_de_jogo"
-        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="@id/segmento_tipo_de_jogo"
+        app:layout_constraintStart_toStartOf="@id/segmento_tipo_de_jogo"
+        app:layout_constraintTop_toBottomOf="@id/segmento_tipo_de_jogo">
 
-    <!--    botão vs Bot-->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/vs_bot"
-        android:layout_width="153dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="2dp"
-        android:background="@color/transparente"
-        app:layout_constraintEnd_toEndOf="@+id/segmento_tipo_de_jogo"
-        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nome_dos_jogadores"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="2dp"
-        android:lineHeight="20dp"
-        android:text="@string/vs_bot"
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/vs_jogador"
-        app:layout_constraintEnd_toEndOf="@+id/vs_bot"
-        app:layout_constraintStart_toStartOf="@+id/vs_bot"
-        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/jogador_1_TextInputLayout"
+            android:layout_width="310dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_border"
+            app:hintEnabled="true">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/jogador_1_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="@string/jogador_1"
+                android:inputType="text"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/jogador_2_TextInputLayout"
+            android:layout_width="310dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_border"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/jogador_2_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="@string/jogador_2"
+                android:inputType="text"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tamanho_tabuleiro"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/segmentdpi">
+
+            <!--CÉLULA DO TABULEIRO-->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/tabuleiro_3x3"
+                    android:layout_width="76.5dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/segment_1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:elevation="2dp"
+                    android:lineHeight="20dp"
+                    android:text="@string/_3x3"
+                    android:textColor="#6821AF"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/tabuleiro_4x4"
+                    android:layout_width="76.5dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:elevation="2dp"
+                    android:lineHeight="20dp"
+                    android:text="@string/_4x4"
+                    android:textColor="#6821AF"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_comecar_partida"

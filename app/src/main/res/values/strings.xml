@@ -5,4 +5,10 @@
     <string name="tipo_de_jog">Tipo de jogo</string>
     <string name="vs_jogador">vs Jogador</string>
     <string name="vs_bot">vs Bot</string>
+    <string name="nome_dos_jogadores">Nome dos jogadores</string>
+    <string name="jogador_1">Jogador 1</string>
+    <string name="jogador_2">Jogador 2</string>
+    <string name="tamanho_tabuleiro">Tamanho do tabuleiro</string>
+    <string name="_3x3">3x3</string>
+    <string name="_4x4">4x4</string>
 </resources>
