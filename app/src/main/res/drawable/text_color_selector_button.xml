@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Estado quando o botão está pressionado -->
+
+    <item android:color="@color/roxo" android:state_pressed="true" />
+
+    <!-- Estado padrão -->
+
+    <item android:color="@android:color/white" />
+
+</selector>

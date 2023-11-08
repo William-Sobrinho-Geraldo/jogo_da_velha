@@ -11,4 +11,6 @@
     <string name="tamanho_tabuleiro">Tamanho do tabuleiro</string>
     <string name="_3x3">3x3</string>
     <string name="_4x4">4x4</string>
+    <string name="_5x5">5x5</string>
+    <string name="_6x6">6x6</string>
 </resources>

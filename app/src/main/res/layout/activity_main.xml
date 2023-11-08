@@ -83,6 +83,8 @@
                 android:layout_height="match_parent"
                 android:text="@string/vs_jogador"
                 android:textColor="@color/roxo"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:elevation="3dp"
                 android:layout_gravity="center"
                 android:textAlignment="center"
@@ -106,6 +108,8 @@
                 android:layout_height="match_parent"
                 android:text="@string/vs_bot"
                 android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:elevation="3dp"
                 android:layout_gravity="center"
                 android:textAlignment="center"
@@ -240,55 +244,75 @@
             android:background="@drawable/segmentdpi">
 
             <!--CÉLULA DO TABULEIRO-->
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/tabuleiro_3x3"
+                    android:id="@+id/btn1"
                     android:layout_width="76.5dp"
                     android:layout_height="28dp"
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="2dp"
-                    android:background="@drawable/segment_1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:elevation="2dp"
-                    android:lineHeight="20dp"
+                    android:background="@drawable/rounded_button_white"
                     android:text="@string/_3x3"
-                    android:textColor="#6821AF"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-            </FrameLayout>
+                    android:textColor="@color/roxo"
+                    />
 
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:background="@color/white"
+                />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/tabuleiro_4x4"
+                    android:id="@+id/btn2"
                     android:layout_width="76.5dp"
                     android:layout_height="28dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="2dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:elevation="2dp"
-                    android:lineHeight="20dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/rounded_button_transparente"
                     android:text="@string/_4x4"
-                    android:textColor="#6821AF"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-            </FrameLayout>
+                    android:textColor="@color/white"
+                    />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginTop="6dp"
+                android:background="@color/white"
+                />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn3"
+                    android:layout_width="76.5dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/rounded_button_transparente"
+                    android:text="@string/_5x5"
+                    android:textColor="@color/white"
+                    />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:background="@color/white"
+                />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn4"
+                    android:layout_width="76.5dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/rounded_button_transparente"
+                    android:text="@string/_6x6"
+                    android:textColor="@color/white"
+                    />
 
         </LinearLayout>
 
