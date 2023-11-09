@@ -200,15 +200,16 @@
             android:background="@drawable/rounded_border"
             app:hintEnabled="true">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/jogador_1_editText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:hint="@string/jogador_1"
-                android:inputType="text"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/white" />
+                android:layout_marginHorizontal="8dp"
+                android:inputType="textPersonName"
+                android:textColor="@color/roxo"
+                android:textColorHint="@color/roxo" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
