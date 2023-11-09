@@ -1,4 +1,4 @@
-package william.LETRAS_jogo_da_velha
+package william.LETRAS_jogo_da_velha.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,11 +7,14 @@ import android.widget.Button
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.AppDatabase
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.data.Repository
 import william.LETRAS_jogo_da_velha.databinding.ActivityMainBinding
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
+import william.LETRAS_jogo_da_velha.viewModels.MainActivityViewModel
 
 private const val TAG = "MainActivity"
 
@@ -26,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val repository = Repository(AppDatabase.getDatabase(applicationContext).jogadoresDao())
+        val viewModel: MainActivityViewModel by viewModel()
 
         for (id in idsBotoes) {
             val button = escolherBotao(id)
@@ -41,9 +44,11 @@ class MainActivity : AppCompatActivity() {
 
             //insiro o nome deses jgoadores no BD
             CoroutineScope(Dispatchers.IO).launch {
-                repository.inserirJogadores(jogador1)
-                repository.inserirJogadores(jogador2)
-                val listaDejogadoresNoBD = repository.buscaJogadoresNoBD()
+                viewModel.inserirJogadores(jogador1)
+                viewModel.inserirJogadores(jogador2)
+
+
+                val listaDejogadoresNoBD = viewModel.buscaJogadoresNoBD()
                 Log.i(TAG, "onCreate: a lista de jogadores no bando de dados é:  $listaDejogadoresNoBD")
 
 

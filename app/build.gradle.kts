@@ -45,13 +45,19 @@ android {
 }
 
 dependencies {
+
+    //KOIN - INJEÇÃO DE DEPENDÊNCIAS
+//    implementation("io.insert-koin:koin-android-viewmodel:3.5.0")
+    implementation ("io.insert-koin:koin-android:3.5.0")
+
+
+    //VIEW MODEL
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
     //ROOM
     implementation("androidx.room:room-runtime:2.6.0")
     implementation("androidx.room:room-ktx:2.6.0")
-//    ksp("androidx.room:room-compiler:2.6.0")
-
     kapt("androidx.room:room-compiler:2.6.0")
-    //    ksp("androidx.room:room-compiler:2.5.0")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
