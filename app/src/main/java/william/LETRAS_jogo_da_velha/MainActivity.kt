@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import william.LETRAS_jogo_da_velha.data.AppDatabase
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
+import william.LETRAS_jogo_da_velha.data.repository
 import william.LETRAS_jogo_da_velha.databinding.ActivityMainBinding
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
 
@@ -22,8 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val jogadoresDao = AppDatabase.getDatabase(applicationContext).jogadoresDao()
-
+        val repository = repository(AppDatabase.getDatabase(applicationContext).jogadoresDao())
 
         for (id in idsBotoes) {
             val button = escolherBotao(id)
@@ -38,13 +38,14 @@ class MainActivity : AppCompatActivity() {
 
             //insiro o nome deses jgoadores no BD
             lifecycleScope.launch {
-                jogadoresDao.inserirJogador(jogador1)
-                jogadoresDao.inserirJogador(jogador2)
+                repository.inserirJogadores(jogador1)
+                repository.inserirJogadores(jogador2)
             }
 
             //pode navegar pra outra tela
             mostrarToast("Jogador ${jogador1.nome} e jogador ${jogador2.nome} cadastrados", this)
         }
+
 
         //BOTÃO HISTÓRICO CLICADO
 

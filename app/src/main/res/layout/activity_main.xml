@@ -75,51 +75,51 @@
         <FrameLayout
             android:layout_width="155dp"
             android:layout_height="28dp"
-            android:padding="2dp"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:padding="2dp">
+
             <TextView
                 android:id="@+id/textView_btnVsJogador"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:elevation="3dp"
                 android:text="@string/vs_jogador"
+                android:textAlignment="center"
                 android:textColor="@color/roxo"
                 android:textSize="15sp"
-                android:textStyle="bold"
-                android:elevation="3dp"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                />
+                android:textStyle="bold" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnVsJogador"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/rounded_button_white"
-                 />
+                android:background="@drawable/rounded_button_white" />
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="155dp"
             android:layout_height="28dp"
-            android:padding="2dp"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:padding="2dp">
+
             <TextView
                 android:id="@+id/textView_btnVsBot"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:elevation="3dp"
                 android:text="@string/vs_bot"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:textStyle="bold"
-                android:elevation="3dp"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                />
+                android:textStyle="bold" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnVsBot"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/rounded_button_transparente"
-                 />
+                android:background="@drawable/rounded_button_transparente" />
         </FrameLayout>
 
     </LinearLayout>
@@ -192,43 +192,71 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
 
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/jogador_1_TextInputLayout_deTeste"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="44dp"-->
+        <!--            android:background="@drawable/rounded_border"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:hint="@string/jogador_1"-->
+        <!--            app:hintEnabled="true">-->
+
+        <!--            <EditText-->
+        <!--                android:id="@+id/jogador_1_editText_deTeste"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:inputType="textPersonName"-->
+        <!--                android:layout_marginHorizontal="8dp"-->
+        <!--                android:textSize="16sp"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:padding="8dp"-->
+        <!--                />-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/jogador_1_TextInputLayout"
+            style="@style/estiloDoTextInputLayout"
             android:layout_width="310dp"
             android:layout_height="44dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/rounded_border"
-            app:hintEnabled="true">
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/estiloHint">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/jogador_1_editText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/jogador_1"
-                android:layout_marginHorizontal="8dp"
-                android:inputType="textPersonName"
-                android:textColor="@color/roxo"
-                android:textColorHint="@color/roxo" />
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/jogador_2_TextInputLayout"
+            style="@style/estiloDoTextInputLayout"
             android:layout_width="310dp"
             android:layout_height="44dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/rounded_border"
-            app:hintEnabled="true">
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/estiloHint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/jogador_2_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/jogador_2"
-                android:inputType="text"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/white" />
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -246,74 +274,67 @@
 
             <!--CÉLULA DO TABULEIRO-->
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn1"
-                    android:layout_width="76.5dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/rounded_button_white"
-                    android:text="@string/_3x3"
-                    android:textColor="@color/roxo"
-                    />
-
-            <ImageView
-                android:layout_width="1dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
-                android:background="@color/white"
-                />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn2"
-                    android:layout_width="76.5dp"
-                    android:layout_height="28dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/rounded_button_transparente"
-                    android:text="@string/_4x4"
-                    android:textColor="@color/white"
-                    />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn1"
+                android:layout_width="76.5dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/rounded_button_white"
+                android:text="@string/_3x3"
+                android:textColor="@color/roxo" />
 
             <ImageView
                 android:layout_width="1dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
                 android:layout_marginTop="6dp"
-                android:background="@color/white"
-                />
+                android:layout_marginEnd="1dp"
+                android:background="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn3"
-                    android:layout_width="76.5dp"
-                    android:layout_height="28dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/rounded_button_transparente"
-                    android:text="@string/_5x5"
-                    android:textColor="@color/white"
-                    />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn2"
+                android:layout_width="76.5dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/rounded_button_transparente"
+                android:text="@string/_4x4"
+                android:textColor="@color/white" />
 
             <ImageView
                 android:layout_width="1dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="6dp"
                 android:layout_marginStart="1dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginEnd="1dp"
-                android:background="@color/white"
-                />
+                android:background="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn4"
-                    android:layout_width="76.5dp"
-                    android:layout_height="28dp"
-                    android:layout_marginEnd="2dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/rounded_button_transparente"
-                    android:text="@string/_6x6"
-                    android:textColor="@color/white"
-                    />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn3"
+                android:layout_width="76.5dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/rounded_button_transparente"
+                android:text="@string/_5x5"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="1dp"
+                android:background="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn4"
+                android:layout_width="76.5dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/rounded_button_transparente"
+                android:text="@string/_6x6"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
