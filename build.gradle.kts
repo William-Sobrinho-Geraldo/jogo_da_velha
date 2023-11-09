@@ -2,6 +2,14 @@
 plugins {
     id("com.android.application") version "8.1.1" apply false
     id("org.jetbrains.kotlin.android") version "1.9.0" apply false
+//    id("kotlin-android") version "1.9.0"
+
+    //    id ("com.google.devtools.ksp")
+
+//    kotlin("android") version "1.5.30"
+
     kotlin("kapt") version "1.9.0"
 
 }
+
+

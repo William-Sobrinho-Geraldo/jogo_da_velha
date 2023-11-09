@@ -2,15 +2,18 @@ package william.LETRAS_jogo_da_velha
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
-import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import william.LETRAS_jogo_da_velha.data.AppDatabase
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
-import william.LETRAS_jogo_da_velha.data.repository
+import william.LETRAS_jogo_da_velha.data.Repository
 import william.LETRAS_jogo_da_velha.databinding.ActivityMainBinding
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
 
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -23,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val repository = repository(AppDatabase.getDatabase(applicationContext).jogadoresDao())
+        val repository = Repository(AppDatabase.getDatabase(applicationContext).jogadoresDao())
 
         for (id in idsBotoes) {
             val button = escolherBotao(id)
@@ -37,13 +40,22 @@ class MainActivity : AppCompatActivity() {
             val jogador2 = JogadoresModel(nome = binding.jogador2EditText.text.toString())
 
             //insiro o nome deses jgoadores no BD
-            lifecycleScope.launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 repository.inserirJogadores(jogador1)
                 repository.inserirJogadores(jogador2)
+                val listaDejogadoresNoBD = repository.buscaJogadoresNoBD()
+                Log.i(TAG, "onCreate: a lista de jogadores no bando de dados é:  $listaDejogadoresNoBD")
+
+
+
+                //DELETAR TUDO EVENTUALMENTE - MANTENHA COMENTADO
+                //repository.deletarTodosOsJogadores()
             }
 
             //pode navegar pra outra tela
             mostrarToast("Jogador ${jogador1.nome} e jogador ${jogador2.nome} cadastrados", this)
+
+
         }
 
 
