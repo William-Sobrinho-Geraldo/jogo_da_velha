@@ -49,15 +49,10 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             blocosVazios.clear()
             Log.i(TAG, "ordenaJogadaDoBot:   blocosVazios foi limpa e agora é:  $blocosVazios")
 
-            if (buttonMarcList[0] == "") blocosVazios.add(1)
-            if (buttonMarcList[1] == "") blocosVazios.add(2)
-            if (buttonMarcList[2] == "") blocosVazios.add(3)
-            if (buttonMarcList[3] == "") blocosVazios.add(4)
-            if (buttonMarcList[4] == "") blocosVazios.add(5)
-            if (buttonMarcList[5] == "") blocosVazios.add(6)
-            if (buttonMarcList[6] == "") blocosVazios.add(7)
-            if (buttonMarcList[7] == "") blocosVazios.add(8)
-            if (buttonMarcList[8] == "") blocosVazios.add(9)
+            //ADICIONANDO NA LISTA DE blocosVazios OS ÍNDICES VAZIOS
+            for (indice in buttonMarcList.indices) {
+                if (buttonMarcList[indice] == "") blocosVazios.add(indice + 1)
+            }
             Log.i(TAG, "ordenaJogadaDoBot:   Os espaços disponíveis são $blocosVazios")
 
 
@@ -65,18 +60,18 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 //Escolhendo botão que o bot Vai clicar aleatóriamente
                 botaoEscolhidoPeloBot = blocosVazios.random()
                 Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhidoPeloBot}")
-                                Handler(Looper.getMainLooper()).postDelayed({
-                if (botaoEscolhidoPeloBot == 1 && binding.button1.isEnabled) binding.button1.performClick()
-                if (botaoEscolhidoPeloBot == 2 && binding.button2.isEnabled) binding.button2.performClick()
-                if (botaoEscolhidoPeloBot == 3 && binding.button3.isEnabled) binding.button3.performClick()
-                if (botaoEscolhidoPeloBot == 4 && binding.button4.isEnabled) binding.button4.performClick()
-                if (botaoEscolhidoPeloBot == 5 && binding.button5.isEnabled) binding.button5.performClick()
-                if (botaoEscolhidoPeloBot == 6 && binding.button6.isEnabled) binding.button6.performClick()
-                if (botaoEscolhidoPeloBot == 7 && binding.button7.isEnabled) binding.button7.performClick()
-                if (botaoEscolhidoPeloBot == 8 && binding.button8.isEnabled) binding.button8.performClick()
-                if (botaoEscolhidoPeloBot == 9 && binding.button9.isEnabled) binding.button9.performClick()
-                                }, 900)
 
+                Handler(Looper.getMainLooper()).postDelayed({
+                    for (indice in 0 until botoes.size) {
+                        val botao = botoes[indice]
+                        val botaoNumero = indice + 1
+
+                        if (botaoEscolhidoPeloBot == botaoNumero && botao.isEnabled) {
+                            botao.performClick()
+                            break      // sair do loop depois de encontrar e clicar no botaoEscolhidoPeloBot
+                        }
+                    }
+                }, 900)
             }
         }
 
@@ -95,7 +90,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.setTextColor(resources.getColor(R.color.transparente))
 
             //LIMPANDO  A LISTA NOVA    buttonMarcList
-            for ( indice in 0 until buttonMarcList.size){
+            for (indice in 0 until buttonMarcList.size) {
                 buttonMarcList[indice] = ""
             }
 
@@ -262,7 +257,6 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 Log.i(TAG, "onCreate: botao${index + 1} bloqueado para outros clicks")
             }
         }
-
 
 
         //BOTÃO NOVO JOGO
