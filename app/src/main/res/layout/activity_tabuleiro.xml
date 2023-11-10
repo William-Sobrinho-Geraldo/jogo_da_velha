@@ -146,23 +146,23 @@
         android:textColor="@color/transparente"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_recomecar"
-        app:layout_constraintEnd_toEndOf="@+id/btn_recomecar"
-        app:layout_constraintStart_toStartOf="@+id/btn_recomecar"
+        app:layout_constraintBottom_toTopOf="@+id/btn_voltar"
+        app:layout_constraintEnd_toEndOf="@+id/btn_voltar"
+        app:layout_constraintStart_toStartOf="@+id/btn_voltar"
         />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_recomecar"
+        android:id="@+id/btn_voltar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/rounded_button_recomecar"
         android:elevation="4dp"
-        android:text="@string/recomecar"
+        android:text="@string/voltar"
         android:textColor="@color/white"
         android:textSize="18sp"
 
-        app:layout_constraintBottom_toTopOf="@+id/btn_novoJogo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/gridLayout"
         app:layout_constraintStart_toStartOf="@id/gridLayout" />
 
@@ -177,7 +177,7 @@
         android:textColor="@color/white"
         android:textSize="18sp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_voltar"
         app:layout_constraintEnd_toEndOf="@id/gridLayout"
         app:layout_constraintStart_toStartOf="@id/gridLayout" />
 
