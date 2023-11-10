@@ -56,8 +56,26 @@ class TabuleiroActivity : AppCompatActivity() {
         }
 
         fun jogoAcabouJogador1Ganhou() {
-
             mostrarToast("O jogo acabou, ${jogador1.nome} foi o vencedor", this)
+            binding.vencedor.text = "Parabéns ${jogador1.nome}, você venceu !"
+            binding.vencedor.setTextColor(resources.getColor(R.color.azul))
+
+            binding.button1.isEnabled = false
+            binding.button2.isEnabled = false
+            binding.button3.isEnabled = false
+            binding.button4.isEnabled = false
+            binding.button5.isEnabled = false
+            binding.button6.isEnabled = false
+            binding.button7.isEnabled = false
+            binding.button8.isEnabled = false
+            binding.button9.isEnabled = false
+        }
+
+        fun jogoAcabouJogador2Ganhou() {
+            mostrarToast("O jogo acabou, ${jogador2.nome} foi o vencedor", this)
+            binding.vencedor.text = "Parabéns ${jogador2.nome}, você venceu !"
+            binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
+
             binding.button1.isEnabled = false
             binding.button2.isEnabled = false
             binding.button3.isEnabled = false
@@ -83,8 +101,23 @@ class TabuleiroActivity : AppCompatActivity() {
             if (button3Marc == "x" && button5Marc == "x" && button7Marc == "x") jogoAcabouJogador1Ganhou()
         }
 
+        fun verificaVencedorCom0() {
+            //Horizontais
+            if (button1Marc == "0" && button2Marc == "0" && button3Marc == "0") jogoAcabouJogador2Ganhou()
+            if (button4Marc == "0" && button5Marc == "0" && button6Marc == "0") jogoAcabouJogador2Ganhou()
+            if (button7Marc == "0" && button8Marc == "0" && button9Marc == "0") jogoAcabouJogador2Ganhou()
+            //Verticais
+            if (button1Marc == "0" && button4Marc == "0" && button7Marc == "0") jogoAcabouJogador2Ganhou()
+            if (button2Marc == "0" && button5Marc == "0" && button8Marc == "0") jogoAcabouJogador2Ganhou()
+            if (button3Marc == "0" && button6Marc == "0" && button9Marc == "0") jogoAcabouJogador2Ganhou()
+            //Diagonais
+            if (button1Marc == "0" && button5Marc == "0" && button9Marc == "0") jogoAcabouJogador2Ganhou()
+            if (button3Marc == "0" && button5Marc == "0" && button7Marc == "0") jogoAcabouJogador2Ganhou()
+        }
+
         fun alteraVezDoJogador() {
             verificaVencedorComX()
+            verificaVencedorCom0()
 
             jogadorAtual = if (jogadorAtual == jogador1) {
                 jogador2
@@ -116,9 +149,9 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button1.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
                     alteraVezDoJogador()
                 } else {
+                    button1Marc = "0"
                     binding.button1.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
-                    button1Marc = "0"
                 }
             } else mostrarToast("o jogo acabou", this)
 
@@ -135,9 +168,9 @@ class TabuleiroActivity : AppCompatActivity() {
                     alteraVezDoJogador()
 
                 } else {
+                    button2Marc = "0"
                     binding.button2.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
-                    button2Marc = "0"
                 }
             } else mostrarToast("o jogo acabou", this)
         }
@@ -149,9 +182,9 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button3.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
                     alteraVezDoJogador()
                 } else {
+                    button3Marc = "0"
                     binding.button3.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
-                    button3Marc = "0"
                 }
             } else mostrarToast("o jogo acabou", this)
         }
@@ -163,9 +196,9 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button4.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
                     alteraVezDoJogador()
                 } else {
+                    button4Marc = "0"
                     binding.button4.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
-                    button4Marc = "0"
                 }
             } else mostrarToast("o jogo acabou", this)
         }
@@ -177,9 +210,9 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button5.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
                     alteraVezDoJogador()
                 } else {
+                    button5Marc = "0"
                     binding.button5.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
-                    button5Marc = "0"
                 }
             } else mostrarToast("o jogo acabou", this)
         }
@@ -191,9 +224,9 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button6.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
                     alteraVezDoJogador()
                 } else {
+                    button6Marc = "0"
                     binding.button6.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
-                    button6Marc = "0"
                 }
             } else mostrarToast("o jogo acabou", this)
         }
@@ -206,9 +239,9 @@ class TabuleiroActivity : AppCompatActivity() {
                     alteraVezDoJogador()
 
                 } else {
+                    button7Marc = "0"
                     binding.button7.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
-                    button7Marc = "0"
                 }
             } else mostrarToast("o jogo acabou", this)
         }
@@ -221,9 +254,9 @@ class TabuleiroActivity : AppCompatActivity() {
                     alteraVezDoJogador()
 
                 } else {
+                    button8Marc = "0"
                     binding.button8.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
-                    button8Marc = "0"
                 }
             } else mostrarToast("o jogo acabou", this)
         }
@@ -236,9 +269,9 @@ class TabuleiroActivity : AppCompatActivity() {
                     alteraVezDoJogador()
 
                 } else {
+                    button9Marc = "0"
                     binding.button9.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
-                    button9Marc = "0"
                 }
             } else mostrarToast("o jogo acabou", this)
         }

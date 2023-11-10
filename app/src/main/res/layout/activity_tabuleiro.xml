@@ -39,11 +39,10 @@
         android:columnCount="3"
         android:padding="1dp"
         android:rowCount="3"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
-        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_1"
         app:layout_constraintBottom_toBottomOf="@+id/guideline_horizontal_2"
-        >
+        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_1"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_1">
 
 
         <ImageButton
@@ -138,67 +137,75 @@
             android:background="@color/white" />
     </GridLayout>
 
+    <TextView
+        android:id="@+id/vencedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/parabens_jogador1"
+        android:textColor="@color/transparente"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_recomecar"
+        app:layout_constraintEnd_toEndOf="@+id/btn_recomecar"
+        app:layout_constraintStart_toStartOf="@+id/btn_recomecar"
+        />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_recomecar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/recomecar"
-        android:textSize="18sp"
-        android:elevation="4dp"
-        android:textColor="@color/white"
         android:background="@drawable/rounded_button_recomecar"
+        android:elevation="4dp"
+        android:text="@string/recomecar"
+        android:textColor="@color/white"
+        android:textSize="18sp"
 
-        app:layout_constraintStart_toStartOf="@id/gridLayout"
-        app:layout_constraintEnd_toEndOf="@id/gridLayout"
         app:layout_constraintBottom_toTopOf="@+id/btn_novoJogo"
-        />
+        app:layout_constraintEnd_toEndOf="@id/gridLayout"
+        app:layout_constraintStart_toStartOf="@id/gridLayout" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_novoJogo"
-        android:elevation="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="@string/novo_jogo"
-        android:textSize="18sp"
-        android:textColor="@color/white"
         android:background="@drawable/rounded_button_novo_jogo"
+        android:elevation="4dp"
+        android:text="@string/novo_jogo"
+        android:textColor="@color/white"
+        android:textSize="18sp"
 
-        app:layout_constraintStart_toStartOf="@id/gridLayout"
-        app:layout_constraintEnd_toEndOf="@id/gridLayout"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="@id/gridLayout"
+        app:layout_constraintStart_toStartOf="@id/gridLayout" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25"
-         />
+        app:layout_constraintGuide_percent="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75"
-        />
+        app:layout_constraintGuide_percent="0.75" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vertical_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.93"
-        />
+        app:layout_constraintGuide_percent="0.93" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vertical_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.07"
-        />
+        app:layout_constraintGuide_percent="0.07" />
 </androidx.constraintlayout.widget.ConstraintLayout>
