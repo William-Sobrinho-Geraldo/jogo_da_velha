@@ -40,6 +40,40 @@ class TabuleiroActivity : AppCompatActivity() {
         var button8Marc = ""
         var button9Marc = ""
 
+fun limpaTabuleiro(){
+    contadorDeJogadas = 0
+    button1Marc = ""
+    button2Marc = ""
+    button3Marc = ""
+    button4Marc = ""
+    button5Marc = ""
+    button6Marc = ""
+    button7Marc = ""
+    button8Marc = ""
+    button9Marc = ""
+    //   LIMPANDO AS MARCAS
+    binding.button1.setBackgroundColor(resources.getColor(R.color.white))
+    binding.button2.setBackgroundColor(resources.getColor(R.color.white))
+    binding.button3.setBackgroundColor(resources.getColor(R.color.white))
+    binding.button4.setBackgroundColor(resources.getColor(R.color.white))
+    binding.button5.setBackgroundColor(resources.getColor(R.color.white))
+    binding.button6.setBackgroundColor(resources.getColor(R.color.white))
+    binding.button7.setBackgroundColor(resources.getColor(R.color.white))
+    binding.button8.setBackgroundColor(resources.getColor(R.color.white))
+    binding.button9.setBackgroundColor(resources.getColor(R.color.white))
+    //ATIVANDO OS BOTÕES
+    binding.button1.isEnabled = true
+    binding.button2.isEnabled = true
+    binding.button3.isEnabled = true
+    binding.button4.isEnabled = true
+    binding.button5.isEnabled = true
+    binding.button6.isEnabled = true
+    binding.button7.isEnabled = true
+    binding.button8.isEnabled = true
+    binding.button9.isEnabled = true
+
+}
+
 
         fun alteraCorDoTexto() {
             if (jogadorAtual == jogador1) {
@@ -267,6 +301,10 @@ class TabuleiroActivity : AppCompatActivity() {
                     alteraVezDoJogador()
                 }
             } else mostrarToast("o jogo acabou", this)
+        }
+
+        binding.btnNovoJogo.setOnClickListener {
+            limpaTabuleiro()
         }
 
     }  //onCreate
