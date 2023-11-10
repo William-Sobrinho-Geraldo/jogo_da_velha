@@ -102,6 +102,8 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.jogadorX.text = jogador1.nome
             binding.jogadorX.setTextColor(resources.getColor(R.color.vermelho))
             binding.vencedor.setTextColor(resources.getColor(R.color.transparente))
+
+            //LIMPANDO  A LISTA NOVA    buttonMarcList
             for ( indice in 0 until buttonMarcList.size){
                 buttonMarcList[indice] = ""
             }
@@ -109,12 +111,13 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             button1Marc = ""
             button2Marc = ""
             button3Marc = ""
-            button4Marc = ""  //VOU TER Q LIMPAR A LISTA NOVA
+            button4Marc = ""
             button5Marc = ""
             button6Marc = ""
             button7Marc = ""
             button8Marc = ""
             button9Marc = ""
+
             //   LIMPANDO AS MARCAS
             binding.button1.setBackgroundColor(resources.getColor(R.color.white))
             binding.button2.setBackgroundColor(resources.getColor(R.color.white))
@@ -202,6 +205,29 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             if (button3Marc == "x" && button5Marc == "x" && button7Marc == "x") jogoAcabouJogador1Ganhou()
         }
 
+        fun verificaVencedorComXnova() {
+            val linhas = listOf(
+                listOf(0, 1, 2),
+                listOf(3, 4, 5),
+                listOf(6, 7, 8),
+                listOf(0, 3, 6),
+                listOf(1, 4, 7),
+                listOf(2, 5, 8),
+                listOf(0, 4, 8),
+                listOf(2, 4, 6)
+            )
+
+            for (linha in linhas) {
+                val (a, b, c) = linha
+                if (buttonMarcList[a] == "x" && buttonMarcList[b] == "x" && buttonMarcList[c] == "x") {
+                    jogoAcabouJogador1Ganhou()
+                    return
+                }
+            }
+        }
+
+
+
         fun verificaVencedorCom0() {
             //Horizontais
             if (button1Marc == "0" && button2Marc == "0" && button3Marc == "0") jogoAcabouJogador2Ganhou()
@@ -215,13 +241,34 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             if (button1Marc == "0" && button5Marc == "0" && button9Marc == "0") jogoAcabouJogador2Ganhou()
             if (button3Marc == "0" && button5Marc == "0" && button7Marc == "0") jogoAcabouJogador2Ganhou()
         }
+        fun verificaVencedorCom0nova() {
+            val linhas = listOf(
+                listOf(0, 1, 2),
+                listOf(3, 4, 5),
+                listOf(6, 7, 8),
+                listOf(0, 3, 6),
+                listOf(1, 4, 7),
+                listOf(2, 5, 8),
+                listOf(0, 4, 8),
+                listOf(2, 4, 6)
+            )
+
+            for (linha in linhas) {
+                val (a, b, c) = linha
+                if (buttonMarcList[a] == "0" && buttonMarcList[b] == "0" && buttonMarcList[c] == "0") {
+                    jogoAcabouJogador2Ganhou()
+                    return
+                }
+            }
+        }
+
 
         fun alteraVezDoJogador() {
             //ANTES DE ALTERAR, VERIFICA SE Já TEM VENCEDOR
-            verificaVencedorComX()
-            verificaVencedorCom0()
+            verificaVencedorComXnova()
+            verificaVencedorCom0nova()
             //VERIFICA SE HOUVE EMPATE
-            if (contadorDeJogadas == 9) {
+            if (contadorDeJogadas == 8) {
                 mostrarToast("Tivemos um empate", this)
             }
 
