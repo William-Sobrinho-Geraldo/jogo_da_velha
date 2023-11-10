@@ -42,6 +42,64 @@ class MainActivity : AppCompatActivity() {
         var tabuleiro5x5 = false
         var tabuleiro6x6 = false
 
+
+        fun escolherBotao(idBotao: Int): Button {
+            when (idBotao) {
+                R.id.btn3x3 -> {
+                    tabuleiro3x3 = true
+                    tabuleiro4x4 = false
+                    tabuleiro5x5 = false
+                    tabuleiro6x6 = false
+                }
+
+                R.id.btn4x4 -> {
+                    tabuleiro3x3 = false
+                    tabuleiro4x4 = true
+                    tabuleiro5x5 = false
+                    tabuleiro6x6 = false
+                }
+
+                R.id.btn5x5 -> {
+                    tabuleiro3x3 = false
+                    tabuleiro4x4 = false
+                    tabuleiro5x5 = true
+                    tabuleiro6x6 = false
+                }
+
+                R.id.btn6x6 -> {
+                    tabuleiro3x3 = false
+                    tabuleiro4x4 = false
+                    tabuleiro5x5 = false
+                    tabuleiro6x6 = true
+                }
+
+                else -> throw IllegalArgumentException("Botão não encontrado com ID: $idBotao")
+            }
+
+            return when (idBotao) {
+                R.id.btn3x3 -> binding.btn3x3
+                R.id.btn4x4 -> binding.btn4x4
+                R.id.btn5x5 -> binding.btn5x5
+                R.id.btn6x6 -> binding.btn6x6
+                else -> throw IllegalArgumentException("Botão não encontrado com ID: $idBotao")
+            }
+        }
+
+        fun botaoClicado(idBotaoClicado: Int) {
+            if (idBotaoSelecionado != null) {
+                // Reset o botão previamente selecionado
+                val botaoAnterior = escolherBotao(idBotaoSelecionado!!)
+                limparEstiloBotao(botaoAnterior)
+            }
+
+            // Atualiza o botão clicado
+            val clickedButton = escolherBotao(idBotaoClicado)
+            atualizarEstiloBotao(clickedButton)
+
+            // Atualiza o ID do botão selecionado
+            idBotaoSelecionado = idBotaoClicado
+        }
+
         for (id in idsBotoes) {
             val button = escolherBotao(id)
             button.setOnClickListener { botaoClicado(id) }
@@ -93,12 +151,15 @@ class MainActivity : AppCompatActivity() {
                         this@MainActivity
                     )
                     delay(600)
-                    val intent = Intent(this@MainActivity, TabuleiroActivity::class.java)
-                    intent.putExtra("jogador1", jogador1)
-                    intent.putExtra("jogador2", jogador2)
-                    intent.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
-                    intent.putExtra("btnVsBotAtivo", btnVsBotAtivo)
-                    startActivity(intent)
+                    if (tabuleiro3x3) {
+                        val vaiProTabuleiro3x3 = Intent(this@MainActivity, TabuleiroActivity::class.java)
+                        vaiProTabuleiro3x3.putExtra("jogador1", jogador1)
+                        vaiProTabuleiro3x3.putExtra("jogador2", jogador2)
+                        vaiProTabuleiro3x3.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
+                        vaiProTabuleiro3x3.putExtra("btnVsBotAtivo", btnVsBotAtivo)
+                        startActivity(vaiProTabuleiro3x3)
+                    }
+
 
                 }
 
@@ -123,65 +184,18 @@ class MainActivity : AppCompatActivity() {
             botaoVsBotClicado()
         }
 
-        //BOTÃO 3X3 CLICADO
-        binding.btn3x3.setOnClickListener {
-            tabuleiro3x3 = true
-            tabuleiro4x4 = false
-            tabuleiro5x5 = false
-            tabuleiro6x6 = false
-        }
-        //BOTÃO 4X4 CLICADO
-        binding.btn4x4.setOnClickListener {
-            tabuleiro3x3 = false
-            tabuleiro4x4 = true
-            tabuleiro5x5 = false
-            tabuleiro6x6 = false
-        }
-        //BOTÃO 5X5 CLICADO
-        binding.btn5x5.setOnClickListener {
-            tabuleiro3x3 = false
-            tabuleiro4x4 = false
-            tabuleiro5x5 = true
-            tabuleiro6x6 = false
-        }
-        //BOTÃO 6X6 CLICADO
-        binding.btn6x6.setOnClickListener {
-            tabuleiro3x3 = false
-            tabuleiro4x4 = false
-            tabuleiro5x5 = false
-            tabuleiro6x6 = true
-        }
+        //        //BOTÃO 3X3 CLICADO
+        //        binding.btn3x3.setOnClickListener {
+        tabuleiro3x3 = true
+        tabuleiro4x4 = false
+        tabuleiro5x5 = false
+        tabuleiro6x6 = false
 
     }  //onCreate da Activity
 
 
     //FUNÇÕES PARA CUSTOMIZAÇÃO DA UI
 
-
-    private fun escolherBotao(idBotao: Int): Button {
-        return when (idBotao) {
-            R.id.btn3x3 -> binding.btn3x3
-            R.id.btn4x4 -> binding.btn4x4
-            R.id.btn5x5 -> binding.btn5x5
-            R.id.btn6x6 -> binding.btn6x6
-            else -> throw IllegalArgumentException("Botão não encontrado com ID: $idBotao")
-        }
-    }
-
-    private fun botaoClicado(idBotaoClicado: Int) {
-        if (idBotaoSelecionado != null) {
-            // Reset o botão previamente selecionado
-            val botaoAnterior = escolherBotao(idBotaoSelecionado!!)
-            limparEstiloBotao(botaoAnterior)
-        }
-
-        // Atualiza o botão clicado
-        val clickedButton = escolherBotao(idBotaoClicado)
-        atualizarEstiloBotao(clickedButton)
-
-        // Atualiza o ID do botão selecionado
-        idBotaoSelecionado = idBotaoClicado
-    }
 
     private fun limparEstiloBotao(button: Button) {
         button.setBackgroundResource(R.drawable.rounded_button_transparente)
