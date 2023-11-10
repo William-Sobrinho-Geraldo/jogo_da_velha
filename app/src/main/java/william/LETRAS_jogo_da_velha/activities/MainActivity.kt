@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         //BOTÃO COMEÇAR PARTICA CLICADO
         binding.btnComecarPartida.setOnClickListener {
             val jogador1 = JogadoresModel(nome = binding.jogador1EditText.text.toString())
-            val jogador2 = JogadoresModel(nome = binding.jogador2EditText.text.toString())
+            val jogador2 = JogadoresModel(nome = binding.jogador2EditText.text.toString(), cor = 1, simbolo = 1)
 
             //insiro o nome deses jgoadores no BD
             lifecycleScope.launch(Dispatchers.IO) {
@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity() {
                     mostrarToast("Jogador ${jogador1.nome} e jogador ${jogador2.nome} cadastrados", this@MainActivity)
                     delay(1000)
                     val intent = Intent(this@MainActivity, TabuleiroActivity::class.java)
-                    intent.putExtra("jogador1", jogador1.nome)
-                    intent.putExtra("jogador2", jogador2.nome)
+                    intent.putExtra("jogador1", jogador1)
+                    intent.putExtra("jogador2", jogador2)
                     startActivity(intent)
 
                 }
