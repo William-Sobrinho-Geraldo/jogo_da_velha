@@ -158,26 +158,41 @@ class MainActivity : AppCompatActivity() {
                         vaiProTabuleiro3x3.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
                         vaiProTabuleiro3x3.putExtra("btnVsBotAtivo", btnVsBotAtivo)
                         startActivity(vaiProTabuleiro3x3)
+
+                        Log.i("bot", "onCreate:  indo pro tabuleiro3x3 e  botão vsBot é $btnVsBotAtivo ")
+
                     }
 
                     if( tabuleiro4x4){
-                        startActivity(Intent(this@MainActivity,Tabuleiro4x4Activity::class.java))
+                        val vaiProTabuleiro4x4 = Intent(this@MainActivity,Tabuleiro4x4Activity::class.java)
+                        vaiProTabuleiro4x4.putExtra("jogador1", jogador1)
+                        vaiProTabuleiro4x4.putExtra("jogador2", jogador2)
+                        vaiProTabuleiro4x4.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
+                        vaiProTabuleiro4x4.putExtra("btnVsBotAtivo", btnVsBotAtivo)
+                        startActivity(vaiProTabuleiro4x4)
 
                     }
                     if( tabuleiro5x5){
-                        startActivity(Intent(this@MainActivity,Tabuleiro5x5Activity::class.java))
-
+                        val vaiProTabuleiro5x5 = Intent(this@MainActivity,Tabuleiro5x5Activity::class.java)
+                        vaiProTabuleiro5x5.putExtra("jogador1", jogador1)
+                        vaiProTabuleiro5x5.putExtra("jogador2", jogador2)
+                        vaiProTabuleiro5x5.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
+                        vaiProTabuleiro5x5.putExtra("btnVsBotAtivo", btnVsBotAtivo)
+                        startActivity(vaiProTabuleiro5x5)
                     }
                     if( tabuleiro6x6){
-                        startActivity(Intent(this@MainActivity,Tabuleiro6x6Activity::class.java))
+                        val vaiProTabuleiro6x6 = Intent(this@MainActivity,Tabuleiro6x6Activity::class.java)
+                        vaiProTabuleiro6x6.putExtra("jogador1", jogador1)
+                        vaiProTabuleiro6x6.putExtra("jogador2", jogador2)
+                        vaiProTabuleiro6x6.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
+                        vaiProTabuleiro6x6.putExtra("btnVsBotAtivo", btnVsBotAtivo)
+                        startActivity(vaiProTabuleiro6x6)
                     }
                 }
 
                 //DELETAR TUDO EVENTUALMENTE - MANTENHA COMENTADO
                 //viewModel.deletarTodosOsJogadores()
             }
-
-
         }
 
 

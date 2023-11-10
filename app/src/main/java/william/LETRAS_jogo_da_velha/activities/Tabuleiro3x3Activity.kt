@@ -2,6 +2,8 @@ package william.LETRAS_jogo_da_velha.activities
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
@@ -13,6 +15,8 @@ private const val TAG = "TabuleitoActivity"
 
 class Tabuleiro3x3Activity : AppCompatActivity() {
     private lateinit var binding: ActivityTabuleiro3x3Binding
+    private lateinit var botoes: List<ImageButton>
+    private val buttonMarcList = mutableListOf("", "", "", "", "", "", "", "", "")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +24,14 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
         binding = ActivityTabuleiro3x3Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        botoes = listOf(
+            binding.button1, binding.button2, binding.button3,
+            binding.button4, binding.button5, binding.button6,
+            binding.button7, binding.button8, binding.button9
+        )
+
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
         var jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
-        val btnVsJogadorAtivo = intent.getBooleanExtra("btnVsJogadorAtivo", true)
         val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
 
         val bot = Bot()
@@ -93,10 +102,14 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.jogadorX.text = jogador1.nome
             binding.jogadorX.setTextColor(resources.getColor(R.color.vermelho))
             binding.vencedor.setTextColor(resources.getColor(R.color.transparente))
+            for ( indice in 0 until buttonMarcList.size){
+                buttonMarcList[indice] = ""
+            }
+
             button1Marc = ""
             button2Marc = ""
             button3Marc = ""
-            button4Marc = ""
+            button4Marc = ""  //VOU TER Q LIMPAR A LISTA NOVA
             button5Marc = ""
             button6Marc = ""
             button7Marc = ""
@@ -208,8 +221,9 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             verificaVencedorComX()
             verificaVencedorCom0()
             //VERIFICA SE HOUVE EMPATE
-            if (contadorDeJogadas == 9) mostrarToast("Tivemos um empate", this)
-
+            if (contadorDeJogadas == 9) {
+                mostrarToast("Tivemos um empate", this)
+            }
 
             jogadorAtual = if (jogadorAtual == jogador1) {
                 jogador2
@@ -217,7 +231,6 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 jogador1
             }
             Log.i(TAG, "alteraVezDoJogador:  Agora o JOGADORATUAL é :  ${jogadorAtual.nome}")
-
 
             contadorDeJogadas++
             Log.i(TAG, "alteraVezDoJogador: Agora o contador é   $contadorDeJogadas")
@@ -228,196 +241,220 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
         //MOSTRAR QUE O PRIMEIRO A JOGAR É O JOGADOR1
         binding.jogadorX.text = jogador1.nome
 
+
+
+
+        for ((index, botao) in botoes.withIndex()) {
+            botao.setOnClickListener {
+                if (contadorDeJogadas < 9 && buttonMarcList[index].isEmpty()) {
+                    buttonMarcList[index] = if (jogadorAtual == jogador1) "x" else "0"
+                    botao.setBackgroundResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
+                    alteraVezDoJogador()
+
+                    //verifica se está jogando com o bot e manda ele jogar
+                    if (jogadorAtual == jogador2 && btnVsBotAtivo) {
+                        ordenaJogadaDoBot()
+                    }
+
+                } else {
+                    mostrarToast("o jogo acabou", this)
+                }
+                botao.isEnabled = false
+                Log.i(TAG, "onCreate: botao${index + 1} bloqueado para outros clicks")
+            }
+        }
+
+
         //ESCUTA O CLICK EM CADA ImageButton
-        binding.button1.setOnClickListener {
-            if (contadorDeJogadas < 9) {
-                if (jogadorAtual == jogador1) {
-                    button1Marc = "x"
-                    binding.button1.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
-                    alteraVezDoJogador()
-                } else {
-                    button1Marc = "0"
-                    binding.button1.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
-                    alteraVezDoJogador()
-                }
-
-                //verifica se está jogando com o bot e manda ele jogar
-                if (jogadorAtual == jogador2) {
-                    ordenaJogadaDoBot()
-                }
-
-            } else mostrarToast("o jogo acabou", this)
-            binding.button1.isEnabled = false
-            Log.i(TAG, "onCreate: botao1 bloqueado para outros clicks")
-
-        }
-
-        binding.button2.setOnClickListener {
-            if (contadorDeJogadas < 9) {
-                if (jogadorAtual == jogador1) {
-                    button2Marc = "x"
-                    binding.button2.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
-                    alteraVezDoJogador()
-                } else {
-                    button2Marc = "0"
-                    binding.button2.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
-                    alteraVezDoJogador()
-                }
-                //verifica se está jogando com o bot e manda ele jogar
-                if (jogadorAtual == jogador2) {
-                    ordenaJogadaDoBot()
-                }
-            } else mostrarToast("o jogo acabou", this)
-            binding.button2.isEnabled = false
-            Log.i(TAG, "onCreate: botao2 bloqueado para outros clicks")
-
-        }
-
-        binding.button3.setOnClickListener {
-            if (contadorDeJogadas < 9) {
-                if (jogadorAtual == jogador1) {
-                    button3Marc = "x"
-                    binding.button3.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
-                    alteraVezDoJogador()
-                } else {
-                    button3Marc = "0"
-                    binding.button3.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
-                    alteraVezDoJogador()
-                }
-                //verifica se está jogando com o bot e manda ele jogar
-                if (jogadorAtual == jogador2) {
-                    ordenaJogadaDoBot()
-                }
-            } else mostrarToast("o jogo acabou", this)
-            binding.button3.isEnabled = false
-            Log.i(TAG, "onCreate: botao3 bloqueado para outros clicks")
-
-        }
-
-        binding.button4.setOnClickListener {
-            if (contadorDeJogadas < 9) {
-                if (jogadorAtual == jogador1) {
-                    button4Marc = "x"
-                    binding.button4.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
-                    alteraVezDoJogador()
-                } else {
-                    button4Marc = "0"
-                    binding.button4.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
-                    alteraVezDoJogador()
-                }
-                //verifica se está jogando com o bot e manda ele jogar
-                if (jogadorAtual == jogador2) {
-                    ordenaJogadaDoBot()
-                }
-            } else mostrarToast("o jogo acabou", this)
-            binding.button4.isEnabled = false
-            Log.i(TAG, "onCreate: botao4 bloqueado para outros clicks")
-
-        }
-
-        binding.button5.setOnClickListener {
-            if (contadorDeJogadas < 9) {
-                if (jogadorAtual == jogador1) {
-                    button5Marc = "x"
-                    binding.button5.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
-                    alteraVezDoJogador()
-                } else {
-                    button5Marc = "0"
-                    binding.button5.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
-                    alteraVezDoJogador()
-                }
-                //verifica se está jogando com o bot e manda ele jogar
-                if (jogadorAtual == jogador2) {
-                    ordenaJogadaDoBot()
-                }
-            } else mostrarToast("o jogo acabou", this)
-            binding.button5.isEnabled = false
-            Log.i(TAG, "onCreate: botao5 bloqueado para outros clicks")
-
-        }
-
-        binding.button6.setOnClickListener {
-            if (contadorDeJogadas < 9) {
-                if (jogadorAtual == jogador1) {
-                    button6Marc = "x"
-                    binding.button6.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
-                    alteraVezDoJogador()
-                } else {
-                    button6Marc = "0"
-                    binding.button6.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
-                    alteraVezDoJogador()
-                }
-                //verifica se está jogando com o bot e manda ele jogar
-                if (jogadorAtual == jogador2) {
-                    ordenaJogadaDoBot()
-                }
-            } else mostrarToast("o jogo acabou", this)
-            binding.button6.isEnabled = false
-            Log.i(TAG, "onCreate: botao6 bloqueado para outros clicks")
-        }
-
-        binding.button7.setOnClickListener {
-            if (contadorDeJogadas < 9) {
-                if (jogadorAtual == jogador1) {
-                    button7Marc = "x"
-                    binding.button7.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
-                    alteraVezDoJogador()
-                } else {
-                    button7Marc = "0"
-                    binding.button7.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
-                    alteraVezDoJogador()
-                }
-                //verifica se está jogando com o bot e manda ele jogar
-                if (jogadorAtual == jogador2) {
-                    ordenaJogadaDoBot()
-                }
-            } else mostrarToast("o jogo acabou", this)
-            binding.button7.isEnabled = false
-            Log.i(TAG, "onCreate: botao7 bloqueado para outros clicks")
-
-        }
-
-        binding.button8.setOnClickListener {
-            if (contadorDeJogadas < 9) {
-                if (jogadorAtual == jogador1) {
-                    button8Marc = "x"
-                    binding.button8.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
-                    alteraVezDoJogador()
-                } else {
-                    button8Marc = "0"
-                    binding.button8.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
-                    alteraVezDoJogador()
-                }
-                //verifica se está jogando com o bot e manda ele jogar
-                if (jogadorAtual == jogador2) {
-                    ordenaJogadaDoBot()
-                }
-            } else mostrarToast("o jogo acabou", this)
-            binding.button8.isEnabled = false
-            Log.i(TAG, "onCreate: botao8 bloqueado para outros clicks")
-
-        }
-
-        binding.button9.setOnClickListener {
-            if (contadorDeJogadas < 9) {
-                if (jogadorAtual == jogador1) {
-                    button9Marc = "x"
-                    binding.button9.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
-                    alteraVezDoJogador()
-                } else {
-                    button9Marc = "0"
-                    binding.button9.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
-                    alteraVezDoJogador()
-                }
-                //verifica se está jogando com o bot e manda ele jogar
-                if (jogadorAtual == jogador2) {
-                    ordenaJogadaDoBot()
-                }
-            } else mostrarToast("o jogo acabou", this)
-            binding.button9.isEnabled = false
-            Log.i(TAG, "onCreate: botao9 bloqueado para outros clicks")
-
-        }
+//        binding.button1.setOnClickListener {
+//            if (contadorDeJogadas < 9) {
+//                if (jogadorAtual == jogador1) {
+//                    button1Marc = "x"
+//                    binding.button1.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
+//                    alteraVezDoJogador()
+//                } else {
+//                    button1Marc = "0"
+//                    binding.button1.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
+//                    alteraVezDoJogador()
+//                }
+//
+//                //verifica se está jogando com o bot e manda ele jogar
+//                if (jogadorAtual == jogador2) {
+//                    ordenaJogadaDoBot()
+//                }
+//
+//            } else mostrarToast("o jogo acabou", this)
+//            binding.button1.isEnabled = false
+//            Log.i(TAG, "onCreate: botao1 bloqueado para outros clicks")
+//
+//        }
+//
+//        binding.button2.setOnClickListener {
+//            if (contadorDeJogadas < 9) {
+//                if (jogadorAtual == jogador1) {
+//                    button2Marc = "x"
+//                    binding.button2.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
+//                    alteraVezDoJogador()
+//                } else {
+//                    button2Marc = "0"
+//                    binding.button2.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
+//                    alteraVezDoJogador()
+//                }
+//                //verifica se está jogando com o bot e manda ele jogar
+//                if (jogadorAtual == jogador2) {
+//                    ordenaJogadaDoBot()
+//                }
+//            } else mostrarToast("o jogo acabou", this)
+//            binding.button2.isEnabled = false
+//            Log.i(TAG, "onCreate: botao2 bloqueado para outros clicks")
+//
+//        }
+//
+//        binding.button3.setOnClickListener {
+//            if (contadorDeJogadas < 9) {
+//                if (jogadorAtual == jogador1) {
+//                    button3Marc = "x"
+//                    binding.button3.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
+//                    alteraVezDoJogador()
+//                } else {
+//                    button3Marc = "0"
+//                    binding.button3.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
+//                    alteraVezDoJogador()
+//                }
+//                //verifica se está jogando com o bot e manda ele jogar
+//                if (jogadorAtual == jogador2) {
+//                    ordenaJogadaDoBot()
+//                }
+//            } else mostrarToast("o jogo acabou", this)
+//            binding.button3.isEnabled = false
+//            Log.i(TAG, "onCreate: botao3 bloqueado para outros clicks")
+//
+//        }
+//
+//        binding.button4.setOnClickListener {
+//            if (contadorDeJogadas < 9) {
+//                if (jogadorAtual == jogador1) {
+//                    button4Marc = "x"
+//                    binding.button4.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
+//                    alteraVezDoJogador()
+//                } else {
+//                    button4Marc = "0"
+//                    binding.button4.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
+//                    alteraVezDoJogador()
+//                }
+//                //verifica se está jogando com o bot e manda ele jogar
+//                if (jogadorAtual == jogador2) {
+//                    ordenaJogadaDoBot()
+//                }
+//            } else mostrarToast("o jogo acabou", this)
+//            binding.button4.isEnabled = false
+//            Log.i(TAG, "onCreate: botao4 bloqueado para outros clicks")
+//
+//        }
+//
+//        binding.button5.setOnClickListener {
+//            if (contadorDeJogadas < 9) {
+//                if (jogadorAtual == jogador1) {
+//                    button5Marc = "x"
+//                    binding.button5.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
+//                    alteraVezDoJogador()
+//                } else {
+//                    button5Marc = "0"
+//                    binding.button5.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
+//                    alteraVezDoJogador()
+//                }
+//                //verifica se está jogando com o bot e manda ele jogar
+//                if (jogadorAtual == jogador2) {
+//                    ordenaJogadaDoBot()
+//                }
+//            } else mostrarToast("o jogo acabou", this)
+//            binding.button5.isEnabled = false
+//            Log.i(TAG, "onCreate: botao5 bloqueado para outros clicks")
+//
+//        }
+//
+//        binding.button6.setOnClickListener {
+//            if (contadorDeJogadas < 9) {
+//                if (jogadorAtual == jogador1) {
+//                    button6Marc = "x"
+//                    binding.button6.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
+//                    alteraVezDoJogador()
+//                } else {
+//                    button6Marc = "0"
+//                    binding.button6.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
+//                    alteraVezDoJogador()
+//                }
+//                //verifica se está jogando com o bot e manda ele jogar
+//                if (jogadorAtual == jogador2) {
+//                    ordenaJogadaDoBot()
+//                }
+//            } else mostrarToast("o jogo acabou", this)
+//            binding.button6.isEnabled = false
+//            Log.i(TAG, "onCreate: botao6 bloqueado para outros clicks")
+//        }
+//
+//        binding.button7.setOnClickListener {
+//            if (contadorDeJogadas < 9) {
+//                if (jogadorAtual == jogador1) {
+//                    button7Marc = "x"
+//                    binding.button7.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
+//                    alteraVezDoJogador()
+//                } else {
+//                    button7Marc = "0"
+//                    binding.button7.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
+//                    alteraVezDoJogador()
+//                }
+//                //verifica se está jogando com o bot e manda ele jogar
+//                if (jogadorAtual == jogador2) {
+//                    ordenaJogadaDoBot()
+//                }
+//            } else mostrarToast("o jogo acabou", this)
+//            binding.button7.isEnabled = false
+//            Log.i(TAG, "onCreate: botao7 bloqueado para outros clicks")
+//
+//        }
+//
+//        binding.button8.setOnClickListener {
+//            if (contadorDeJogadas < 9) {
+//                if (jogadorAtual == jogador1) {
+//                    button8Marc = "x"
+//                    binding.button8.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
+//                    alteraVezDoJogador()
+//                } else {
+//                    button8Marc = "0"
+//                    binding.button8.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
+//                    alteraVezDoJogador()
+//                }
+//                //verifica se está jogando com o bot e manda ele jogar
+//                if (jogadorAtual == jogador2) {
+//                    ordenaJogadaDoBot()
+//                }
+//            } else mostrarToast("o jogo acabou", this)
+//            binding.button8.isEnabled = false
+//            Log.i(TAG, "onCreate: botao8 bloqueado para outros clicks")
+//
+//        }
+//
+//        binding.button9.setOnClickListener {
+//            if (contadorDeJogadas < 9) {
+//                if (jogadorAtual == jogador1) {
+//                    button9Marc = "x"
+//                    binding.button9.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
+//                    alteraVezDoJogador()
+//                } else {
+//                    button9Marc = "0"
+//                    binding.button9.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
+//                    alteraVezDoJogador()
+//                }
+//                //verifica se está jogando com o bot e manda ele jogar
+//                if (jogadorAtual == jogador2) {
+//                    ordenaJogadaDoBot()
+//                }
+//            } else mostrarToast("o jogo acabou", this)
+//            binding.button9.isEnabled = false
+//            Log.i(TAG, "onCreate: botao9 bloqueado para outros clicks")
+//
+//        }
 
         //BOTÃO NOVO JOGO
         binding.btnNovoJogo.setOnClickListener {
