@@ -95,9 +95,8 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             }
 
             for (botao in botoes) {
-                botao.setBackgroundColor(resources.getColor(R.color.white))        //   LIMPANDO AS MARCAS
-                botao.isEnabled =
-                    true                                                                 //   ATIVANDO OS BOTÕES
+                botao.setImageResource(R.drawable.imagem_fundo_branco)        //   LIMPANDO AS MARCAS
+                botao.isEnabled = true                                       //   ATIVANDO OS BOTÕES
             }
         }
 
@@ -207,7 +206,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             botao.setOnClickListener {
                 if (contadorDeJogadas < 9 && buttonMarcList[index].isEmpty()) {
                     buttonMarcList[index] = if (jogadorAtual == jogador1) "x" else "0"
-                    botao.setBackgroundResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
+                    botao.setImageResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
                     alteraVezDoJogador()
 
                     //verifica se está jogando com o bot e manda ele jogar

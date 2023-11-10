@@ -53,7 +53,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
 
         <ImageButton
@@ -64,7 +65,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button3"
@@ -74,7 +76,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button4"
@@ -84,7 +87,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button5"
@@ -94,7 +98,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button6"
@@ -104,7 +109,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button7"
@@ -114,7 +120,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button8"
@@ -124,7 +131,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button9"
@@ -134,7 +142,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button10"
@@ -144,7 +153,9 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
+
         <ImageButton
             android:id="@+id/button11"
             android:layout_width="0dp"
@@ -153,7 +164,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button12"
@@ -163,7 +175,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button13"
@@ -173,7 +186,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button14"
@@ -183,7 +197,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button15"
@@ -193,7 +208,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button16"
@@ -203,7 +219,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
     </GridLayout>
 
     <TextView
@@ -217,8 +234,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_novoJogo"
         app:layout_constraintEnd_toEndOf="@+id/btn_voltar"
-        app:layout_constraintStart_toStartOf="@+id/btn_voltar"
-        />
+        app:layout_constraintStart_toStartOf="@+id/btn_voltar" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_novoJogo"
         android:layout_width="match_parent"
@@ -247,7 +264,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/gridLayout"
         app:layout_constraintStart_toStartOf="@id/gridLayout" />
-
 
 
     <androidx.constraintlayout.widget.Guideline
