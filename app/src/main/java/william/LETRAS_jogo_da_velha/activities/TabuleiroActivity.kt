@@ -2,7 +2,10 @@ package william.LETRAS_jogo_da_velha.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import kotlinx.coroutines.delay
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiroBinding
@@ -27,6 +30,8 @@ class TabuleiroActivity : AppCompatActivity() {
         val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
 
         val bot = Bot()
+        var botaoEscolhidoPeloBot = 0
+        val blocosVazios: MutableList<Int> = mutableListOf()
 
 
         var jogadorAtual = jogador1
@@ -44,9 +49,9 @@ class TabuleiroActivity : AppCompatActivity() {
         var button9Marc = ""
 
         fun ordenaJogadaDoBot() {
-            //bot pode jogar onde não estiver marcado
-
-            val blocosVazios : MutableList<Int>  = mutableListOf()
+            //bot só pode jogar onde estiver vazio
+            blocosVazios.clear()
+            Log.i(TAG, "ordenaJogadaDoBot:   blocosVazios foi limpa e agora é:  $blocosVazios")
 
             if (button1Marc == "") blocosVazios.add(1)
             if (button2Marc == "") blocosVazios.add(2)
@@ -57,16 +62,27 @@ class TabuleiroActivity : AppCompatActivity() {
             if (button7Marc == "") blocosVazios.add(7)
             if (button8Marc == "") blocosVazios.add(8)
             if (button9Marc == "") blocosVazios.add(9)
+            Log.i(TAG, "ordenaJogadaDoBot:   Os espaços disponíveis são $blocosVazios")
 
 
-             if (blocosVazios.isNotEmpty()) {
-                val botaoEscolhido = Random.nextInt(blocosVazios.size) + 1
-                 Log.i(TAG, "ordenaJogadaDoBot:   Os espaços disponíveis são $blocosVazios")
-                 Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhido}")
+            if (blocosVazios.isNotEmpty()) {
+                //Escolhendo botão que o bot Vai clicar aleatóriamente
+                botaoEscolhidoPeloBot = blocosVazios.random()
+                Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhidoPeloBot}")
+                //                Handler(Looper.getMainLooper()).postDelayed({
+                if (botaoEscolhidoPeloBot == 1 && binding.button1.isEnabled) binding.button1.performClick()
+                if (botaoEscolhidoPeloBot == 2 && binding.button2.isEnabled) binding.button2.performClick()
+                if (botaoEscolhidoPeloBot == 3 && binding.button3.isEnabled) binding.button3.performClick()
+                if (botaoEscolhidoPeloBot == 4 && binding.button4.isEnabled) binding.button4.performClick()
+                if (botaoEscolhidoPeloBot == 5 && binding.button5.isEnabled) binding.button5.performClick()
+                if (botaoEscolhidoPeloBot == 6 && binding.button6.isEnabled) binding.button6.performClick()
+                if (botaoEscolhidoPeloBot == 7 && binding.button7.isEnabled) binding.button7.performClick()
+                if (botaoEscolhidoPeloBot == 8 && binding.button8.isEnabled) binding.button8.performClick()
+                if (botaoEscolhidoPeloBot == 9 && binding.button9.isEnabled) binding.button9.performClick()
+                //                }, 300)
+
             }
-
         }
-
 
         //VERIFICANDO SE VOU JOGAR CONTRA BOT OU OUTRO JOGADOR
         if (btnVsBotAtivo) {
@@ -195,6 +211,9 @@ class TabuleiroActivity : AppCompatActivity() {
             //ANTES DE ALTERAR, VERIFICA SE Já TEM VENCEDOR
             verificaVencedorComX()
             verificaVencedorCom0()
+            //VERIFICA SE HOUVE EMPATE
+            if (contadorDeJogadas == 9) mostrarToast("Tivemos um empate", this)
+
 
             jogadorAtual = if (jogadorAtual == jogador1) {
                 jogador2
@@ -227,12 +246,14 @@ class TabuleiroActivity : AppCompatActivity() {
                 }
 
                 //verifica se está jogando com o bot e manda ele jogar
-                if(btnVsBotAtivo ){
+                if (jogadorAtual == jogador2) {
                     ordenaJogadaDoBot()
                 }
 
-
             } else mostrarToast("o jogo acabou", this)
+            binding.button1.isEnabled = false
+            Log.i(TAG, "onCreate: botao1 bloqueado para outros clicks")
+
         }
 
         binding.button2.setOnClickListener {
@@ -246,7 +267,14 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button2.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
                 }
+                //verifica se está jogando com o bot e manda ele jogar
+                if (jogadorAtual == jogador2) {
+                    ordenaJogadaDoBot()
+                }
             } else mostrarToast("o jogo acabou", this)
+            binding.button2.isEnabled = false
+            Log.i(TAG, "onCreate: botao2 bloqueado para outros clicks")
+
         }
 
         binding.button3.setOnClickListener {
@@ -260,7 +288,14 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button3.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
                 }
+                //verifica se está jogando com o bot e manda ele jogar
+                if (jogadorAtual == jogador2) {
+                    ordenaJogadaDoBot()
+                }
             } else mostrarToast("o jogo acabou", this)
+            binding.button3.isEnabled = false
+            Log.i(TAG, "onCreate: botao3 bloqueado para outros clicks")
+
         }
 
         binding.button4.setOnClickListener {
@@ -274,7 +309,14 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button4.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
                 }
+                //verifica se está jogando com o bot e manda ele jogar
+                if (jogadorAtual == jogador2) {
+                    ordenaJogadaDoBot()
+                }
             } else mostrarToast("o jogo acabou", this)
+            binding.button4.isEnabled = false
+            Log.i(TAG, "onCreate: botao4 bloqueado para outros clicks")
+
         }
 
         binding.button5.setOnClickListener {
@@ -288,7 +330,14 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button5.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
                 }
+                //verifica se está jogando com o bot e manda ele jogar
+                if (jogadorAtual == jogador2) {
+                    ordenaJogadaDoBot()
+                }
             } else mostrarToast("o jogo acabou", this)
+            binding.button5.isEnabled = false
+            Log.i(TAG, "onCreate: botao5 bloqueado para outros clicks")
+
         }
 
         binding.button6.setOnClickListener {
@@ -302,7 +351,13 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button6.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
                 }
+                //verifica se está jogando com o bot e manda ele jogar
+                if (jogadorAtual == jogador2) {
+                    ordenaJogadaDoBot()
+                }
             } else mostrarToast("o jogo acabou", this)
+            binding.button6.isEnabled = false
+            Log.i(TAG, "onCreate: botao6 bloqueado para outros clicks")
         }
 
         binding.button7.setOnClickListener {
@@ -316,7 +371,14 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button7.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
                 }
+                //verifica se está jogando com o bot e manda ele jogar
+                if (jogadorAtual == jogador2) {
+                    ordenaJogadaDoBot()
+                }
             } else mostrarToast("o jogo acabou", this)
+            binding.button7.isEnabled = false
+            Log.i(TAG, "onCreate: botao7 bloqueado para outros clicks")
+
         }
 
         binding.button8.setOnClickListener {
@@ -330,7 +392,14 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button8.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
                 }
+                //verifica se está jogando com o bot e manda ele jogar
+                if (jogadorAtual == jogador2) {
+                    ordenaJogadaDoBot()
+                }
             } else mostrarToast("o jogo acabou", this)
+            binding.button8.isEnabled = false
+            Log.i(TAG, "onCreate: botao8 bloqueado para outros clicks")
+
         }
 
         binding.button9.setOnClickListener {
@@ -344,9 +413,17 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button9.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
                 }
+                //verifica se está jogando com o bot e manda ele jogar
+                if (jogadorAtual == jogador2) {
+                    ordenaJogadaDoBot()
+                }
             } else mostrarToast("o jogo acabou", this)
+            binding.button9.isEnabled = false
+            Log.i(TAG, "onCreate: botao9 bloqueado para outros clicks")
+
         }
 
+        //BOTÃO NOVO JOGO
         binding.btnNovoJogo.setOnClickListener {
             limpaTabuleiro()
         }

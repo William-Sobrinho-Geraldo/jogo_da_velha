@@ -275,7 +275,7 @@
             <!--CÉLULA DO TABULEIRO-->
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn1"
+                android:id="@+id/btn3x3"
                 android:layout_width="76.5dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="2dp"
@@ -293,7 +293,7 @@
                 android:background="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn2"
+                android:id="@+id/btn4x4"
                 android:layout_width="76.5dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="2dp"
@@ -310,7 +310,7 @@
                 android:background="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn3"
+                android:id="@+id/btn5x5"
                 android:layout_width="76.5dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="2dp"
@@ -327,7 +327,7 @@
                 android:background="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn4"
+                android:id="@+id/btn6x6"
                 android:layout_width="76.5dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="2dp"

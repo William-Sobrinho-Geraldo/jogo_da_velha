@@ -21,7 +21,7 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val idsBotoes = listOf(R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4)
+    private val idsBotoes = listOf(R.id.btn3x3, R.id.btn4x4, R.id.btn5x5, R.id.btn6x6)
     private var idBotaoSelecionado: Int? = idsBotoes[0]
 
 
@@ -32,8 +32,15 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: MainActivityViewModel by viewModel()
 
+        //VARIÁVEIS DO MODO DE JOGO
         var btnVsJogadorAtivo = true
         var btnVsBotAtivo = false
+
+        //VARIÁVEIS DO TAMANHO DO TABULEIRO
+        var tabuleiro3x3 = true
+        var tabuleiro4x4 = false
+        var tabuleiro5x5 = false
+        var tabuleiro6x6 = false
 
         for (id in idsBotoes) {
             val button = escolherBotao(id)
@@ -67,7 +74,8 @@ class MainActivity : AppCompatActivity() {
         //BOTÃO COMEÇAR PARTICA CLICADO
         binding.btnComecarPartida.setOnClickListener {
             val jogador1 = JogadoresModel(nome = binding.jogador1EditText.text.toString())
-            val jogador2 = JogadoresModel(nome = binding.jogador2EditText.text.toString(), cor = 1, simbolo = 1)
+            val jogador2 =
+                JogadoresModel(nome = binding.jogador2EditText.text.toString(), cor = 1, simbolo = 1)
 
             //insiro o nome deses jgoadores no BD
             lifecycleScope.launch(Dispatchers.IO) {
@@ -80,8 +88,11 @@ class MainActivity : AppCompatActivity() {
 
                 withContext(Dispatchers.Main) {
                     //pode navegar pra outra tela
-                    mostrarToast("Jogador ${jogador1.nome} e jogador ${jogador2.nome} cadastrados", this@MainActivity)
-                    delay(1000)
+                    mostrarToast(
+                        "Jogador ${jogador1.nome} e jogador ${jogador2.nome} cadastrados",
+                        this@MainActivity
+                    )
+                    delay(600)
                     val intent = Intent(this@MainActivity, TabuleiroActivity::class.java)
                     intent.putExtra("jogador1", jogador1)
                     intent.putExtra("jogador2", jogador2)
@@ -112,8 +123,36 @@ class MainActivity : AppCompatActivity() {
             botaoVsBotClicado()
         }
 
-    }  //onCreate da Activity
+        //BOTÃO 3X3 CLICADO
+        binding.btn3x3.setOnClickListener {
+            tabuleiro3x3 = true
+            tabuleiro4x4 = false
+            tabuleiro5x5 = false
+            tabuleiro6x6 = false
+        }
+        //BOTÃO 4X4 CLICADO
+        binding.btn4x4.setOnClickListener {
+            tabuleiro3x3 = false
+            tabuleiro4x4 = true
+            tabuleiro5x5 = false
+            tabuleiro6x6 = false
+        }
+        //BOTÃO 5X5 CLICADO
+        binding.btn5x5.setOnClickListener {
+            tabuleiro3x3 = false
+            tabuleiro4x4 = false
+            tabuleiro5x5 = true
+            tabuleiro6x6 = false
+        }
+        //BOTÃO 6X6 CLICADO
+        binding.btn6x6.setOnClickListener {
+            tabuleiro3x3 = false
+            tabuleiro4x4 = false
+            tabuleiro5x5 = false
+            tabuleiro6x6 = true
+        }
 
+    }  //onCreate da Activity
 
 
     //FUNÇÕES PARA CUSTOMIZAÇÃO DA UI
@@ -121,10 +160,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun escolherBotao(idBotao: Int): Button {
         return when (idBotao) {
-            R.id.btn1 -> binding.btn1
-            R.id.btn2 -> binding.btn2
-            R.id.btn3 -> binding.btn3
-            R.id.btn4 -> binding.btn4
+            R.id.btn3x3 -> binding.btn3x3
+            R.id.btn4x4 -> binding.btn4x4
+            R.id.btn5x5 -> binding.btn5x5
+            R.id.btn6x6 -> binding.btn6x6
             else -> throw IllegalArgumentException("Botão não encontrado com ID: $idBotao")
         }
     }
@@ -154,10 +193,10 @@ class MainActivity : AppCompatActivity() {
         button.setTextColor(resources.getColor(R.color.roxo))
         // Modifique o texto conforme necessário
         when (button.id) {
-            R.id.btn1 -> button.text = getString(R.string._3x3)
-            R.id.btn2 -> button.text = getString(R.string._4x4)
-            R.id.btn3 -> button.text = getString(R.string._5x5)
-            R.id.btn4 -> button.text = getString(R.string._6x6)
+            R.id.btn3x3 -> button.text = getString(R.string._3x3)
+            R.id.btn4x4 -> button.text = getString(R.string._4x4)
+            R.id.btn5x5 -> button.text = getString(R.string._5x5)
+            R.id.btn6x6 -> button.text = getString(R.string._6x6)
         }
     }
 
