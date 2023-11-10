@@ -53,7 +53,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
 
         <ImageButton
@@ -64,7 +65,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button3"
@@ -74,7 +76,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button4"
@@ -84,7 +87,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button5"
@@ -94,7 +98,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button6"
@@ -104,7 +109,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button7"
@@ -114,7 +120,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button8"
@@ -124,7 +131,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button9"
@@ -134,7 +142,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button10"
@@ -144,7 +153,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button11"
@@ -154,7 +164,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button12"
@@ -164,7 +175,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button13"
@@ -174,7 +186,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button14"
@@ -184,7 +197,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button15"
@@ -194,7 +208,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button16"
@@ -204,7 +219,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button17"
@@ -214,7 +230,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button18"
@@ -224,7 +241,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button19"
@@ -234,7 +252,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button20"
@@ -244,7 +263,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button21"
@@ -254,7 +274,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button22"
@@ -264,7 +285,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button23"
@@ -274,7 +296,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button24"
@@ -284,7 +307,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button25"
@@ -294,7 +318,9 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
+
         <ImageButton
             android:id="@+id/button26"
             android:layout_width="0dp"
@@ -303,7 +329,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button27"
@@ -313,7 +340,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button28"
@@ -323,7 +351,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button29"
@@ -333,7 +362,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button30"
@@ -343,7 +373,9 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
+
         <ImageButton
             android:id="@+id/button31"
             android:layout_width="0dp"
@@ -352,7 +384,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button32"
@@ -362,7 +395,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button33"
@@ -372,7 +406,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button34"
@@ -382,7 +417,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button35"
@@ -392,7 +428,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
         <ImageButton
             android:id="@+id/button36"
@@ -402,7 +439,8 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_margin="1dp"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:scaleType="centerInside" />
 
 
     </GridLayout>

@@ -102,7 +102,7 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
 
             for (botao in botoes) {
                 botao.setImageResource(R.drawable.imagem_fundo_branco)   //   LIMPANDO AS MARCAS
-                botao.isEnabled = true                                              //   ATIVANDO OS BOTÕES
+                botao.isEnabled = true                                         //   REATIVANDO OS BOTÕES
             }
         }
 
