@@ -1,12 +1,16 @@
 package william.LETRAS_jogo_da_velha.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.AppDatabase
@@ -43,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             val jogador2 = JogadoresModel(nome = binding.jogador2EditText.text.toString())
 
             //insiro o nome deses jgoadores no BD
-            CoroutineScope(Dispatchers.IO).launch {
+            lifecycleScope.launch(Dispatchers.IO) {
                 viewModel.inserirJogadores(jogador1)
                 viewModel.inserirJogadores(jogador2)
 
@@ -53,19 +57,23 @@ class MainActivity : AppCompatActivity() {
 
 
 
-                //DELETAR TUDO EVENTUALMENTE - MANTENHA COMENTADO
-                //repository.deletarTodosOsJogadores()
-            }
+                withContext(Dispatchers.Main) {
+                    //pode navegar pra outra tela
+                    mostrarToast("Jogador ${jogador1.nome} e jogador ${jogador2.nome} cadastrados", this@MainActivity)
+                    delay(1000)
+                    startActivity(Intent(this@MainActivity, TabuleiroActivity::class.java))
 
-            //pode navegar pra outra tela
-            mostrarToast("Jogador ${jogador1.nome} e jogador ${jogador2.nome} cadastrados", this)
+                }
+
+                //DELETAR TUDO EVENTUALMENTE - MANTENHA COMENTADO
+                //viewModel.deletarTodosOsJogadores()
+            }
 
 
         }
 
 
         //BOTÃO HISTÓRICO CLICADO
-
 
 
         //BOTÃO VS JOGADOR CLICADO

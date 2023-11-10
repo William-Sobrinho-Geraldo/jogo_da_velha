@@ -4,5 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparente">#00000000</color>
     <color name="roxo">#6821AF</color>
+    <color name="vermelho">#FF0000</color>
+    <color name="azul">#007AFF</color>
+    <color name="azulClaro">#7ed5ff</color>
+
 
 </resources>
