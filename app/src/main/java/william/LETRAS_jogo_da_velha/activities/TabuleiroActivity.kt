@@ -6,7 +6,9 @@ import android.util.Log
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiroBinding
+import william.LETRAS_jogo_da_velha.utilidades.Bot
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
+import kotlin.random.Random
 
 private const val TAG = "TabuleitoActivity"
 
@@ -23,13 +25,14 @@ class TabuleiroActivity : AppCompatActivity() {
         val jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
         val btnVsJogadorAtivo = intent.getBooleanExtra("btnVsJogadorAtivo", true)
         val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
-        Log.i(TAG, "TabuleiroActivity:    O btnVsJogadorAtivo é $btnVsJogadorAtivo   e    btnVsBotAtivo  é  $btnVsBotAtivo" )
+
+        val bot = Bot()
 
 
         var jogadorAtual = jogador1
         var contadorDeJogadas = 0
 
-        //TABULEIRO LIMPO
+        //COMEÇANDO O JOGO COM OTABULEIRO LIMPO
         var button1Marc = ""
         var button2Marc = ""
         var button3Marc = ""
@@ -40,40 +43,69 @@ class TabuleiroActivity : AppCompatActivity() {
         var button8Marc = ""
         var button9Marc = ""
 
-fun limpaTabuleiro(){
-    contadorDeJogadas = 0
-    button1Marc = ""
-    button2Marc = ""
-    button3Marc = ""
-    button4Marc = ""
-    button5Marc = ""
-    button6Marc = ""
-    button7Marc = ""
-    button8Marc = ""
-    button9Marc = ""
-    //   LIMPANDO AS MARCAS
-    binding.button1.setBackgroundColor(resources.getColor(R.color.white))
-    binding.button2.setBackgroundColor(resources.getColor(R.color.white))
-    binding.button3.setBackgroundColor(resources.getColor(R.color.white))
-    binding.button4.setBackgroundColor(resources.getColor(R.color.white))
-    binding.button5.setBackgroundColor(resources.getColor(R.color.white))
-    binding.button6.setBackgroundColor(resources.getColor(R.color.white))
-    binding.button7.setBackgroundColor(resources.getColor(R.color.white))
-    binding.button8.setBackgroundColor(resources.getColor(R.color.white))
-    binding.button9.setBackgroundColor(resources.getColor(R.color.white))
-    //ATIVANDO OS BOTÕES
-    binding.button1.isEnabled = true
-    binding.button2.isEnabled = true
-    binding.button3.isEnabled = true
-    binding.button4.isEnabled = true
-    binding.button5.isEnabled = true
-    binding.button6.isEnabled = true
-    binding.button7.isEnabled = true
-    binding.button8.isEnabled = true
-    binding.button9.isEnabled = true
+        fun ordenaJogadaDoBot(): String? {
+            //bot pode jogar onde não estiver marcado
+            val blocosJogaveis = listOf(
+                button1Marc,
+                button2Marc,
+                button3Marc,
+                button4Marc,
+                button5Marc,
+                button6Marc,
+                button7Marc,
+                button8Marc,
+                button9Marc,
+            )
+            val blocosVazios = blocosJogaveis.filter { it == "" }
+            return if (blocosVazios.isNotEmpty()) {
+                val indiceEscolhido = Random.nextInt(blocosVazios.size)
+                blocosVazios[indiceEscolhido]
+            } else null
+        }
 
-}
 
+        //VERIFICANDO SE VOU JOGAR CONTRA BOT OU OUTRO JOGADOR
+        if (btnVsBotAtivo) {
+            ordenaJogadaDoBot()
+        }
+
+
+        fun limpaTabuleiro() {
+            contadorDeJogadas = 0
+            jogadorAtual = jogador1
+            binding.jogadorX.text = jogador1.nome
+            binding.jogadorX.setTextColor(resources.getColor(R.color.vermelho))
+            binding.vencedor.setTextColor(resources.getColor(R.color.transparente))
+            button1Marc = ""
+            button2Marc = ""
+            button3Marc = ""
+            button4Marc = ""
+            button5Marc = ""
+            button6Marc = ""
+            button7Marc = ""
+            button8Marc = ""
+            button9Marc = ""
+            //   LIMPANDO AS MARCAS
+            binding.button1.setBackgroundColor(resources.getColor(R.color.white))
+            binding.button2.setBackgroundColor(resources.getColor(R.color.white))
+            binding.button3.setBackgroundColor(resources.getColor(R.color.white))
+            binding.button4.setBackgroundColor(resources.getColor(R.color.white))
+            binding.button5.setBackgroundColor(resources.getColor(R.color.white))
+            binding.button6.setBackgroundColor(resources.getColor(R.color.white))
+            binding.button7.setBackgroundColor(resources.getColor(R.color.white))
+            binding.button8.setBackgroundColor(resources.getColor(R.color.white))
+            binding.button9.setBackgroundColor(resources.getColor(R.color.white))
+            //ATIVANDO OS BOTÕES
+            binding.button1.isEnabled = true
+            binding.button2.isEnabled = true
+            binding.button3.isEnabled = true
+            binding.button4.isEnabled = true
+            binding.button5.isEnabled = true
+            binding.button6.isEnabled = true
+            binding.button7.isEnabled = true
+            binding.button8.isEnabled = true
+            binding.button9.isEnabled = true
+        }
 
         fun alteraCorDoTexto() {
             if (jogadorAtual == jogador1) {
@@ -97,7 +129,7 @@ fun limpaTabuleiro(){
         fun jogoAcabouJogador1Ganhou() {
             mostrarToast("O jogo acabou, ${jogador1.nome} foi o vencedor", this)
             binding.vencedor.text = "Parabéns ${jogador1.nome}, você venceu !"
-            binding.vencedor.setTextColor(resources.getColor(R.color.azul))
+            binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             binding.button1.isEnabled = false
             binding.button2.isEnabled = false
@@ -113,7 +145,7 @@ fun limpaTabuleiro(){
         fun jogoAcabouJogador2Ganhou() {
             mostrarToast("O jogo acabou, ${jogador2.nome} foi o vencedor", this)
             binding.vencedor.text = "Parabéns ${jogador2.nome}, você venceu !"
-            binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
+            binding.vencedor.setTextColor(resources.getColor(R.color.azul))
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             binding.button1.isEnabled = false
             binding.button2.isEnabled = false
@@ -176,7 +208,7 @@ fun limpaTabuleiro(){
         //MOSTRAR QUE O PRIMEIRO A JOGAR É O JOGADOR1
         binding.jogadorX.text = jogador1.nome
 
-
+        //ESCUTA O CLICK EM CADA ImageButton
         binding.button1.setOnClickListener {
             if (contadorDeJogadas < 9) {
                 if (jogadorAtual == jogador1) {
@@ -308,4 +340,5 @@ fun limpaTabuleiro(){
         }
 
     }  //onCreate
-}
+
+} // TabuleiroActivity
