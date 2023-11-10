@@ -94,26 +94,11 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 buttonMarcList[indice] = ""
             }
 
-            //   LIMPANDO AS MARCAS
-            binding.button1.setBackgroundColor(resources.getColor(R.color.white))
-            binding.button2.setBackgroundColor(resources.getColor(R.color.white))
-            binding.button3.setBackgroundColor(resources.getColor(R.color.white))
-            binding.button4.setBackgroundColor(resources.getColor(R.color.white))
-            binding.button5.setBackgroundColor(resources.getColor(R.color.white))
-            binding.button6.setBackgroundColor(resources.getColor(R.color.white))
-            binding.button7.setBackgroundColor(resources.getColor(R.color.white))
-            binding.button8.setBackgroundColor(resources.getColor(R.color.white))
-            binding.button9.setBackgroundColor(resources.getColor(R.color.white))
-            //ATIVANDO OS BOTÕES
-            binding.button1.isEnabled = true
-            binding.button2.isEnabled = true
-            binding.button3.isEnabled = true
-            binding.button4.isEnabled = true
-            binding.button5.isEnabled = true
-            binding.button6.isEnabled = true
-            binding.button7.isEnabled = true
-            binding.button8.isEnabled = true
-            binding.button9.isEnabled = true
+            for (botao in botoes) {
+                botao.setBackgroundColor(resources.getColor(R.color.white))        //   LIMPANDO AS MARCAS
+                botao.isEnabled =
+                    true                                                                 //   ATIVANDO OS BOTÕES
+            }
         }
 
         fun alteraCorDoTexto() {
@@ -140,15 +125,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.text = "Parabéns ${jogador1.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
-            binding.button1.isEnabled = false
-            binding.button2.isEnabled = false
-            binding.button3.isEnabled = false
-            binding.button4.isEnabled = false
-            binding.button5.isEnabled = false
-            binding.button6.isEnabled = false
-            binding.button7.isEnabled = false
-            binding.button8.isEnabled = false
-            binding.button9.isEnabled = false
+            botoes.forEach { it.isEnabled = false }
         }
 
         fun jogoAcabouJogador2Ganhou() {
@@ -156,15 +133,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.text = "Parabéns ${jogador2.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.azul))
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
-            binding.button1.isEnabled = false
-            binding.button2.isEnabled = false
-            binding.button3.isEnabled = false
-            binding.button4.isEnabled = false
-            binding.button5.isEnabled = false
-            binding.button6.isEnabled = false
-            binding.button7.isEnabled = false
-            binding.button8.isEnabled = false
-            binding.button9.isEnabled = false
+            botoes.forEach { it.isEnabled = false }
         }
 
         fun verificaVencedorComXnova() {
@@ -178,7 +147,6 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 listOf(0, 4, 8),
                 listOf(2, 4, 6)
             )
-
             for (linha in linhas) {
                 val (a, b, c) = linha
                 if (buttonMarcList[a] == "x" && buttonMarcList[b] == "x" && buttonMarcList[c] == "x") {
@@ -209,7 +177,6 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             }
         }
 
-
         fun alteraVezDoJogador() {
             //ANTES DE ALTERAR, VERIFICA SE Já TEM VENCEDOR
             verificaVencedorComXnova()
@@ -234,8 +201,6 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
 
         //MOSTRAR QUE O PRIMEIRO A JOGAR É O JOGADOR1
         binding.jogadorX.text = jogador1.nome
-
-
 
 
         for ((index, botao) in botoes.withIndex()) {
