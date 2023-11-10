@@ -1,6 +1,8 @@
 package william.LETRAS_jogo_da_velha.activities
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -63,7 +65,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 //Escolhendo botão que o bot Vai clicar aleatóriamente
                 botaoEscolhidoPeloBot = blocosVazios.random()
                 Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhidoPeloBot}")
-                //                Handler(Looper.getMainLooper()).postDelayed({
+                                Handler(Looper.getMainLooper()).postDelayed({
                 if (botaoEscolhidoPeloBot == 1 && binding.button1.isEnabled) binding.button1.performClick()
                 if (botaoEscolhidoPeloBot == 2 && binding.button2.isEnabled) binding.button2.performClick()
                 if (botaoEscolhidoPeloBot == 3 && binding.button3.isEnabled) binding.button3.performClick()
@@ -73,7 +75,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 if (botaoEscolhidoPeloBot == 7 && binding.button7.isEnabled) binding.button7.performClick()
                 if (botaoEscolhidoPeloBot == 8 && binding.button8.isEnabled) binding.button8.performClick()
                 if (botaoEscolhidoPeloBot == 9 && binding.button9.isEnabled) binding.button9.performClick()
-                //                }, 300)
+                                }, 900)
 
             }
         }
