@@ -16,9 +16,9 @@ private const val TAG = "Tabu5x5"
 
 class Tabuleiro5x5Activity : AppCompatActivity() {
     private lateinit var binding: ActivityTabuleiro5x5Binding
-    private lateinit var botoes: List<ImageButton>
+    private lateinit var botoes: MutableList<ImageButton>
 
-    //COMEÇANDO O JOGO COM OTABULEIRO LIMPO
+    //COMEÇANDO O JOGO COM O TABULEIRO LIMPO
     private val buttonMarcList = mutableListOf(
         "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
     )
@@ -27,34 +27,6 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTabuleiro5x5Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        botoes = listOf(
-            binding.button1,
-            binding.button2,
-            binding.button3,
-            binding.button4,
-            binding.button5,
-            binding.button6,
-            binding.button7,
-            binding.button8,
-            binding.button9,
-            binding.button10,
-            binding.button11,
-            binding.button12,
-            binding.button13,
-            binding.button14,
-            binding.button15,
-            binding.button16,
-            binding.button17,
-            binding.button18,
-            binding.button19,
-            binding.button20,
-            binding.button21,
-            binding.button22,
-            binding.button23,
-            binding.button24,
-            binding.button25
-        )
 
 
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
@@ -67,6 +39,16 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
         val blocosVazios: MutableList<Int> = mutableListOf()
         var jogadorAtual = jogador1
         var contadorDeJogadas = 0
+
+        //Populando lista de  ImageButtons
+        botoes = mutableListOf()
+        for (i in 1..quantTotalDeCasas) {
+            val buttonId = resources.getIdentifier("button$i", "id", packageName)
+            val button = findViewById<ImageButton>(buttonId)
+            botoes.add(button)
+        }
+
+
 
         fun ordenaJogadaDoBot() {
             //bot só pode jogar onde estiver vazio

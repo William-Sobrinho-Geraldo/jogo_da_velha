@@ -17,7 +17,7 @@ private const val TAG = "Tabu4x4"
 
 class Tabuleiro4x4Activity : AppCompatActivity() {
     private lateinit var binding: ActivityTabuleiro4x4Binding
-    private lateinit var botoes: List<ImageButton>
+    private lateinit var botoes: MutableList<ImageButton>
 
     //COMEÇANDO O JOGO COM OTABULEIRO LIMPO
     private val buttonMarcList = mutableListOf("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")
@@ -26,26 +26,6 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTabuleiro4x4Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-        botoes = listOf(
-            binding.button1,
-            binding.button2,
-            binding.button3,
-            binding.button4,
-            binding.button5,
-            binding.button6,
-            binding.button7,
-            binding.button8,
-            binding.button9,
-            binding.button10,
-            binding.button11,
-            binding.button12,
-            binding.button13,
-            binding.button14,
-            binding.button15,
-            binding.button16
-        )
 
 
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
@@ -58,6 +38,15 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
         val blocosVazios: MutableList<Int> = mutableListOf()
         var jogadorAtual = jogador1
         var contadorDeJogadas = 0
+
+        //Populando lista de  ImageButtons
+        botoes = mutableListOf()
+        for (i in 1..quantTotalDeCasas) {
+            val buttonId = resources.getIdentifier("button$i", "id", packageName)
+            val button = findViewById<ImageButton>(buttonId)
+            botoes.add(button)
+        }
+
 
         fun ordenaJogadaDoBot() {
             //bot só pode jogar onde estiver vazio
