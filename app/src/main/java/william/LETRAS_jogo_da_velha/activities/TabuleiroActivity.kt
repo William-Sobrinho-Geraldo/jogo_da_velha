@@ -22,7 +22,7 @@ class TabuleiroActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
-        val jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
+        var jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
         val btnVsJogadorAtivo = intent.getBooleanExtra("btnVsJogadorAtivo", true)
         val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
 
@@ -43,30 +43,35 @@ class TabuleiroActivity : AppCompatActivity() {
         var button8Marc = ""
         var button9Marc = ""
 
-        fun ordenaJogadaDoBot(): String? {
+        fun ordenaJogadaDoBot() {
             //bot pode jogar onde não estiver marcado
-            val blocosJogaveis = listOf(
-                button1Marc,
-                button2Marc,
-                button3Marc,
-                button4Marc,
-                button5Marc,
-                button6Marc,
-                button7Marc,
-                button8Marc,
-                button9Marc,
-            )
-            val blocosVazios = blocosJogaveis.filter { it == "" }
-            return if (blocosVazios.isNotEmpty()) {
-                val indiceEscolhido = Random.nextInt(blocosVazios.size)
-                blocosVazios[indiceEscolhido]
-            } else null
+
+            val blocosVazios : MutableList<Int>  = mutableListOf()
+
+            if (button1Marc == "") blocosVazios.add(1)
+            if (button2Marc == "") blocosVazios.add(2)
+            if (button3Marc == "") blocosVazios.add(3)
+            if (button4Marc == "") blocosVazios.add(4)
+            if (button5Marc == "") blocosVazios.add(5)
+            if (button6Marc == "") blocosVazios.add(6)
+            if (button7Marc == "") blocosVazios.add(7)
+            if (button8Marc == "") blocosVazios.add(8)
+            if (button9Marc == "") blocosVazios.add(9)
+
+
+             if (blocosVazios.isNotEmpty()) {
+                val botaoEscolhido = Random.nextInt(blocosVazios.size) + 1
+                 Log.i(TAG, "ordenaJogadaDoBot:   Os espaços disponíveis são $blocosVazios")
+                 Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhido}")
+            }
+
         }
 
 
         //VERIFICANDO SE VOU JOGAR CONTRA BOT OU OUTRO JOGADOR
         if (btnVsBotAtivo) {
-            ordenaJogadaDoBot()
+            //o jogador 2 será o Bot
+            jogador2 = JogadoresModel(nome = bot.nome, cor = 1, simbolo = 1)
         }
 
 
@@ -220,6 +225,13 @@ class TabuleiroActivity : AppCompatActivity() {
                     binding.button1.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
                     alteraVezDoJogador()
                 }
+
+                //verifica se está jogando com o bot e manda ele jogar
+                if(btnVsBotAtivo ){
+                    ordenaJogadaDoBot()
+                }
+
+
             } else mostrarToast("o jogo acabou", this)
         }
 
