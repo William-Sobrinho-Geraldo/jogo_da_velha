@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity() {
                     )
                     delay(600)
                     if (tabuleiro3x3) {
-                        val vaiProTabuleiro3x3 = Intent(this@MainActivity, TabuleiroActivity::class.java)
+                        val vaiProTabuleiro3x3 = Intent(this@MainActivity, Tabuleiro3x3Activity::class.java)
                         vaiProTabuleiro3x3.putExtra("jogador1", jogador1)
                         vaiProTabuleiro3x3.putExtra("jogador2", jogador2)
                         vaiProTabuleiro3x3.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
@@ -160,7 +160,17 @@ class MainActivity : AppCompatActivity() {
                         startActivity(vaiProTabuleiro3x3)
                     }
 
+                    if( tabuleiro4x4){
+                        startActivity(Intent(this@MainActivity,Tabuleiro4x4Activity::class.java))
 
+                    }
+                    if( tabuleiro5x5){
+                        startActivity(Intent(this@MainActivity,Tabuleiro5x5Activity::class.java))
+
+                    }
+                    if( tabuleiro6x6){
+                        startActivity(Intent(this@MainActivity,Tabuleiro6x6Activity::class.java))
+                    }
                 }
 
                 //DELETAR TUDO EVENTUALMENTE - MANTENHA COMENTADO

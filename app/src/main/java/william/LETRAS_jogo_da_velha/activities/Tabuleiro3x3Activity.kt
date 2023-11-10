@@ -1,27 +1,23 @@
 package william.LETRAS_jogo_da_velha.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import kotlinx.coroutines.delay
+import androidx.appcompat.app.AppCompatActivity
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
-import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiroBinding
+import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiro3x3Binding
 import william.LETRAS_jogo_da_velha.utilidades.Bot
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
-import kotlin.random.Random
 
 private const val TAG = "TabuleitoActivity"
 
-class TabuleiroActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityTabuleiroBinding
+class Tabuleiro3x3Activity : AppCompatActivity() {
+    private lateinit var binding: ActivityTabuleiro3x3Binding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTabuleiroBinding.inflate(layoutInflater)
+        binding = ActivityTabuleiro3x3Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
@@ -430,4 +426,4 @@ class TabuleiroActivity : AppCompatActivity() {
 
     }  //onCreate
 
-} // TabuleiroActivity
+} // Tabuleiro3x3Activity
