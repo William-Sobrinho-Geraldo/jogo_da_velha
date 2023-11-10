@@ -21,10 +21,15 @@ class TabuleiroActivity : AppCompatActivity() {
 
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
         val jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
+        val btnVsJogadorAtivo = intent.getBooleanExtra("btnVsJogadorAtivo", true)
+        val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
+        Log.i(TAG, "TabuleiroActivity:    O btnVsJogadorAtivo é $btnVsJogadorAtivo   e    btnVsBotAtivo  é  $btnVsBotAtivo" )
+
+
         var jogadorAtual = jogador1
         var contadorDeJogadas = 0
 
-
+        //TABULEIRO LIMPO
         var button1Marc = ""
         var button2Marc = ""
         var button3Marc = ""
@@ -59,7 +64,7 @@ class TabuleiroActivity : AppCompatActivity() {
             mostrarToast("O jogo acabou, ${jogador1.nome} foi o vencedor", this)
             binding.vencedor.text = "Parabéns ${jogador1.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.azul))
-
+            //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             binding.button1.isEnabled = false
             binding.button2.isEnabled = false
             binding.button3.isEnabled = false
@@ -75,7 +80,7 @@ class TabuleiroActivity : AppCompatActivity() {
             mostrarToast("O jogo acabou, ${jogador2.nome} foi o vencedor", this)
             binding.vencedor.text = "Parabéns ${jogador2.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
-
+            //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             binding.button1.isEnabled = false
             binding.button2.isEnabled = false
             binding.button3.isEnabled = false
@@ -116,6 +121,7 @@ class TabuleiroActivity : AppCompatActivity() {
         }
 
         fun alteraVezDoJogador() {
+            //ANTES DE ALTERAR, VERIFICA SE Já TEM VENCEDOR
             verificaVencedorComX()
             verificaVencedorCom0()
 
@@ -133,13 +139,8 @@ class TabuleiroActivity : AppCompatActivity() {
             alteraOTextoDoJogador()
         }
 
-
-        Log.i(TAG, "onCreate: jogador1 é $jogador1 e jogador 2 é $jogador2")
-
-
-        //mostrar que é a vez do jogador1 com cor do jogador 1
+        //MOSTRAR QUE O PRIMEIRO A JOGAR É O JOGADOR1
         binding.jogadorX.text = jogador1.nome
-
 
 
         binding.button1.setOnClickListener {
@@ -154,10 +155,6 @@ class TabuleiroActivity : AppCompatActivity() {
                     alteraVezDoJogador()
                 }
             } else mostrarToast("o jogo acabou", this)
-
-
-            Log.i(TAG, "onCreate: o botão 1 foi marcado com $button1Marc")
-
         }
 
         binding.button2.setOnClickListener {
@@ -166,7 +163,6 @@ class TabuleiroActivity : AppCompatActivity() {
                     button2Marc = "x"
                     binding.button2.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
                     alteraVezDoJogador()
-
                 } else {
                     button2Marc = "0"
                     binding.button2.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
@@ -237,7 +233,6 @@ class TabuleiroActivity : AppCompatActivity() {
                     button7Marc = "x"
                     binding.button7.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
                     alteraVezDoJogador()
-
                 } else {
                     button7Marc = "0"
                     binding.button7.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
@@ -252,7 +247,6 @@ class TabuleiroActivity : AppCompatActivity() {
                     button8Marc = "x"
                     binding.button8.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
                     alteraVezDoJogador()
-
                 } else {
                     button8Marc = "0"
                     binding.button8.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
@@ -267,7 +261,6 @@ class TabuleiroActivity : AppCompatActivity() {
                     button9Marc = "x"
                     binding.button9.setBackgroundResource(R.drawable.marca_x) // essa é a marca do jogador1
                     alteraVezDoJogador()
-
                 } else {
                     button9Marc = "0"
                     binding.button9.setBackgroundResource(R.drawable.marca_bolinha) //essa é a marca do jogador2
@@ -277,5 +270,4 @@ class TabuleiroActivity : AppCompatActivity() {
         }
 
     }  //onCreate
-
 }

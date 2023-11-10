@@ -32,11 +32,37 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: MainActivityViewModel by viewModel()
 
+        var btnVsJogadorAtivo = true
+        var btnVsBotAtivo = false
+
         for (id in idsBotoes) {
             val button = escolherBotao(id)
             button.setOnClickListener { botaoClicado(id) }
         }
 
+        fun botaoVsJogadorClicado() {
+            //CORRIGE CORES DOS BOTÕES vsJogador e vsBot
+            binding.btnVsJogador.setBackgroundResource(R.drawable.rounded_button_white)
+            binding.textViewBtnVsJogador.setTextColor(resources.getColor(R.color.roxo))
+            binding.btnVsBot.setBackgroundResource(R.drawable.rounded_button_transparente)
+            binding.textViewBtnVsBot.setTextColor(resources.getColor(R.color.white))
+
+            //INDICA QUAL BOTÃO ESTÁ ATIVO ATUALMENTE
+            btnVsJogadorAtivo = true
+            btnVsBotAtivo = false
+        }
+
+        fun botaoVsBotClicado() {
+            //CORRIGE CORES DOS BOTÕES vsJogador e vsBot
+            binding.btnVsBot.setBackgroundResource(R.drawable.rounded_button_white)
+            binding.textViewBtnVsBot.setTextColor(resources.getColor(R.color.roxo))
+            binding.btnVsJogador.setBackgroundResource(R.drawable.rounded_button_transparente)
+            binding.textViewBtnVsJogador.setTextColor(resources.getColor(R.color.white))
+
+            //INDICA QUAL BOTÃO ESTÁ ATIVO ATUALMENTE
+            btnVsBotAtivo = true
+            btnVsJogadorAtivo = false
+        }
 
         //BOTÃO COMEÇAR PARTICA CLICADO
         binding.btnComecarPartida.setOnClickListener {
@@ -52,8 +78,6 @@ class MainActivity : AppCompatActivity() {
                 val listaDejogadoresNoBD = viewModel.buscaJogadoresNoBD()
                 Log.i(TAG, "onCreate: a lista de jogadores no bando de dados é:  $listaDejogadoresNoBD")
 
-
-
                 withContext(Dispatchers.Main) {
                     //pode navegar pra outra tela
                     mostrarToast("Jogador ${jogador1.nome} e jogador ${jogador2.nome} cadastrados", this@MainActivity)
@@ -61,6 +85,8 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this@MainActivity, TabuleiroActivity::class.java)
                     intent.putExtra("jogador1", jogador1)
                     intent.putExtra("jogador2", jogador2)
+                    intent.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
+                    intent.putExtra("btnVsBotAtivo", btnVsBotAtivo)
                     startActivity(intent)
 
                 }
@@ -79,34 +105,19 @@ class MainActivity : AppCompatActivity() {
         //BOTÃO VS JOGADOR CLICADO
         binding.btnVsJogador.setOnClickListener {
             botaoVsJogadorClicado()
-
         }
 
         //BOTÃO VS BOT CLICADO
         binding.btnVsBot.setOnClickListener {
             botaoVsBotClicado()
-
         }
 
     }  //onCreate da Activity
 
 
+
     //FUNÇÕES PARA CUSTOMIZAÇÃO DA UI
-    fun botaoVsJogadorClicado() {
-        binding.btnVsJogador.setBackgroundResource(R.drawable.rounded_button_white)
-        binding.textViewBtnVsJogador.setTextColor(resources.getColor(R.color.roxo))
 
-        binding.btnVsBot.setBackgroundResource(R.drawable.rounded_button_transparente)
-        binding.textViewBtnVsBot.setTextColor(resources.getColor(R.color.white))
-    }
-
-    fun botaoVsBotClicado() {
-        binding.btnVsBot.setBackgroundResource(R.drawable.rounded_button_white)
-        binding.textViewBtnVsBot.setTextColor(resources.getColor(R.color.roxo))
-
-        binding.btnVsJogador.setBackgroundResource(R.drawable.rounded_button_transparente)
-        binding.textViewBtnVsJogador.setTextColor(resources.getColor(R.color.white))
-    }
 
     private fun escolherBotao(idBotao: Int): Button {
         return when (idBotao) {
