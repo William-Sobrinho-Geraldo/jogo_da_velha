@@ -6,16 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import william.LETRAS_jogo_da_velha.R
-import william.LETRAS_jogo_da_velha.data.AppDatabase
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
-import william.LETRAS_jogo_da_velha.data.Repository
 import william.LETRAS_jogo_da_velha.databinding.ActivityMainBinding
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
 import william.LETRAS_jogo_da_velha.viewModels.MainActivityViewModel
@@ -61,7 +58,10 @@ class MainActivity : AppCompatActivity() {
                     //pode navegar pra outra tela
                     mostrarToast("Jogador ${jogador1.nome} e jogador ${jogador2.nome} cadastrados", this@MainActivity)
                     delay(1000)
-                    startActivity(Intent(this@MainActivity, TabuleiroActivity::class.java))
+                    val intent = Intent(this@MainActivity, TabuleiroActivity::class.java)
+                    intent.putExtra("jogador1", jogador1.nome)
+                    intent.putExtra("jogador2", jogador2.nome)
+                    startActivity(intent)
 
                 }
 

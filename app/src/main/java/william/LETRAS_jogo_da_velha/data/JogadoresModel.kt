@@ -11,4 +11,6 @@ data class JogadoresModel(
     @ColumnInfo(name = "QUANT_JOGOS_GANHOS") val quantJogosGanhos : Int = 0,
     @ColumnInfo(name = "QUANT_JOGOS_PERDIDOS") val quantJogosPerdidos : Int = 0,
     @ColumnInfo(name = "QUANT_TOTAL_JOGOS") val quantTotalJogos : Int = 0,
+    @ColumnInfo(name = "SÍMBOLO_PADRÃO") val simbolo : Int = 0,  //Simbolo == 0 é bolinha == 1 X
+    @ColumnInfo(name = "COR_PADRÃO") val cor : Int = 0,                // cor == 0 é azul == 1 vermelho
 )
