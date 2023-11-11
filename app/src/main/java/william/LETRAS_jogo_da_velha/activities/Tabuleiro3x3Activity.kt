@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import william.LETRAS_jogo_da_velha.R
@@ -15,12 +14,12 @@ import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
 
 private const val TAG = "TabuleitoActivity"
 
+//COMEÇANDO O JOGO COM O TABULEIRO LIMPO
+val btnMarcList3x3 = mutableListOf("", "", "", "", "", "", "", "", "")
+
 class Tabuleiro3x3Activity : AppCompatActivity() {
     private lateinit var binding: ActivityTabuleiro3x3Binding
     private lateinit var botoes: List<ImageButton>
-
-    //COMEÇANDO O JOGO COM OTABULEIRO LIMPO
-    private val buttonMarcList = mutableListOf("", "", "", "", "", "", "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,22 +43,38 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
         var jogadorAtual = jogador1
         var contadorDeJogadas = 0
 
+
         fun ordenaJogadaDoBot() {
+            val defenderLinhas = bot.defenderLinhas()
+            val defenderColunas = bot.defenderColunas()
+            val defenderDiagonais = bot.defenderDiagonais()
+
             //bot só pode jogar onde estiver vazio
             blocosVazios.clear()
             Log.i(TAG, "ordenaJogadaDoBot:   blocosVazios foi limpa e agora é:  $blocosVazios")
 
             //ADICIONANDO NA LISTA DE blocosVazios OS ÍNDICES VAZIOS
-            for (indice in buttonMarcList.indices) {
-                if (buttonMarcList[indice] == "") blocosVazios.add(indice + 1)
+            for (indice in btnMarcList3x3.indices) {
+                if (btnMarcList3x3[indice] == "") blocosVazios.add(indice + 1)
             }
             Log.i(TAG, "ordenaJogadaDoBot:   Os espaços disponíveis são $blocosVazios")
 
 
             if (blocosVazios.isNotEmpty()) {
-                //Escolhendo botão que o bot Vai clicar aleatóriamente
-                botaoEscolhidoPeloBot = blocosVazios.random()
-                Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhidoPeloBot}")
+                if (defenderLinhas != null) {
+                    botaoEscolhidoPeloBot = defenderLinhas + 1
+                    Log.i(TAG, "  BOT DEFENDENDO LINHA NO INDICE $botaoEscolhidoPeloBot")
+                } else if (defenderColunas != null) {
+                    botaoEscolhidoPeloBot = defenderColunas + 1
+                    Log.i(TAG, "  BOT DEFENDENDO COLUNAS NO INDICE $botaoEscolhidoPeloBot")
+                } else if (defenderDiagonais != null) {
+                    botaoEscolhidoPeloBot = defenderDiagonais + 1
+                    Log.i(TAG, "  BOT DEFENDENDO DIAGONAIS NO INDICE $botaoEscolhidoPeloBot")
+                }  else {
+                    //Escolhendo botão que o bot Vai clicar aleatóriamente
+                    botaoEscolhidoPeloBot = blocosVazios.random()
+                    Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhidoPeloBot}")
+                }
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     for (indice in 0 until botoes.size) {
@@ -90,8 +105,8 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.setTextColor(resources.getColor(R.color.transparente))
 
             //LIMPANDO  A LISTA NOVA    buttonMarcList
-            for (indice in 0 until buttonMarcList.size) {
-                buttonMarcList[indice] = ""
+            for (indice in 0 until btnMarcList3x3.size) {
+                btnMarcList3x3[indice] = ""
             }
 
             for (botao in botoes) {
@@ -148,7 +163,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             )
             for (linha in linhas) {
                 val (a, b, c) = linha
-                if (buttonMarcList[a] == "x" && buttonMarcList[b] == "x" && buttonMarcList[c] == "x") {
+                if (btnMarcList3x3[a] == "x" && btnMarcList3x3[b] == "x" && btnMarcList3x3[c] == "x") {
                     jogoAcabouJogador1Ganhou()
                     return
                 }
@@ -169,7 +184,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
 
             for (linha in linhas) {
                 val (a, b, c) = linha
-                if (buttonMarcList[a] == "0" && buttonMarcList[b] == "0" && buttonMarcList[c] == "0") {
+                if (btnMarcList3x3[a] == "0" && btnMarcList3x3[b] == "0" && btnMarcList3x3[c] == "0") {
                     jogoAcabouJogador2Ganhou()
                     return
                 }
@@ -204,8 +219,8 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
 
         for ((index, botao) in botoes.withIndex()) {
             botao.setOnClickListener {
-                if (contadorDeJogadas < 9 && buttonMarcList[index].isEmpty()) {
-                    buttonMarcList[index] = if (jogadorAtual == jogador1) "x" else "0"
+                if (contadorDeJogadas < 9 && btnMarcList3x3[index].isEmpty()) {
+                    btnMarcList3x3[index] = if (jogadorAtual == jogador1) "x" else "0"
                     botao.setImageResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
                     alteraVezDoJogador()
 
