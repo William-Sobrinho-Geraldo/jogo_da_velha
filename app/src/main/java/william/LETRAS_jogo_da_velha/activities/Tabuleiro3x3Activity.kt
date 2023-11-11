@@ -12,8 +12,12 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import org.koin.android.ext.koin.androidContext
 import william.LETRAS_jogo_da_velha.R
+import william.LETRAS_jogo_da_velha.data.AppDatabase
+import william.LETRAS_jogo_da_velha.data.JogadoresDao
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
+import william.LETRAS_jogo_da_velha.data.Repository
 import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiro3x3Binding
 import william.LETRAS_jogo_da_velha.utilidades.Bot
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
@@ -38,7 +42,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.button7, binding.button8, binding.button9
         )
 
-
+        val repository = Repository(AppDatabase.getDatabase(this).jogadoresDao())
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
         var jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
         val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
@@ -162,6 +166,9 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             mostrarToast("O jogo acabou, ${jogador1.nome} foi o vencedor", this)
             binding.vencedor.text = "Parabéns ${jogador1.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
+            //incrementa vitória pra jogador1 e incrementa derrota pro jogador2
+                    //dao
+            repository.incrementarVitoria(jogador1)
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
             contadorDeJogadas = 0
@@ -171,6 +178,9 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             mostrarToast("O jogo acabou, ${jogador2.nome} foi o vencedor", this)
             binding.vencedor.text = "Parabéns ${jogador2.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.azul))
+            //incrementa vitória pra jogador1 e incrementa derrota pro jogador2
+            //dao
+
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
             contadorDeJogadas = 0

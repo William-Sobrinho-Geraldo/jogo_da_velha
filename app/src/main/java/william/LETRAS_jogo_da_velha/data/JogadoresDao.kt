@@ -22,4 +22,12 @@ interface JogadoresDao {
     @Query("DELETE FROM tabela_de_jogadores")
     fun deletarTodosOsJogadores()
 
+
+    fun incrementarVitoria(jogador: JogadoresModel) {
+        TODO("Not yet implemented")
+    }
+
+    fun incrementarDerrota (jogador: JogadoresModel){
+
+    }
 }

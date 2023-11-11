@@ -11,14 +11,13 @@ class MainActivityViewModel(val repository: Repository) : ViewModel() {
         repository.inserirJogadores(jogador)
     }
 
-    suspend fun buscaJogadoresNoBD() : MutableLiveData<List<JogadoresModel>>  {
+    suspend fun buscaJogadoresNoBD(): MutableLiveData<List<JogadoresModel>> {
         val liveData = MutableLiveData<List<JogadoresModel>>()
         liveData.value = repository.buscaJogadoresNoBD()
         return liveData
     }
 
-    suspend fun deletarTodosOsJogadores(){
+    suspend fun deletarTodosOsJogadores() {
         repository.deletarTodosOsJogadores()
     }
-
 }
