@@ -10,24 +10,25 @@ import androidx.room.Query
 import androidx.room.util.query
 
 private const val TAG = "JogadoresDao"
+
 @Dao
 interface JogadoresDao {
 
-    @Insert (onConflict = OnConflictStrategy.ABORT)
-    fun inserirJogador (jogador : JogadoresModel) : Long
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun inserirJogador(jogador: JogadoresModel): Long
 
     @Query("SELECT * FROM tabela_de_jogadores")
-    fun buscaJogadoresNoBD() : List<JogadoresModel>
+    fun buscaJogadoresNoBD(): List<JogadoresModel>
 
     @Query("DELETE FROM tabela_de_jogadores")
     fun deletarTodosOsJogadores()
 
 
-    fun incrementarVitoria(jogador: JogadoresModel) {
-        TODO("Not yet implemented")
-    }
+    @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_GANHOS = QUANT_JOGOS_GANHOS + 1 WHERE id = :jogadorId")
+    fun incrementarVitoria(jogadorId: Long)
 
-    fun incrementarDerrota (jogador: JogadoresModel){
+    @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_PERDIDOS = QUANT_JOGOS_PERDIDOS + 1 WHERE id = :jogadorId")
+    fun incrementarDerrota(jogadorId: Long)
 
-    }
+
 }

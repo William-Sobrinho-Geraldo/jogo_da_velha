@@ -15,12 +15,12 @@ class Repository (private val jogadoresDao : JogadoresDao){
         jogadoresDao.deletarTodosOsJogadores()
     }
 
-    fun incrementarVitoria (jogador: JogadoresModel) {
-        jogadoresDao.incrementarVitoria(jogador)
+    fun incrementarVitoria (jogadorId: Long) {
+        jogadoresDao.incrementarVitoria(jogadorId)
     }
 
-    fun incrementarDerrota (jogador: JogadoresModel) {
-        jogadoresDao.incrementarDerrota (jogador)
+    fun incrementarDerrota (jogadorId: Long) {
+        jogadoresDao.incrementarDerrota (jogadorId)
     }
 
 }

@@ -203,6 +203,10 @@ class MainActivity : AppCompatActivity() {
 
 
         //BOTÃO HISTÓRICO CLICADO
+        binding.btnHistorico.setOnClickListener {
+            startActivity(Intent(this, Historico3x3::class.java))
+
+        }
 
 
         //BOTÃO VS JOGADOR CLICADO

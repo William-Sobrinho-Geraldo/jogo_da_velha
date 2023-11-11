@@ -15,3 +15,12 @@ data class JogadoresModel(
     @ColumnInfo(name = "SÍMBOLO_PADRÃO") val simbolo: Int = 0,    //Simbolo == 0 é bolinha == 1 X
     @ColumnInfo(name = "COR_PADRÃO") val cor: Int = 0,                  // cor == 0 é azul == 1 vermelho
 ) : Serializable
+
+
+
+data class HistoricoItem(
+    val jogador1Nome: String = "",
+    val jogador2Nome: String = "",
+    val jogador1Venceu : Boolean = true,
+    val jogador2Venceu : Boolean = false,
+)

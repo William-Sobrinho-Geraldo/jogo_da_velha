@@ -11,16 +11,20 @@ import android.util.Log
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageButton
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.AppDatabase
+import william.LETRAS_jogo_da_velha.data.HistoricoItem
 import william.LETRAS_jogo_da_velha.data.JogadoresDao
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.data.Repository
 import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiro3x3Binding
 import william.LETRAS_jogo_da_velha.utilidades.Bot
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
+import william.LETRAS_jogo_da_velha.viewModels.Tabuleiro3x3ViewModel
 
 private const val TAG = "TabuleitoActivity"
 
@@ -42,7 +46,8 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.button7, binding.button8, binding.button9
         )
 
-        val repository = Repository(AppDatabase.getDatabase(this).jogadoresDao())
+        val viewModel: Tabuleiro3x3ViewModel by viewModel()
+//        val repository = Repository(AppDatabase.getDatabase(this).jogadoresDao())
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
         var jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
         val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
@@ -133,6 +138,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                         botao.setImageResource(R.drawable.imagem_fundo_branco)
                         botao.isEnabled = true // Ativando os botões
                     }
+
                     override fun onAnimationRepeat(animation: Animation?) {}
                 })
 
@@ -167,8 +173,11 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.text = "Parabéns ${jogador1.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
             //incrementa vitória pra jogador1 e incrementa derrota pro jogador2
-                    //dao
-            repository.incrementarVitoria(jogador1)
+            //dao
+            viewModel.incrementarVitoria(jogador1.id)
+            viewModel.incrementarDerrota(jogador2.id)
+            historicoList.add(HistoricoItem(jogador1.nome, jogador2.nome, true, false))
+
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
             contadorDeJogadas = 0
@@ -179,7 +188,11 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.text = "Parabéns ${jogador2.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.azul))
             //incrementa vitória pra jogador1 e incrementa derrota pro jogador2
-            //dao
+            viewModel.incrementarVitoria(jogador2.id)
+            viewModel.incrementarDerrota(jogador1.id)
+            historicoList.add(HistoricoItem(jogador1.nome, jogador2.nome, false, true))
+
+
 
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
@@ -270,8 +283,9 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                             btnMarcList3x3[index] = if (jogadorAtual == jogador1) "x" else "0"
                             alteraVezDoJogador()
                         }
-                        override fun onAnimationEnd(animation: Animation?) {  }
-                        override fun onAnimationRepeat(animation: Animation?) { }
+
+                        override fun onAnimationEnd(animation: Animation?) {}
+                        override fun onAnimationRepeat(animation: Animation?) {}
                     })
                     botao.startAnimation(fadeIn)
 
