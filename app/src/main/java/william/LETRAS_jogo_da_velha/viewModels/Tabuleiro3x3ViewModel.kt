@@ -6,12 +6,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import william.LETRAS_jogo_da_velha.data.HistoricoItemModel
+import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.data.Repository
 
 class Tabuleiro3x3ViewModel(val repository: Repository) : ViewModel() {
-    fun incrementarVitoria(jogadorId: Long) {
+    fun incrementarVitoria(nome : String) {
         CoroutineScope(Dispatchers.IO).launch {
-            repository.incrementarVitoria(jogadorId)
+            repository.incrementarVitoria(nome)
         }
     }
 
@@ -35,4 +36,8 @@ class Tabuleiro3x3ViewModel(val repository: Repository) : ViewModel() {
         }
     }
 
+    suspend fun buscaJogadoresOrdenadosPorGanhos(): List<JogadoresModel> {
+        return repository.buscaJogadoresOrdenadosPorGanhos()
+    }
 }
+

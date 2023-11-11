@@ -22,8 +22,8 @@ class Repository(
         jogadoresDao.deletarTodosOsJogadores()
     }
 
-    suspend fun incrementarVitoria(jogadorId: Long) {
-        jogadoresDao.incrementarVitoria(jogadorId)
+    suspend fun incrementarVitoria(nome: String) {
+        jogadoresDao.incrementarVitoriaPorNome(nome)
     }
 
     suspend fun incrementarDerrota(jogadorId: Long) {
@@ -50,6 +50,10 @@ class Repository(
 
     suspend fun buscaHistorico6x6(): List<HistoricoItemModel> {
         return historicoDao.buscaHistorico6x6()
+    }
+
+    suspend fun buscaJogadoresOrdenadosPorGanhos() : List<JogadoresModel>{
+        return jogadoresDao.buscaJogadoresOrdenadosPorGanhos()
     }
 
 }

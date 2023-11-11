@@ -165,7 +165,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
             //incrementa vitória pra jogador1 e incrementa derrota pro jogador2
             //dao
-            viewModel.incrementarVitoria(jogador1.id)
+            viewModel.incrementarVitoria(jogador1.nome)
             viewModel.incrementarDerrota(jogador2.id)
 
             val historicoItem = HistoricoItemModel(
@@ -190,7 +190,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.text = "Parabéns ${jogador2.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.azul))
             //incrementa vitória pra jogador1 e incrementa derrota pro jogador2
-            viewModel.incrementarVitoria(jogador2.id)
+            viewModel.incrementarVitoria(jogador2.nome)
             viewModel.incrementarDerrota(jogador1.id)
             val historicoItem = HistoricoItemModel(
                 0,

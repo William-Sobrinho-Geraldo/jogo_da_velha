@@ -20,4 +20,6 @@
     <string name="voltar">Voltar</string>
     <string name="historico_3x3">Histórico 3x3</string>
     <string name="historico_4x4">Histórico 4x4</string>
+    <string name="exibir_ranking">Exibir ranking</string>
+    <string name="_2">2</string>
 </resources>

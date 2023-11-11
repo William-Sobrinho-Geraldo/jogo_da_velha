@@ -11,11 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.HistoricoItemModel
+import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityHistorico3x3Binding
 import william.LETRAS_jogo_da_velha.viewModels.Tabuleiro3x3ViewModel
 
@@ -73,12 +75,40 @@ class Historico3x3 : AppCompatActivity() {
     } // class HistoricoAdapter
 
 
+    // JogadoresAdapter.kt
+    class JogadoresAdapter(private val listaJogadores: List<JogadoresModel>) :
+        RecyclerView.Adapter<JogadoresAdapter.ViewHolder>() {
+
+        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val nomeJogador: TextView = itemView.findViewById(R.id.nome_maior_ganhador)
+            val quantVitorias: TextView = itemView.findViewById(R.id.quant_vitorias)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_maiores_ganhadores, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val jogador = listaJogadores[position]
+            holder.nomeJogador.text = jogador.nome
+            holder.quantVitorias.text = jogador.quantJogosGanhos.toString()
+        }
+
+        override fun getItemCount(): Int {
+            return listaJogadores.size
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistorico3x3Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val viewModel: Tabuleiro3x3ViewModel by viewModel()
+        val listaDeMaioresGanhadores = mutableListOf<JogadoresModel>()
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView4x4)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -97,8 +127,37 @@ class Historico3x3 : AppCompatActivity() {
             adapter.notifyDataSetChanged()
         }
 
-        //buscar dados da tabela de histórico e popular a lista que tá la encima "historicoList"
 
+        //BOTÃO DE RANKING
+        binding.btnExibirRankind.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val listaGanhadores = async {
+                    viewModel.buscaJogadoresOrdenadosPorGanhos()
+                }.await()
+                listaDeMaioresGanhadores.addAll(listaGanhadores)
+                Log.i(TAG, "onCreate: listademaioresGanhadores é :    $listaDeMaioresGanhadores")
+
+                //tornar invisivel a recyclerView acima
+                recyclerView.visibility = View.INVISIBLE
+
+                // mostrar outra recyclerview com os maiores ganhadores
+
+
+            } // Coroutine
+
+            //            val listaJogadores: List<JogadoresModel> = // Obtenha a lista de jogadores
+            val recyclerViewranking: RecyclerView =
+                findViewById(R.id.recyclerView4x4_ranking) // botar Recycler do ranking
+            recyclerViewranking.visibility = View.VISIBLE
+            recyclerViewranking.layoutManager = LinearLayoutManager(this)
+            val adapterRanking = JogadoresAdapter(listaDeMaioresGanhadores)
+            recyclerViewranking.adapter = adapterRanking
+
+
+        } //ClickListener Botão Ranking
+
+
+        //buscar dados da tabela de histórico e popular a lista que tá la encima "historicoList"
 
     } //onCreate
 } // Historico3x3

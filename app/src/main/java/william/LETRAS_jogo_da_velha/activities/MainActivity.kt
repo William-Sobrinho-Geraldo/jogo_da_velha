@@ -187,7 +187,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 //DELETAR TUDO EVENTUALMENTE - MANTENHA COMENTADO
-                //viewModel.deletarTodosOsJogadores()
+                //                viewModel.deletarTodosOsJogadores()
             }
 
             //   LOGANDO NOMES DOS USUÁRIOS
@@ -200,8 +200,8 @@ class MainActivity : AppCompatActivity() {
 
         //BOTÃO HISTÓRICO CLICADO
         binding.btnHistorico.setOnClickListener {
-            if (tabuleiro3x3)  startActivity(Intent(this, Historico3x3::class.java))
-           if (tabuleiro4x4)  startActivity(Intent(this,Historico4x4::class.java))
+            if (tabuleiro3x3) startActivity(Intent(this, Historico3x3::class.java))
+            if (tabuleiro4x4) startActivity(Intent(this, Historico4x4::class.java))
 
 
         }

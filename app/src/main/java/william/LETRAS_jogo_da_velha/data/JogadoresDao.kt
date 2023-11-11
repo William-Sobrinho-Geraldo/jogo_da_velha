@@ -27,7 +27,13 @@ interface JogadoresDao {
     @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_GANHOS = QUANT_JOGOS_GANHOS + 1 WHERE id = :jogadorId")
     suspend fun incrementarVitoria(jogadorId: Long)
 
+    @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_GANHOS = QUANT_JOGOS_GANHOS + 1 WHERE NOME_DO_JOGADOR = :nome")
+    suspend fun incrementarVitoriaPorNome(nome: String)
+
     @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_PERDIDOS = QUANT_JOGOS_PERDIDOS + 1 WHERE id = :jogadorId")
     suspend fun incrementarDerrota(jogadorId: Long)
+
+    @Query("SELECT * FROM tabela_de_jogadores ORDER BY QUANT_JOGOS_GANHOS DESC")
+    suspend fun buscaJogadoresOrdenadosPorGanhos(): List<JogadoresModel>
 
 }
