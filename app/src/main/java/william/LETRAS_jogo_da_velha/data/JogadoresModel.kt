@@ -24,4 +24,8 @@ data class HistoricoItemModel(
     @ColumnInfo(name = "NOME_DO_JOGADOR2") val jogador2Nome: String = "",
     @ColumnInfo(name = "JOGADOR1_VENCEU")val jogador1Venceu : Boolean = true,
     @ColumnInfo(name = "JOGADOR2_VENCEU")val jogador2Venceu : Boolean = false,
+    @ColumnInfo(name = "TABULEIRO_3X3")val tabuleiro3x3 : Boolean = false,
+    @ColumnInfo(name = "TABULEIRO_4X4")val tabuleiro4x4 : Boolean = false,
+    @ColumnInfo(name = "TABULEIRO_5X5")val tabuleiro5x5 : Boolean = false,
+    @ColumnInfo(name = "TABULEIRO_6X6")val tabuleiro6x6 : Boolean = false,
 )

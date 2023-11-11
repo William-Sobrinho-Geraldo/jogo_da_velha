@@ -87,7 +87,7 @@ class Historico3x3 : AppCompatActivity() {
 
         lifecycleScope.launch {
             val viewModelHistoricoList = async {
-                viewModel.buscaHistorico()
+                viewModel.buscaHistorico3x3()
             }.await()
 
             Log.i(TAG, "onCreate:   A LISTA QUE VEIO DO VIEWMODEL É $viewModelHistoricoList ")
@@ -95,7 +95,6 @@ class Historico3x3 : AppCompatActivity() {
             historicoList.addAll(viewModelHistoricoList)
             historicoList.reverse()
             adapter.notifyDataSetChanged()
-
         }
 
         //buscar dados da tabela de histórico e popular a lista que tá la encima "historicoList"

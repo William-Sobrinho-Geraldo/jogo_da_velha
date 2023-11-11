@@ -10,9 +10,8 @@ import androidx.room.Query
 interface HistoricoDao {
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun inserirHistorico(historico : HistoricoItemModel): Long
+    suspend fun inserirHistorico(historico: HistoricoItemModel): Long
 
-
-    @Query("SELECT * FROM tabela_historico")
-    suspend fun buscaHistorico(): List<HistoricoItemModel>
+    @Query("SELECT * FROM tabela_historico WHERE TABULEIRO_3X3 = 1")
+    suspend fun buscaHistorico3x3(): List<HistoricoItemModel>
 }

@@ -173,7 +173,8 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 jogador1Nome = jogador1.nome,
                 jogador2Nome = jogador2.nome,
                 jogador1Venceu = true,
-                jogador2Venceu = false
+                jogador2Venceu = false,
+                tabuleiro3x3 = true
             )
             viewModel.inserirHistorico(historicoItem)
             Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 11 : $jogador1")
@@ -197,7 +198,8 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 jogador1Nome = jogador1.nome,
                 jogador2Nome = jogador2.nome,
                 jogador1Venceu = false,
-                jogador2Venceu = true
+                jogador2Venceu = true,
+                tabuleiro3x3 = true
             )
             viewModel.inserirHistorico(historicoItem)
             Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 11 : $jogador1")

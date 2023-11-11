@@ -200,7 +200,9 @@ class MainActivity : AppCompatActivity() {
 
         //BOTÃO HISTÓRICO CLICADO
         binding.btnHistorico.setOnClickListener {
-            startActivity(Intent(this, Historico3x3::class.java))
+            if (tabuleiro3x3)  startActivity(Intent(this, Historico3x3::class.java))
+           // if (tabuleiro4x4)  starta activity historico4x4
+
 
         }
 

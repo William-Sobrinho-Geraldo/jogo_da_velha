@@ -36,9 +36,9 @@ class Repository(
         historicoDao.inserirHistorico(historicoItem)
     }
 
-    suspend fun buscaHistorico(): List<HistoricoItemModel> {
-        return historicoDao.buscaHistorico()
-        Log.i("Historico3x3", "buscaHistorico: a lsita que vem do Dao é ${historicoDao.buscaHistorico()}")
+    suspend fun buscaHistorico3x3(): List<HistoricoItemModel> {
+        return historicoDao.buscaHistorico3x3()
+        Log.i("Historico3x3", "buscaHistorico: a lsita que vem do Dao é ${historicoDao.buscaHistorico3x3()}")
     }
 
 }

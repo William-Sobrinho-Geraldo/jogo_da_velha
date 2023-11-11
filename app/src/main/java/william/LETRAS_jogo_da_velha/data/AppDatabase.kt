@@ -7,7 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [JogadoresModel::class, HistoricoItemModel::class], version = 4, exportSchema = true)
+@Database(entities = [JogadoresModel::class, HistoricoItemModel::class], version = 5, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun jogadoresDao(): JogadoresDao
     abstract fun historicoDao(): HistoricoDao
