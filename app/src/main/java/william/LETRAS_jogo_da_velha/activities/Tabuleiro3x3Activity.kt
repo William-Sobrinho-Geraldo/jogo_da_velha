@@ -1,9 +1,5 @@
 package william.LETRAS_jogo_da_velha.activities
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,16 +7,11 @@ import android.util.Log
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageButton
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import william.LETRAS_jogo_da_velha.R
-import william.LETRAS_jogo_da_velha.data.AppDatabase
-import william.LETRAS_jogo_da_velha.data.HistoricoItem
-import william.LETRAS_jogo_da_velha.data.JogadoresDao
+import william.LETRAS_jogo_da_velha.data.HistoricoItemModel
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
-import william.LETRAS_jogo_da_velha.data.Repository
 import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiro3x3Binding
 import william.LETRAS_jogo_da_velha.utilidades.Bot
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
@@ -47,7 +38,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
         )
 
         val viewModel: Tabuleiro3x3ViewModel by viewModel()
-//        val repository = Repository(AppDatabase.getDatabase(this).jogadoresDao())
+        //        val repository = Repository(AppDatabase.getDatabase(this).jogadoresDao())
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
         var jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
         val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
@@ -176,7 +167,18 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             //dao
             viewModel.incrementarVitoria(jogador1.id)
             viewModel.incrementarDerrota(jogador2.id)
-            historicoList.add(HistoricoItem(jogador1.nome, jogador2.nome, true, false))
+
+            val historicoItem = HistoricoItemModel(
+                0,
+                jogador1Nome = jogador1.nome,
+                jogador2Nome = jogador2.nome,
+                jogador1Venceu = true,
+                jogador2Venceu = false
+            )
+            viewModel.inserirHistorico(historicoItem)
+            Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 11 : $jogador1")
+            Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 22 : $jogador2")
+
 
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
@@ -190,8 +192,16 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             //incrementa vitória pra jogador1 e incrementa derrota pro jogador2
             viewModel.incrementarVitoria(jogador2.id)
             viewModel.incrementarDerrota(jogador1.id)
-            historicoList.add(HistoricoItem(jogador1.nome, jogador2.nome, false, true))
-
+            val historicoItem = HistoricoItemModel(
+                0,
+                jogador1Nome = jogador1.nome,
+                jogador2Nome = jogador2.nome,
+                jogador1Venceu = false,
+                jogador2Venceu = true
+            )
+            viewModel.inserirHistorico(historicoItem)
+            Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 11 : $jogador1")
+            Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 22 : $jogador2")
 
 
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU

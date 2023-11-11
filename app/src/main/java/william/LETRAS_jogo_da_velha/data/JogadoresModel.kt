@@ -17,10 +17,11 @@ data class JogadoresModel(
 ) : Serializable
 
 
-
-data class HistoricoItem(
-    val jogador1Nome: String = "",
-    val jogador2Nome: String = "",
-    val jogador1Venceu : Boolean = true,
-    val jogador2Venceu : Boolean = false,
+@Entity(tableName = "tabela_historico")
+data class HistoricoItemModel(
+    @PrimaryKey(autoGenerate = true) val registro : Long = 0,
+    @ColumnInfo(name = "NOME_DO_JOGADOR1") val jogador1Nome: String = "",
+    @ColumnInfo(name = "NOME_DO_JOGADOR2") val jogador2Nome: String = "",
+    @ColumnInfo(name = "JOGADOR1_VENCEU")val jogador1Venceu : Boolean = true,
+    @ColumnInfo(name = "JOGADOR2_VENCEU")val jogador2Venceu : Boolean = false,
 )

@@ -25,10 +25,9 @@ interface JogadoresDao {
 
 
     @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_GANHOS = QUANT_JOGOS_GANHOS + 1 WHERE id = :jogadorId")
-    fun incrementarVitoria(jogadorId: Long)
+    suspend fun incrementarVitoria(jogadorId: Long)
 
     @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_PERDIDOS = QUANT_JOGOS_PERDIDOS + 1 WHERE id = :jogadorId")
-    fun incrementarDerrota(jogadorId: Long)
-
+    suspend fun incrementarDerrota(jogadorId: Long)
 
 }

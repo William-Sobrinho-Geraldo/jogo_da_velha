@@ -1,12 +1,9 @@
 package william.LETRAS_jogo_da_velha.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-
-class Repository(private val jogadoresDao: JogadoresDao) {
+class Repository(
+    private val jogadoresDao: JogadoresDao,
+    private val historicoDao: HistoricoDao,
+) {
 
     suspend fun inserirJogadores(jogador: JogadoresModel) {
         jogadoresDao.inserirJogador(jogador)
@@ -23,12 +20,26 @@ class Repository(private val jogadoresDao: JogadoresDao) {
         jogadoresDao.deletarTodosOsJogadores()
     }
 
-    fun incrementarVitoria(jogadorId: Long) {
+    suspend fun incrementarVitoria(jogadorId: Long) {
         jogadoresDao.incrementarVitoria(jogadorId)
     }
 
-    fun incrementarDerrota(jogadorId: Long) {
+    suspend fun incrementarDerrota(jogadorId: Long) {
         jogadoresDao.incrementarDerrota(jogadorId)
+    }
+
+
+
+
+
+
+    //FUNÇÕES PARA USO NO HISTÓRICO DE JOGOS
+    suspend fun inserirHistorico(historicoItem : HistoricoItemModel) {
+        historicoDao.inserirHistorico(historicoItem)
+    }
+
+    suspend fun buscaHistorico(){
+        historicoDao.buscaHistorico()
     }
 
 }

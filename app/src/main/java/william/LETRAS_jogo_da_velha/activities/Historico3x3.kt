@@ -1,6 +1,5 @@
 package william.LETRAS_jogo_da_velha.activities
 
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,26 +10,29 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import william.LETRAS_jogo_da_velha.R
-import william.LETRAS_jogo_da_velha.data.HistoricoItem
+import william.LETRAS_jogo_da_velha.data.HistoricoItemModel
+import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityHistorico3x3Binding
-import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiro3x3Binding
 
-var historicoList = mutableListOf<HistoricoItem>(
-    HistoricoItem("José", "Maria", true, false),
-    HistoricoItem("Juciarano", "Leo", false, true),
+var historicoList = mutableListOf<HistoricoItemModel>(
+    HistoricoItemModel(1, "José", "Maria", true, false),
+    HistoricoItemModel(2, "Juciarano", "Leo", false, true),
 )
+
+//preciso popular a lista  historicoList
+
 
 class Historico3x3 : AppCompatActivity() {
     private lateinit var binding: ActivityHistorico3x3Binding
 
-    class HistoricoAdapter(private val historicoList: List<HistoricoItem>) :
+    class HistoricoAdapter(private val historicoJogadoresList: List<HistoricoItemModel>) :
         RecyclerView.Adapter<HistoricoAdapter.HistoricoViewHolder>() {
 
         inner class HistoricoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val textViewJogador1: TextView = itemView.findViewById(R.id.textViewJogador1)
             val textViewJogador2: TextView = itemView.findViewById(R.id.textViewJogador2)
-            val iconeJogador1 : ImageView = itemView.findViewById(R.id.icone_campeao_jogador1)
-            val iconeJogador2 : ImageView = itemView.findViewById(R.id.icone_campeao_jogador2)
+            val iconeJogador1: ImageView = itemView.findViewById(R.id.icone_campeao_jogador1)
+            val iconeJogador2: ImageView = itemView.findViewById(R.id.icone_campeao_jogador2)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoricoViewHolder {
@@ -40,18 +42,18 @@ class Historico3x3 : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: HistoricoViewHolder, position: Int) {
-            val historicoItem = historicoList[position]
+            val historicoItem = historicoJogadoresList[position]
             holder.textViewJogador1.text = historicoItem.jogador1Nome
             holder.textViewJogador2.text = historicoItem.jogador2Nome
             //fazer a logica de vidibilidade do troféu para cada jogador
             val jogador1Venceu = historicoItem.jogador1Venceu
             val jogador2Venceu = historicoItem.jogador2Venceu
-            if ( jogador1Venceu){
+            if (jogador1Venceu) {
                 holder.iconeJogador1.visibility = View.VISIBLE
                 holder.iconeJogador2.visibility = View.GONE
             }
 
-            if ( jogador2Venceu){
+            if (jogador2Venceu) {
                 holder.iconeJogador2.visibility = View.VISIBLE
                 holder.iconeJogador1.visibility = View.GONE
             }
@@ -59,7 +61,7 @@ class Historico3x3 : AppCompatActivity() {
         }
 
         override fun getItemCount(): Int {
-            return historicoList.size
+            return historicoJogadoresList.size
         }
     }
 
@@ -73,9 +75,6 @@ class Historico3x3 : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = HistoricoAdapter(historicoList)
         recyclerView.adapter = adapter
-
-
-
 
     } //onCreate
 } // Historico3x3

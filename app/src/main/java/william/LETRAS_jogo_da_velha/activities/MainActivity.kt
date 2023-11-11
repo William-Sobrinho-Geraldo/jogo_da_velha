@@ -135,22 +135,10 @@ class MainActivity : AppCompatActivity() {
             val jogador2 =
                 JogadoresModel(nome = binding.jogador2EditText.text.toString(), cor = 1, simbolo = 1)
 
-            //   LOGANDO NOMES DOS USUÁRIOS
-            //                withContext(Dispatchers.Main) {
-            viewModel.buscaJogadoresNoBD().observe(this@MainActivity) { listaDeJogadores ->
-                val nomes = listaDeJogadores.map { it.nome }
-                Log.i(TAG, "onCreate: a lista de Nomes de jogadores no bando de dados é:  $nomes")
-            }
-            //                }
-
             //insiro o nome deses jgoadores no BD
             lifecycleScope.launch(Dispatchers.IO) {
                 viewModel.inserirJogadores(jogador1)
                 viewModel.inserirJogadores(jogador2)
-
-
-
-
 
                 withContext(Dispatchers.Main) {
                     //pode navegar pra outra tela
@@ -200,6 +188,12 @@ class MainActivity : AppCompatActivity() {
 
                 //DELETAR TUDO EVENTUALMENTE - MANTENHA COMENTADO
                 //viewModel.deletarTodosOsJogadores()
+            }
+
+            //   LOGANDO NOMES DOS USUÁRIOS
+            viewModel.buscaJogadoresNoBD().observe(this@MainActivity) { listaDeJogadores ->
+                val nomes = listaDeJogadores.map { it.nome }
+                Log.i(TAG, "onCreate: a lista de Nomes de jogadores no bando de dados é:  $nomes")
             }
         }
 
