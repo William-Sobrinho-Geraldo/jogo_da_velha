@@ -5,8 +5,10 @@
     <color name="transparente">#00000000</color>
     <color name="roxo">#6821AF</color>
     <color name="vermelho">#FF0000</color>
+    <color name="vermelhoClaro70">#B3ff574f</color>
     <color name="azul">#007AFF</color>
     <color name="azulClaro">#7ed5ff</color>
+    <color name="azulClaro70">#B37ed5ff</color>
 
 
 </resources>

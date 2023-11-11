@@ -164,6 +164,9 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             for (linha in linhas) {
                 val (a, b, c) = linha
                 if (btnMarcList3x3[a] == "x" && btnMarcList3x3[b] == "x" && btnMarcList3x3[c] == "x") {
+                    botoes[a].setImageResource(R.drawable.marca_x_70)
+                    botoes[b].setImageResource(R.drawable.marca_x_70)
+                    botoes[c].setImageResource(R.drawable.marca_x_70)
                     jogoAcabouJogador1Ganhou()
                     return
                 }
@@ -185,6 +188,9 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             for (linha in linhas) {
                 val (a, b, c) = linha
                 if (btnMarcList3x3[a] == "0" && btnMarcList3x3[b] == "0" && btnMarcList3x3[c] == "0") {
+                    botoes[a].setImageResource(R.drawable.marca_bolinha_70)
+                    botoes[b].setImageResource(R.drawable.marca_bolinha_70)
+                    botoes[c].setImageResource(R.drawable.marca_bolinha_70)
                     jogoAcabouJogador2Ganhou()
                     return
                 }
