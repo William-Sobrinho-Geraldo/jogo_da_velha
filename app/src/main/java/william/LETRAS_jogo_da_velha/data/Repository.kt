@@ -1,5 +1,7 @@
 package william.LETRAS_jogo_da_velha.data
 
+import android.util.Log
+
 class Repository(
     private val jogadoresDao: JogadoresDao,
     private val historicoDao: HistoricoDao,
@@ -29,17 +31,14 @@ class Repository(
     }
 
 
-
-
-
-
     //FUNÇÕES PARA USO NO HISTÓRICO DE JOGOS
-    suspend fun inserirHistorico(historicoItem : HistoricoItemModel) {
+    suspend fun inserirHistorico(historicoItem: HistoricoItemModel) {
         historicoDao.inserirHistorico(historicoItem)
     }
 
-    suspend fun buscaHistorico(){
-        historicoDao.buscaHistorico()
+    suspend fun buscaHistorico(): List<HistoricoItemModel> {
+        return historicoDao.buscaHistorico()
+        Log.i("Historico3x3", "buscaHistorico: a lsita que vem do Dao é ${historicoDao.buscaHistorico()}")
     }
 
 }

@@ -1,19 +1,26 @@
 package william.LETRAS_jogo_da_velha.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.HistoricoItemModel
-import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityHistorico3x3Binding
+import william.LETRAS_jogo_da_velha.viewModels.Tabuleiro3x3ViewModel
 
+
+private const val TAG = "Historico3x3"
 var historicoList = mutableListOf<HistoricoItemModel>(
     HistoricoItemModel(1, "José", "Maria", true, false),
     HistoricoItemModel(2, "Juciarano", "Leo", false, true),
@@ -71,10 +78,28 @@ class Historico3x3 : AppCompatActivity() {
         binding = ActivityHistorico3x3Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val viewModel: Tabuleiro3x3ViewModel by viewModel()
+
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = HistoricoAdapter(historicoList)
         recyclerView.adapter = adapter
+
+        lifecycleScope.launch {
+            val viewModelHistoricoList = async {
+                viewModel.buscaHistorico()
+            }.await()
+
+            Log.i(TAG, "onCreate:   A LISTA QUE VEIO DO VIEWMODEL É $viewModelHistoricoList ")
+            historicoList.clear()
+            historicoList.addAll(viewModelHistoricoList)
+            historicoList.reverse()
+            adapter.notifyDataSetChanged()
+
+        }
+
+        //buscar dados da tabela de histórico e popular a lista que tá la encima "historicoList"
+
 
     } //onCreate
 } // Historico3x3

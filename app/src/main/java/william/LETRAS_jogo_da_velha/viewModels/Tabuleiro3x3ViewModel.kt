@@ -29,8 +29,17 @@ class Tabuleiro3x3ViewModel(val repository: Repository) : ViewModel() {
         }
     }
 
-    suspend fun buscaHistorico() {
-        repository.buscaHistorico()
+    suspend fun buscaHistorico(): List<HistoricoItemModel> {
+        return withContext(Dispatchers.IO) {
+            repository.buscaHistorico()
+        }
+
+
+//        var retorno = listOf<HistoricoItemModel>()
+//        CoroutineScope(Dispatchers.IO).launch {
+//            retorno = repository.buscaHistorico()
+//        }
+//        return retorno
     }
 
 }
