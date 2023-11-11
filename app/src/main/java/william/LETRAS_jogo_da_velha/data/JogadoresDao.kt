@@ -18,7 +18,7 @@ interface JogadoresDao {
     fun inserirJogador(jogador: JogadoresModel): Long
 
     @Query("SELECT * FROM tabela_de_jogadores")
-    fun buscaJogadoresNoBD(): List<JogadoresModel>
+    suspend fun buscaJogadoresNoBD(): List<JogadoresModel>
 
     @Query("DELETE FROM tabela_de_jogadores")
     fun deletarTodosOsJogadores()
