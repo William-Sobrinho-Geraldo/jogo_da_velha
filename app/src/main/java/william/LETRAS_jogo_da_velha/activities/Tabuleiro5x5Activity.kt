@@ -252,5 +252,11 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
             limpaTabuleiro()
         }
 
+        //BOTÃO VOLTAR
+        binding.btnVoltar.setOnClickListener {
+            limpaTabuleiro()
+            finish()
+        }
+
     } //onCreate
 } //Tabuleiro5x5Activity

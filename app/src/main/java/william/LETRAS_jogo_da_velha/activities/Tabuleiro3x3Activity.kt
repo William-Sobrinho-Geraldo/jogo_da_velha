@@ -1,5 +1,6 @@
 package william.LETRAS_jogo_da_velha.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -70,7 +71,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                 } else if (defenderDiagonais != null) {
                     botaoEscolhidoPeloBot = defenderDiagonais + 1
                     Log.i(TAG, "  BOT DEFENDENDO DIAGONAIS NO INDICE $botaoEscolhidoPeloBot")
-                }  else {
+                } else {
                     //Escolhendo botão que o bot Vai clicar aleatóriamente
                     botaoEscolhidoPeloBot = blocosVazios.random()
                     Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhidoPeloBot}")
@@ -247,6 +248,12 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
         //BOTÃO NOVO JOGO
         binding.btnNovoJogo.setOnClickListener {
             limpaTabuleiro()
+        }
+
+        //BOTÃO VOLTAR
+        binding.btnVoltar.setOnClickListener {
+            limpaTabuleiro()
+            finish()
         }
 
     }  //onCreate

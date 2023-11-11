@@ -253,10 +253,15 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
             }
         }
 
-
         //BOTÃO NOVO JOGO
         binding.btnNovoJogo.setOnClickListener {
             limpaTabuleiro()
+        }
+
+        //BOTÃO VOLTAR
+        binding.btnVoltar.setOnClickListener {
+            limpaTabuleiro()
+            finish()
         }
 
     } //   onCreate

@@ -310,5 +310,11 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
             limpaTabuleiro()
         }
 
+        //BOTÃO VOLTAR
+        binding.btnVoltar.setOnClickListener {
+            limpaTabuleiro()
+            finish()
+        }
+
     } //onCreate
 } // Tabuleiros6x6Activity
