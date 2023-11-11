@@ -124,7 +124,6 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
             jogador2 = JogadoresModel(nome = bot.nome, cor = 1, simbolo = 1)
         }
 
-
         fun limpaTabuleiro() {
             contadorDeJogadas = 0
             jogadorAtual = jogador1
@@ -132,14 +131,28 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
             binding.jogadorX.setTextColor(resources.getColor(R.color.vermelho))
             binding.vencedor.setTextColor(resources.getColor(R.color.transparente))
 
-            //LIMPANDO  A LISTA NOVA    buttonMarcList
+            // LIMPANDO A LISTA NOVA buttonMarcList
             for (indice in 0 until btnMarcList6x6.size) {
                 btnMarcList6x6[indice] = ""
             }
+            var delay = 0L     // Atraso inicial em milissegundos
 
-            for (botao in botoes) {
-                botao.setImageResource(R.drawable.imagem_fundo_branco)   //   LIMPANDO AS MARCAS
-                botao.isEnabled = true                                              //   REATIVANDO OS BOTÕES
+            for ((index, botao) in botoes.withIndex()) {
+                val fadeIn = AlphaAnimation(1f, 0f)
+                fadeIn.duration = 350
+                fadeIn.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation?) {}
+                    override fun onAnimationEnd(animation: Animation?) {
+                        // Lógica a ser executada no final da animação
+                        botao.setImageResource(R.drawable.imagem_fundo_branco)
+                        botao.isEnabled = true // Ativando os botões
+                    }
+                    override fun onAnimationRepeat(animation: Animation?) {}
+                })
+
+                // Iniciando a animação
+                botao.postDelayed({ botao.startAnimation(fadeIn) }, delay)
+                delay += 60 // Adicionando um pouco mais de atraso
             }
         }
 
@@ -316,8 +329,6 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
                 Log.i(TAG, "onCreate: botao${index + 1} bloqueado para outros clicks")
             }
         }
-
-
 
         //BOTÃO NOVO JOGO
         binding.btnNovoJogo.setOnClickListener {

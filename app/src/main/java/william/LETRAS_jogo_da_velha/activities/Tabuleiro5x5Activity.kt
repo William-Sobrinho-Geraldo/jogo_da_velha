@@ -51,8 +51,6 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
             botoes.add(button)
         }
 
-
-
         fun ordenaJogadaDoBot() {
             //bot só pode jogar onde estiver vazio
             blocosVazios.clear()
@@ -90,7 +88,6 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
             jogador2 = JogadoresModel(nome = bot.nome, cor = 1, simbolo = 1)
         }
 
-
         fun limpaTabuleiro() {
             contadorDeJogadas = 0
             jogadorAtual = jogador1
@@ -98,16 +95,31 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
             binding.jogadorX.setTextColor(resources.getColor(R.color.vermelho))
             binding.vencedor.setTextColor(resources.getColor(R.color.transparente))
 
-            //LIMPANDO  A LISTA NOVA    buttonMarcList
+            // LIMPANDO A LISTA NOVA buttonMarcList
             for (indice in 0 until btnMarcList5x5.size) {
                 btnMarcList5x5[indice] = ""
             }
+            var delay = 0L     // Atraso inicial em milissegundos
 
-            for (botao in botoes) {
-                botao.setImageResource(R.drawable.imagem_fundo_branco)   //   LIMPANDO AS MARCAS
-                botao.isEnabled = true                                         //   REATIVANDO OS BOTÕES
+            for ((index, botao) in botoes.withIndex()) {
+                val fadeIn = AlphaAnimation(1f, 0f)
+                fadeIn.duration = 400
+                fadeIn.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation?) {}
+                    override fun onAnimationEnd(animation: Animation?) {
+                        // Lógica a ser executada no final da animação
+                        botao.setImageResource(R.drawable.imagem_fundo_branco)
+                        botao.isEnabled = true // Ativando os botões
+                    }
+                    override fun onAnimationRepeat(animation: Animation?) {}
+                })
+
+                // Iniciando a animação
+                botao.postDelayed({ botao.startAnimation(fadeIn) }, delay)
+                delay += 70 // Adicionando um pouco mais de atraso
             }
         }
+
 
         fun alteraCorDoTexto() {
             if (jogadorAtual == jogador1) {
