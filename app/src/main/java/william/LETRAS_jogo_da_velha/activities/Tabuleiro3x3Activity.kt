@@ -1,10 +1,15 @@
 package william.LETRAS_jogo_da_velha.activities
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import william.LETRAS_jogo_da_velha.R
@@ -37,6 +42,8 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
         var jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
         val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
+        val quantTotalDeCasas = 9
+
 
         val bot = Bot()
         var botaoEscolhidoPeloBot = 0
@@ -141,6 +148,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
+            contadorDeJogadas = 0
         }
 
         fun jogoAcabouJogador2Ganhou() {
@@ -149,6 +157,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             binding.vencedor.setTextColor(resources.getColor(R.color.azul))
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
+            contadorDeJogadas = 0
         }
 
         fun verificaVencedorComX() {
@@ -223,27 +232,35 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
         //MOSTRAR QUE O PRIMEIRO A JOGAR É O JOGADOR1
         binding.jogadorX.text = jogador1.nome
 
-
+        //   Escutando click dos botões com animação
         for ((index, botao) in botoes.withIndex()) {
             botao.setOnClickListener {
-                if (contadorDeJogadas < 9 && btnMarcList3x3[index].isEmpty()) {
-                    btnMarcList3x3[index] = if (jogadorAtual == jogador1) "x" else "0"
-                    botao.setImageResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
-                    alteraVezDoJogador()
+                if (contadorDeJogadas < quantTotalDeCasas && btnMarcList3x3[index].isEmpty()) {
+                    val fadeIn = AlphaAnimation(0f, 1f)
+                    fadeIn.duration = 900
+                    fadeIn.setAnimationListener(object : Animation.AnimationListener {
+                        override fun onAnimationStart(animation: Animation?) {
+                            botao.setImageResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
+                            btnMarcList3x3[index] = if (jogadorAtual == jogador1) "x" else "0"
+                            alteraVezDoJogador()
+                        }
+                        override fun onAnimationEnd(animation: Animation?) {  }
+                        override fun onAnimationRepeat(animation: Animation?) { }
+                    })
+                    botao.startAnimation(fadeIn)
 
-                    //verifica se está jogando com o bot e manda ele jogar
+                    // Verifica se está jogando com o bot e manda ele jogar
                     if (jogadorAtual == jogador2 && btnVsBotAtivo) {
                         ordenaJogadaDoBot()
                     }
-
                 } else {
                     mostrarToast("o jogo acabou", this)
                 }
+
                 botao.isEnabled = false
                 Log.i(TAG, "onCreate: botao${index + 1} bloqueado para outros clicks")
             }
         }
-
 
         //BOTÃO NOVO JOGO
         binding.btnNovoJogo.setOnClickListener {

@@ -5,60 +5,61 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.ImageButton
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
-import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiro4x4Binding
-import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiro5x5Binding
 import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiro6x6Binding
 import william.LETRAS_jogo_da_velha.utilidades.Bot
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
 
 private const val TAG = "Tabu6x6"
+//COMEÇANDO O JOGO COM OTABULEIRO LIMPO
+private val btnMarcList6x6 = mutableListOf(
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+)
 
 class Tabuleiro6x6Activity : AppCompatActivity() {
     private lateinit var binding: ActivityTabuleiro6x6Binding
     private lateinit var botoes: MutableList<ImageButton>
 
-    //COMEÇANDO O JOGO COM OTABULEIRO LIMPO
-    private val buttonMarcList = mutableListOf(
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,8 +93,8 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
             Log.i(TAG, "ordenaJogadaDoBot:   blocosVazios foi limpa e agora é:  $blocosVazios")
 
             //ADICIONANDO NA LISTA DE blocosVazios OS ÍNDICES VAZIOS
-            for (indice in buttonMarcList.indices) {
-                if (buttonMarcList[indice] == "") blocosVazios.add(indice + 1)
+            for (indice in btnMarcList6x6.indices) {
+                if (btnMarcList6x6[indice] == "") blocosVazios.add(indice + 1)
             }
             Log.i(TAG, "ordenaJogadaDoBot:   Os espaços disponíveis são $blocosVazios")
 
@@ -132,8 +133,8 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
             binding.vencedor.setTextColor(resources.getColor(R.color.transparente))
 
             //LIMPANDO  A LISTA NOVA    buttonMarcList
-            for (indice in 0 until buttonMarcList.size) {
-                buttonMarcList[indice] = ""
+            for (indice in 0 until btnMarcList6x6.size) {
+                btnMarcList6x6[indice] = ""
             }
 
             for (botao in botoes) {
@@ -167,6 +168,7 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
             binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
+            contadorDeJogadas = 0
         }
 
         fun jogoAcabouJogador2Ganhou() {
@@ -175,6 +177,7 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
             binding.vencedor.setTextColor(resources.getColor(R.color.azul))
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
+            contadorDeJogadas = 0
         }
 
         fun verificaVencedorComX() {
@@ -204,8 +207,8 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
                     val e = linha[4]
                     val f = linha[5]
 
-                    if (buttonMarcList[a] == "x" && buttonMarcList[b] == "x" && buttonMarcList[c] == "x" &&
-                        buttonMarcList[d] == "x" && buttonMarcList[e] == "x" && buttonMarcList[f] == "x"
+                    if (btnMarcList6x6[a] == "x" && btnMarcList6x6[b] == "x" && btnMarcList6x6[c] == "x" &&
+                        btnMarcList6x6[d] == "x" && btnMarcList6x6[e] == "x" && btnMarcList6x6[f] == "x"
                     ) {
                         val indices = listOf(a, b, c, d, e, f)
                         for (index in indices) {
@@ -244,8 +247,8 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
                     val e = linha[4]
                     val f = linha[5]
 
-                    if (buttonMarcList[a] == "0" && buttonMarcList[b] == "0" && buttonMarcList[c] == "0" &&
-                        buttonMarcList[d] == "0" && buttonMarcList[e] == "0" && buttonMarcList[f] == "0"
+                    if (btnMarcList6x6[a] == "0" && btnMarcList6x6[b] == "0" && btnMarcList6x6[c] == "0" &&
+                        btnMarcList6x6[d] == "0" && btnMarcList6x6[e] == "0" && btnMarcList6x6[f] == "0"
                     ) {
                         val indices = listOf(a, b, c, d, e, f)
                         for (index in indices) {
@@ -283,26 +286,37 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
         //MOSTRAR QUE O PRIMEIRO A JOGAR É O JOGADOR1
         binding.jogadorX.text = jogador1.nome
 
-
+        //   Escutando click dos botões com animação
         for ((index, botao) in botoes.withIndex()) {
             botao.setOnClickListener {
-                if (contadorDeJogadas < quantTotalDeCasas && buttonMarcList[index].isEmpty()) {
-                    buttonMarcList[index] = if (jogadorAtual == jogador1) "x" else "0"
-                    botao.setImageResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
-                    alteraVezDoJogador()
+                if (contadorDeJogadas < quantTotalDeCasas && btnMarcList6x6[index].isEmpty()) {
+                    val fadeIn = AlphaAnimation(0f, 1f)
+                    fadeIn.duration = 900
+                    fadeIn.setAnimationListener(object : Animation.AnimationListener {
+                        override fun onAnimationStart(animation: Animation?) {
+                            botao.setImageResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
+                            btnMarcList6x6[index] = if (jogadorAtual == jogador1) "x" else "0"
+                            alteraVezDoJogador()
+                        }
 
-                    //verifica se está jogando com o bot e manda ele jogar
+                        override fun onAnimationEnd(animation: Animation?) {}
+                        override fun onAnimationRepeat(animation: Animation?) {}
+                    })
+                    botao.startAnimation(fadeIn)
+
+                    // Verifica se está jogando com o bot e manda ele jogar
                     if (jogadorAtual == jogador2 && btnVsBotAtivo) {
                         ordenaJogadaDoBot()
                     }
-
                 } else {
                     mostrarToast("o jogo acabou", this)
                 }
+
                 botao.isEnabled = false
                 Log.i(TAG, "onCreate: botao${index + 1} bloqueado para outros clicks")
             }
         }
+
 
 
         //BOTÃO NOVO JOGO
