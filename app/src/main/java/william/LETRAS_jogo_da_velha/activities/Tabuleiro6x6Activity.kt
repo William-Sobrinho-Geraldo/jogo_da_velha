@@ -310,17 +310,18 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
                             botao.setImageResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
                             btnMarcList6x6[index] = if (jogadorAtual == jogador1) "x" else "0"
                             alteraVezDoJogador()
-                        }
 
+                            // Verifica se está jogando com o bot e manda ele jogar
+                            if (jogadorAtual == jogador2 && btnVsBotAtivo) {
+                                ordenaJogadaDoBot()
+                            }
+                        }
                         override fun onAnimationEnd(animation: Animation?) {}
                         override fun onAnimationRepeat(animation: Animation?) {}
                     })
                     botao.startAnimation(fadeIn)
 
-                    // Verifica se está jogando com o bot e manda ele jogar
-                    if (jogadorAtual == jogador2 && btnVsBotAtivo) {
-                        ordenaJogadaDoBot()
-                    }
+
                 } else {
                     mostrarToast("o jogo acabou", this)
                 }

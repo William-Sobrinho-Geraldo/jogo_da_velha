@@ -67,10 +67,10 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
 
 
             if (blocosVazios.isNotEmpty()) {
-                if(defenderLinhas != null){
+                if (defenderLinhas != null) {
                     botaoEscolhidoPeloBot = defenderLinhas + 1
                     Log.i(TAG, "  BOT DEFENDENDO LINHA NO INDICE $botaoEscolhidoPeloBot")
-                } else if (defenderColunas != null){
+                } else if (defenderColunas != null) {
                     botaoEscolhidoPeloBot = defenderColunas + 1
                     Log.i(TAG, "  BOT DEFENDENDO COLUNA NO INDICE $botaoEscolhidoPeloBot")
                 } else if (defenderDiagonais != null) {
@@ -125,6 +125,7 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
                         botao.setImageResource(R.drawable.imagem_fundo_branco)
                         botao.isEnabled = true // Ativando os botões
                     }
+
                     override fun onAnimationRepeat(animation: Animation?) {}
                 })
 
@@ -262,16 +263,18 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
                             botao.setImageResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
                             btnMarcList4x4[index] = if (jogadorAtual == jogador1) "x" else "0"
                             alteraVezDoJogador()
+
+                            // Verifica se está jogando com o bot e manda ele jogar
+                            if (jogadorAtual == jogador2 && btnVsBotAtivo) {
+                                ordenaJogadaDoBot()
+                            }
                         }
-                        override fun onAnimationEnd(animation: Animation?) {  }
-                        override fun onAnimationRepeat(animation: Animation?) { }
+
+                        override fun onAnimationEnd(animation: Animation?) {}
+                        override fun onAnimationRepeat(animation: Animation?) {}
                     })
                     botao.startAnimation(fadeIn)
 
-                    // Verifica se está jogando com o bot e manda ele jogar
-                    if (jogadorAtual == jogador2 && btnVsBotAtivo) {
-                        ordenaJogadaDoBot()
-                    }
                 } else {
                     mostrarToast("o jogo acabou", this)
                 }

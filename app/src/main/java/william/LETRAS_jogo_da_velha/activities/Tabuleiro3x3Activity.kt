@@ -17,7 +17,7 @@ import william.LETRAS_jogo_da_velha.utilidades.Bot
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
 import william.LETRAS_jogo_da_velha.viewModels.Tabuleiro3x3ViewModel
 
-private const val TAG = "TabuleitoActivity"
+private const val TAG = "TabuleiroActivity"
 
 //COMEÇANDO O JOGO COM O TABULEIRO LIMPO
 val btnMarcList3x3 = mutableListOf("", "", "", "", "", "", "", "", "")
@@ -292,6 +292,10 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                             botao.setImageResource(if (jogadorAtual == jogador1) R.drawable.marca_x else R.drawable.marca_bolinha)
                             btnMarcList3x3[index] = if (jogadorAtual == jogador1) "x" else "0"
                             alteraVezDoJogador()
+
+                            if (jogadorAtual == jogador2 && btnVsBotAtivo) {
+                                ordenaJogadaDoBot()
+                            }
                         }
 
                         override fun onAnimationEnd(animation: Animation?) {}
@@ -300,9 +304,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                     botao.startAnimation(fadeIn)
 
                     // Verifica se está jogando com o bot e manda ele jogar
-                    if (jogadorAtual == jogador2 && btnVsBotAtivo) {
-                        ordenaJogadaDoBot()
-                    }
+
                 } else {
                     mostrarToast("o jogo acabou", this)
                 }
