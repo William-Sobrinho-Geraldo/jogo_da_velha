@@ -45,9 +45,9 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
 
 
         fun ordenaJogadaDoBot() {
-            val defenderLinhas = bot.defenderLinhas()
-            val defenderColunas = bot.defenderColunas()
-            val defenderDiagonais = bot.defenderDiagonais()
+            val defenderLinhas = bot.defenderLinhas3x3()
+            val defenderColunas = bot.defenderColunas3x3()
+            val defenderDiagonais = bot.defenderDiagonais3x3()
 
             //bot só pode jogar onde estiver vazio
             blocosVazios.clear()
@@ -86,7 +86,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
                             break      // sair do loop depois de encontrar e clicar no botaoEscolhidoPeloBot
                         }
                     }
-                }, 900)
+                }, 700)
             }
         }
 

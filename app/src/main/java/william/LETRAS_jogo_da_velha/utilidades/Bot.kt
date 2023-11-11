@@ -1,6 +1,7 @@
 package william.LETRAS_jogo_da_velha.utilidades
 
 import william.LETRAS_jogo_da_velha.activities.btnMarcList3x3
+import william.LETRAS_jogo_da_velha.activities.btnMarcList4x4
 
 data class Bot(
     val nome: String = "RichardBot",
@@ -8,7 +9,7 @@ data class Bot(
     val cor: Int = 1,
 ) {
 
-    fun defenderLinhas(): Int? {
+    fun defenderLinhas3x3(): Int? {
         var retorno: Int? = null
         for (i in 0 until 3) {
             if (btnMarcList3x3[i * 3] == "x" && btnMarcList3x3[i * 3 + 1] == "x" &&
@@ -30,7 +31,24 @@ data class Bot(
         return retorno
     }
 
-    fun defenderDiagonais(): Int? {
+    fun defenderColunas3x3(): Int? {
+        var retorno: Int? = null
+
+        for (i in 0 until 3) {
+            if (btnMarcList3x3[i] == "x" && btnMarcList3x3[i + 3] == "x" && btnMarcList3x3[i + 6] == "") {
+                retorno = i + 6
+            }
+            if (btnMarcList3x3[i] == "x" && btnMarcList3x3[i + 6] == "x" && btnMarcList3x3[i + 3] == "") {
+                retorno = i + 3
+            }
+            if (btnMarcList3x3[i + 3] == "x" && btnMarcList3x3[i + 6] == "x" && btnMarcList3x3[i] == "") {
+                retorno = i
+            }
+        }
+        return retorno
+    }
+
+    fun defenderDiagonais3x3(): Int? {
         var retorno: Int? = null
         // Diagonais
         val diagonais = listOf(
@@ -53,22 +71,24 @@ data class Bot(
         return retorno
     }
 
-
-    fun defenderColunas(): Int? {
+    fun defenderLinhas4x4(): Int? {
         var retorno: Int? = null
-
-        for (i in 0 until 3) {
-            if (btnMarcList3x3[i] == "x" && btnMarcList3x3[i + 3] == "x" && btnMarcList3x3[i + 6] == "") {
-                retorno = i + 6
+        // Verifica linhas
+        for (i in 0 until 4) {
+            if (btnMarcList4x4[i * 4] == "x" && btnMarcList4x4[i * 4 + 1] == "x" && btnMarcList4x4[i * 4 + 2] == "x" && btnMarcList4x4[i * 4 + 3] == "") {
+                retorno = i * 4 + 3
             }
-            if (btnMarcList3x3[i] == "x" && btnMarcList3x3[i + 6] == "x" && btnMarcList3x3[i + 3] == "") {
-                retorno = i + 3
+            if (btnMarcList4x4[i * 4] == "x" && btnMarcList4x4[i * 4 + 2] == "x" && btnMarcList4x4[i * 4 + 3] == "x" && btnMarcList4x4[i * 4 + 1] == "") {
+                retorno = i * 4 + 1
             }
-            if (btnMarcList3x3[i + 3] == "x" && btnMarcList3x3[i + 6] == "x" && btnMarcList3x3[i] == "") {
-                retorno = i
+            if (btnMarcList4x4[i * 4 + 1] == "x" && btnMarcList4x4[i * 4 + 2] == "x" && btnMarcList4x4[i * 4 + 3] == "x" && btnMarcList4x4[i * 4] == "") {
+                retorno = i * 4
+            }
+            if (btnMarcList4x4[i * 4 + 1] == "x" && btnMarcList4x4[i * 4 + 2] == "" && btnMarcList4x4[i * 4 + 3] == "x" && btnMarcList4x4[i * 4] == "x") {
+                retorno = i * 4 + 2
             }
         }
         return retorno
     }
 
-}
+} //data class Bot
