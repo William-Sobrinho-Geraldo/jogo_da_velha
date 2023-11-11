@@ -141,8 +141,14 @@ class MainActivity : AppCompatActivity() {
                 viewModel.inserirJogadores(jogador2)
 
 
-                val listaDejogadoresNoBD = viewModel.buscaJogadoresNoBD()
-                Log.i(TAG, "onCreate: a lista de jogadores no bando de dados é:  $listaDejogadoresNoBD")
+                //   LOGANDO NOMES DOS USUÁRIOS
+                viewModel.buscaJogadoresNoBD().observe(this@MainActivity) { listaDeJogadores ->
+                    lifecycleScope.launch {
+                        val nomes = listaDeJogadores.map { it.nome }
+                        Log.i(TAG, "onCreate: a lista de Nomes de jogadores no bando de dados é:  $nomes")
+                    }
+                }
+
 
                 withContext(Dispatchers.Main) {
                     //pode navegar pra outra tela
@@ -163,8 +169,8 @@ class MainActivity : AppCompatActivity() {
 
                     }
 
-                    if( tabuleiro4x4){
-                        val vaiProTabuleiro4x4 = Intent(this@MainActivity,Tabuleiro4x4Activity::class.java)
+                    if (tabuleiro4x4) {
+                        val vaiProTabuleiro4x4 = Intent(this@MainActivity, Tabuleiro4x4Activity::class.java)
                         vaiProTabuleiro4x4.putExtra("jogador1", jogador1)
                         vaiProTabuleiro4x4.putExtra("jogador2", jogador2)
                         vaiProTabuleiro4x4.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
@@ -172,16 +178,16 @@ class MainActivity : AppCompatActivity() {
                         startActivity(vaiProTabuleiro4x4)
 
                     }
-                    if( tabuleiro5x5){
-                        val vaiProTabuleiro5x5 = Intent(this@MainActivity,Tabuleiro5x5Activity::class.java)
+                    if (tabuleiro5x5) {
+                        val vaiProTabuleiro5x5 = Intent(this@MainActivity, Tabuleiro5x5Activity::class.java)
                         vaiProTabuleiro5x5.putExtra("jogador1", jogador1)
                         vaiProTabuleiro5x5.putExtra("jogador2", jogador2)
                         vaiProTabuleiro5x5.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
                         vaiProTabuleiro5x5.putExtra("btnVsBotAtivo", btnVsBotAtivo)
                         startActivity(vaiProTabuleiro5x5)
                     }
-                    if( tabuleiro6x6){
-                        val vaiProTabuleiro6x6 = Intent(this@MainActivity,Tabuleiro6x6Activity::class.java)
+                    if (tabuleiro6x6) {
+                        val vaiProTabuleiro6x6 = Intent(this@MainActivity, Tabuleiro6x6Activity::class.java)
                         vaiProTabuleiro6x6.putExtra("jogador1", jogador1)
                         vaiProTabuleiro6x6.putExtra("jogador2", jogador2)
                         vaiProTabuleiro6x6.putExtra("btnVsJogadorAtivo", btnVsJogadorAtivo)
