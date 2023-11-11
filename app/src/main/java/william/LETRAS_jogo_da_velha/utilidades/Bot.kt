@@ -111,5 +111,32 @@ data class Bot(
         return retorno
     }
 
+    fun defenderDiagonais4x4(): Int? {
+        var retorno: Int? = null
+        // Diagonais
+        val diagonais = listOf(
+            listOf(0, 5, 10, 15),
+            listOf(3, 6, 9, 12)
+        )
+
+        for (indice in diagonais) {
+            val (a, b, c, d) = indice
+            if (btnMarcList4x4[a] == "x" && btnMarcList4x4[b] == "x" && btnMarcList4x4[c] == "x" && btnMarcList4x4[d] == "") {
+                retorno = d
+            }
+            if (btnMarcList4x4[a] == "x" && btnMarcList4x4[b] == "x" && btnMarcList4x4[d] == "x" && btnMarcList4x4[c] == "") {
+                retorno = c
+            }
+            if (btnMarcList4x4[a] == "x" && btnMarcList4x4[d] == "x" && btnMarcList4x4[c] == "x" && btnMarcList4x4[b] == "") {
+                retorno = b
+            }
+            if (btnMarcList4x4[b] == "x" && btnMarcList4x4[c] == "x" && btnMarcList4x4[d] == "x" && btnMarcList4x4[a] == "") {
+                retorno = a
+            }
+        }
+        return retorno
+    }
+
+
 
 } //data class Bot
