@@ -179,27 +179,38 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
 
         fun verificaVencedorComX() {
             val linhas = listOf(
-                listOf(0, 1, 2, 3, 4, 5),                     //Horizontais
-                listOf(6, 7, 8, 9, 10, 11),                  //Horizontais
-                listOf(12, 13, 14, 15, 16, 17),            //Horizontais
-                listOf(18, 19, 20, 21, 22, 23),           //Horizontais
-                listOf(24, 25, 26, 27, 28, 29),         //Horizontais
-                listOf(30, 31, 32, 33, 34, 35),         //Horizontais
-                listOf(0, 6, 12, 18, 24, 30),              //Verticais
-                listOf(1, 7, 13, 19, 25, 31),               //Verticais
-                listOf(2, 8, 14, 20, 26, 32),             //Verticais
-                listOf(3, 9, 15, 21, 27, 33),              //Verticais
-                listOf(4, 10, 16, 22, 28, 34),            //Verticais
-                listOf(5, 11, 17, 23, 29, 35),             //Verticais
-                listOf(0, 7, 14, 21, 28, 35),              //Diagonais
-                listOf(5, 10, 15, 20, 25, 30),            //Diagonais
+                listOf(0, 1, 2, 3, 4, 5),                     // Horizontais
+                listOf(6, 7, 8, 9, 10, 11),                  // Horizontais
+                listOf(12, 13, 14, 15, 16, 17),            // Horizontais
+                listOf(18, 19, 20, 21, 22, 23),           // Horizontais
+                listOf(24, 25, 26, 27, 28, 29),         // Horizontais
+                listOf(30, 31, 32, 33, 34, 35),         // Horizontais
+                listOf(0, 6, 12, 18, 24, 30),              // Verticais
+                listOf(1, 7, 13, 19, 25, 31),               // Verticais
+                listOf(2, 8, 14, 20, 26, 32),             // Verticais
+                listOf(3, 9, 15, 21, 27, 33),              // Verticais
+                listOf(4, 10, 16, 22, 28, 34),            // Verticais
+                listOf(5, 11, 17, 23, 29, 35),             // Verticais
+                listOf(0, 7, 14, 21, 28, 35),              // Diagonais
+                listOf(5, 10, 15, 20, 25, 30)             // Diagonais
             )
+
             for (linha in linhas) {
                 if (linha.size == 6) {
-                    val indices = linha.toIntArray()
-                    if (buttonMarcList[indices[0]] == "x" && buttonMarcList[indices[1]] == "x" && buttonMarcList[indices[2]] == "x" &&
-                        buttonMarcList[indices[3]] == "x" && buttonMarcList[indices[4]] == "x" && buttonMarcList[indices[5]] == "x"
+                    val a = linha[0]
+                    val b = linha[1]
+                    val c = linha[2]
+                    val d = linha[3]
+                    val e = linha[4]
+                    val f = linha[5]
+
+                    if (buttonMarcList[a] == "x" && buttonMarcList[b] == "x" && buttonMarcList[c] == "x" &&
+                        buttonMarcList[d] == "x" && buttonMarcList[e] == "x" && buttonMarcList[f] == "x"
                     ) {
+                        val indices = listOf(a, b, c, d, e, f)
+                        for (index in indices) {
+                            botoes[index].setImageResource(R.drawable.marca_x_70)
+                        }
                         jogoAcabouJogador1Ganhou()
                         return
                     }
@@ -226,11 +237,21 @@ class Tabuleiro6x6Activity : AppCompatActivity() {
             )
             for (linha in linhas) {
                 if (linha.size == 6) {
-                    val indices = linha.toIntArray()
-                    if (buttonMarcList[indices[0]] == "0" && buttonMarcList[indices[1]] == "0" && buttonMarcList[indices[2]] == "0" &&
-                        buttonMarcList[indices[3]] == "0" && buttonMarcList[indices[4]] == "0" && buttonMarcList[indices[5]] == "0"
+                    val a = linha[0]
+                    val b = linha[1]
+                    val c = linha[2]
+                    val d = linha[3]
+                    val e = linha[4]
+                    val f = linha[5]
+
+                    if (buttonMarcList[a] == "0" && buttonMarcList[b] == "0" && buttonMarcList[c] == "0" &&
+                        buttonMarcList[d] == "0" && buttonMarcList[e] == "0" && buttonMarcList[f] == "0"
                     ) {
-                        jogoAcabouJogador2Ganhou()
+                        val indices = listOf(a, b, c, d, e, f)
+                        for (index in indices) {
+                            botoes[index].setImageResource(R.drawable.marca_bolinha_70)
+                        }
+                        jogoAcabouJogador1Ganhou()
                         return
                     }
                 }

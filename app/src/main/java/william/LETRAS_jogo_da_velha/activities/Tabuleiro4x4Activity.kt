@@ -154,7 +154,7 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
             botoes.forEach { it.isEnabled = false }
         }
 
-        fun verificaVencedorComXnova() {
+        fun verificaVencedorComX() {
             val linhas = listOf(
                 listOf(0, 1, 2, 3),         //Horizontais
                 listOf(4, 5, 6, 7),        //Horizontais
@@ -170,13 +170,17 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
             for (linha in linhas) {
                 val (a, b, c, d) = linha
                 if (btnMarcList4x4[a] == "x" && btnMarcList4x4[b] == "x" && btnMarcList4x4[c] == "x" && btnMarcList4x4[d] == "x") {
+                    botoes[a].setImageResource(R.drawable.marca_x_70)
+                    botoes[b].setImageResource(R.drawable.marca_x_70)
+                    botoes[c].setImageResource(R.drawable.marca_x_70)
+                    botoes[d].setImageResource(R.drawable.marca_x_70)
                     jogoAcabouJogador1Ganhou()
                     return
                 }
             }
         }
 
-        fun verificaVencedorCom0nova() {
+        fun verificaVencedorCom0() {
             val linhas = listOf(
                 listOf(0, 1, 2, 3),         //Horizontais
                 listOf(4, 5, 6, 7),        //Horizontais
@@ -193,6 +197,10 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
             for (linha in linhas) {
                 val (a, b, c, d) = linha
                 if (btnMarcList4x4[a] == "0" && btnMarcList4x4[b] == "0" && btnMarcList4x4[c] == "0" && btnMarcList4x4[d] == "0") {
+                    botoes[a].setImageResource(R.drawable.marca_bolinha_70)
+                    botoes[b].setImageResource(R.drawable.marca_bolinha_70)
+                    botoes[c].setImageResource(R.drawable.marca_bolinha_70)
+                    botoes[d].setImageResource(R.drawable.marca_bolinha_70)
                     jogoAcabouJogador2Ganhou()
                     return
                 }
@@ -201,8 +209,8 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
 
         fun alteraVezDoJogador() {
             //ANTES DE ALTERAR, VERIFICA SE Já TEM VENCEDOR
-            verificaVencedorComXnova()
-            verificaVencedorCom0nova()
+            verificaVencedorComX()
+            verificaVencedorCom0()
             //VERIFICA SE HOUVE EMPATE
             if (contadorDeJogadas == (quantTotalDeCasas - 1)) {
                 mostrarToast("Tivemos um empate", this)

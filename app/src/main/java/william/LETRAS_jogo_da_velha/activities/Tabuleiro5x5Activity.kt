@@ -159,6 +159,11 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
             for (linha in linhas) {
                 val (a, b, c, d, e) = linha
                 if (buttonMarcList[a] == "x" && buttonMarcList[b] == "x" && buttonMarcList[c] == "x" && buttonMarcList[d] == "x" && buttonMarcList[e] == "x") {
+                    botoes[a].setImageResource(R.drawable.marca_x_70)
+                    botoes[b].setImageResource(R.drawable.marca_x_70)
+                    botoes[c].setImageResource(R.drawable.marca_x_70)
+                    botoes[d].setImageResource(R.drawable.marca_x_70)
+                    botoes[e].setImageResource(R.drawable.marca_x_70)
                     jogoAcabouJogador1Ganhou()
                     return
                 }
@@ -184,6 +189,11 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
             for (linha in linhas) {
                 val (a, b, c, d, e) = linha
                 if (buttonMarcList[a] == "0" && buttonMarcList[b] == "0" && buttonMarcList[c] == "0" && buttonMarcList[d] == "0" && buttonMarcList[e] == "0") {
+                    botoes[a].setImageResource(R.drawable.marca_bolinha_70)
+                    botoes[b].setImageResource(R.drawable.marca_bolinha_70)
+                    botoes[c].setImageResource(R.drawable.marca_bolinha_70)
+                    botoes[d].setImageResource(R.drawable.marca_bolinha_70)
+                    botoes[e].setImageResource(R.drawable.marca_bolinha_70)
                     jogoAcabouJogador2Ganhou()
                     return
                 }

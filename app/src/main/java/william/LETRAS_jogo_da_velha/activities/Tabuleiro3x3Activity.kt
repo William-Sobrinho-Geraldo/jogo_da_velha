@@ -150,7 +150,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             botoes.forEach { it.isEnabled = false }
         }
 
-        fun verificaVencedorComXnova() {
+        fun verificaVencedorComX() {
             val linhas = listOf(
                 listOf(0, 1, 2),
                 listOf(3, 4, 5),
@@ -173,7 +173,7 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             }
         }
 
-        fun verificaVencedorCom0nova() {
+        fun verificaVencedorCom0() {
             val linhas = listOf(
                 listOf(0, 1, 2),
                 listOf(3, 4, 5),
@@ -199,8 +199,8 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
 
         fun alteraVezDoJogador() {
             //ANTES DE ALTERAR, VERIFICA SE Já TEM VENCEDOR
-            verificaVencedorComXnova()
-            verificaVencedorCom0nova()
+            verificaVencedorComX()
+            verificaVencedorCom0()
             //VERIFICA SE HOUVE EMPATE
             if (contadorDeJogadas == 8) {
                 mostrarToast("Tivemos um empate", this)
