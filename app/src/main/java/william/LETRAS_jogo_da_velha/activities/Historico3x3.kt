@@ -21,7 +21,7 @@ import william.LETRAS_jogo_da_velha.viewModels.Tabuleiro3x3ViewModel
 
 
 private const val TAG = "Historico3x3"
-var historicoList = mutableListOf<HistoricoItemModel>(
+var historicoList3x3 = mutableListOf<HistoricoItemModel>(
     HistoricoItemModel(1, "José", "Maria", true, false),
     HistoricoItemModel(2, "Juciarano", "Leo", false, true),
 )
@@ -70,7 +70,7 @@ class Historico3x3 : AppCompatActivity() {
         override fun getItemCount(): Int {
             return historicoJogadoresList.size
         }
-    }
+    } // class HistoricoAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,9 +80,9 @@ class Historico3x3 : AppCompatActivity() {
 
         val viewModel: Tabuleiro3x3ViewModel by viewModel()
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView4x4)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = HistoricoAdapter(historicoList)
+        val adapter = HistoricoAdapter(historicoList3x3)
         recyclerView.adapter = adapter
 
         lifecycleScope.launch {
@@ -91,9 +91,9 @@ class Historico3x3 : AppCompatActivity() {
             }.await()
 
             Log.i(TAG, "onCreate:   A LISTA QUE VEIO DO VIEWMODEL É $viewModelHistoricoList ")
-            historicoList.clear()
-            historicoList.addAll(viewModelHistoricoList)
-            historicoList.reverse()
+            historicoList3x3.clear()
+            historicoList3x3.addAll(viewModelHistoricoList)
+            historicoList3x3.reverse()
             adapter.notifyDataSetChanged()
         }
 

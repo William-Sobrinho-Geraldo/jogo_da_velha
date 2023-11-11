@@ -8,11 +8,14 @@ import android.util.Log
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageButton
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import william.LETRAS_jogo_da_velha.R
+import william.LETRAS_jogo_da_velha.data.HistoricoItemModel
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityTabuleiro4x4Binding
 import william.LETRAS_jogo_da_velha.utilidades.Bot
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
+import william.LETRAS_jogo_da_velha.viewModels.Tabuleiro4x4ViewModel
 
 private const val TAG = "Tabu4x4"
 
@@ -30,6 +33,7 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        val viewModel: Tabuleiro4x4ViewModel by viewModel()
         val jogador1 = intent.getSerializableExtra("jogador1") as JogadoresModel
         var jogador2 = intent.getSerializableExtra("jogador2") as JogadoresModel
         val btnVsBotAtivo = intent.getBooleanExtra("btnVsBotAtivo", false)
@@ -159,6 +163,22 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
             mostrarToast("O jogo acabou, ${jogador1.nome} foi o vencedor", this)
             binding.vencedor.text = "Parabéns ${jogador1.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.vermelho))
+
+            viewModel.incrementarVitoria(jogador1.id)
+            viewModel.incrementarDerrota(jogador2.id)
+
+            val historicoItem = HistoricoItemModel(
+                0,
+                jogador1Nome = jogador1.nome,
+                jogador2Nome = jogador2.nome,
+                jogador1Venceu = true,
+                jogador2Venceu = false,
+                tabuleiro4x4 = true
+            )
+            viewModel.inserirHistorico(historicoItem)
+            Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 11 : $jogador1")
+            Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 22 : $jogador2")
+
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
             contadorDeJogadas = 0
@@ -168,6 +188,21 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
             mostrarToast("O jogo acabou, ${jogador2.nome} foi o vencedor", this)
             binding.vencedor.text = "Parabéns ${jogador2.nome}, você venceu !"
             binding.vencedor.setTextColor(resources.getColor(R.color.azul))
+            //incrementa vitória pra jogador1 e incrementa derrota pro jogador2
+            viewModel.incrementarVitoria(jogador2.id)
+            viewModel.incrementarDerrota(jogador1.id)
+            val historicoItem = HistoricoItemModel(
+                0,
+                jogador1Nome = jogador1.nome,
+                jogador2Nome = jogador2.nome,
+                jogador1Venceu = false,
+                jogador2Venceu = true,
+                tabuleiro4x4 = true
+            )
+            viewModel.inserirHistorico(historicoItem)
+            Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 11 : $jogador1")
+            Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 22 : $jogador2")
+
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
             contadorDeJogadas = 0

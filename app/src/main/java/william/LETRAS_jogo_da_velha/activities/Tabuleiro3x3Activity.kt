@@ -180,7 +180,6 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
             Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 11 : $jogador1")
             Log.i(TAG, "jogoAcabouJogador2Ganhou: JOGADOR 22 : $jogador2")
 
-
             //BLOQUEIA TODOS OS BOTÕES POIS O JOGO ACABOU
             botoes.forEach { it.isEnabled = false }
             contadorDeJogadas = 0

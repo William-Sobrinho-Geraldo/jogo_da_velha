@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 import william.LETRAS_jogo_da_velha.data.HistoricoItemModel
 import william.LETRAS_jogo_da_velha.data.Repository
 
-class Tabuleiro3x3ViewModel(val repository: Repository) : ViewModel() {
+class Tabuleiro4x4ViewModel(val repository: Repository) : ViewModel() {
     fun incrementarVitoria(jogadorId: Long) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.incrementarVitoria(jogadorId)
@@ -29,10 +29,10 @@ class Tabuleiro3x3ViewModel(val repository: Repository) : ViewModel() {
         }
     }
 
-    suspend fun buscaHistorico3x3(): List<HistoricoItemModel> {
+    suspend fun buscaHistorico4x4(): List<HistoricoItemModel> {
         return withContext(Dispatchers.IO) {
-            repository.buscaHistorico3x3()
+            repository.buscaHistorico4x4()
         }
     }
 
-}
+} //viewModel
