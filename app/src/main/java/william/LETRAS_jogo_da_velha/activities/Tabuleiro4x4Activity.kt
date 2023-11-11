@@ -50,6 +50,7 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
 
         fun ordenaJogadaDoBot() {
             val defenderLinhas = bot.defenderLinhas4x4()
+            val defenderColunas = bot.defenderColunas4x4()
 
             //bot só pode jogar onde estiver vazio
             blocosVazios.clear()
@@ -66,6 +67,9 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
                 if(defenderLinhas != null){
                     botaoEscolhidoPeloBot = defenderLinhas + 1
                     Log.i(TAG, "  BOT DEFENDENDO LINHA NO INDICE $botaoEscolhidoPeloBot")
+                } else if (defenderColunas != null){
+                    botaoEscolhidoPeloBot = defenderColunas + 1
+                    Log.i(TAG, "  BOT DEFENDENDO COLUNA NO INDICE $botaoEscolhidoPeloBot")
                 } else {
                     //Escolhendo botão que o bot Vai clicar aleatóriamente
                     botaoEscolhidoPeloBot = blocosVazios.random()

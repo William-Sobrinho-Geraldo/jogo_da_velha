@@ -91,4 +91,25 @@ data class Bot(
         return retorno
     }
 
+    fun defenderColunas4x4(): Int? {
+        var retorno: Int? = null
+        // Verifica colunas
+        for (i in 0 until 4) {
+            if (btnMarcList4x4[i] == "x" && btnMarcList4x4[i + 4] == "x" && btnMarcList4x4[i + 8] == "x" && btnMarcList4x4[i + 12] == "") {
+                retorno = i + 12
+            }
+            if (btnMarcList4x4[i] == "x" && btnMarcList4x4[i + 8] == "x" && btnMarcList4x4[i + 12] == "x" && btnMarcList4x4[i + 4] == "") {
+                retorno = i + 4
+            }
+            if (btnMarcList4x4[i + 4] == "x" && btnMarcList4x4[i + 8] == "x" && btnMarcList4x4[i + 12] == "x" && btnMarcList4x4[i] == "") {
+                retorno = i
+            }
+            if (btnMarcList4x4[i] == "x" && btnMarcList4x4[i + 8] == "" && btnMarcList4x4[i + 12] == "x" && btnMarcList4x4[i + 4] == "x") {
+                retorno = i + 8
+            }
+        }
+        return retorno
+    }
+
+
 } //data class Bot
