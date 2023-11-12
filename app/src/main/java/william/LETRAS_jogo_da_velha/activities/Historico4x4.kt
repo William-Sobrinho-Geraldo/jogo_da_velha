@@ -17,6 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.HistoricoItemModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityHistorico4x4Binding
+import william.LETRAS_jogo_da_velha.utilidades.mostrarToastLonga
 import william.LETRAS_jogo_da_velha.viewModels.Tabuleiro4x4ViewModel
 
 private const val TAG = "Historico3x3"
@@ -92,6 +93,11 @@ class Historico4x4 : AppCompatActivity() {
             historicoList4x4.reverse()
             adapter.notifyDataSetChanged()
         }
+
+        binding.btnExibirRankind4x4.setOnClickListener {
+            mostrarToastLonga("Ranking para tabuleiro 4x4 em construção", this)
+        }
+
 
         //buscar dados da tabela de histórico e popular a lista que tá la encima "historicoList"
 

@@ -15,6 +15,7 @@ import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityMainBinding
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
+import william.LETRAS_jogo_da_velha.utilidades.mostrarToastLonga
 import william.LETRAS_jogo_da_velha.viewModels.MainActivityViewModel
 
 private const val TAG = "MainActivity"
@@ -202,8 +203,15 @@ class MainActivity : AppCompatActivity() {
         binding.btnHistorico.setOnClickListener {
             if (tabuleiro3x3) startActivity(Intent(this, Historico3x3::class.java))
             if (tabuleiro4x4) startActivity(Intent(this, Historico4x4::class.java))
+            if (tabuleiro5x5) {
+                startActivity(Intent(this, Historico3x3::class.java))
+                mostrarToastLonga("Histórico para o tabuleiro 5x5 em desenvolvimento", this)
+            }
 
-
+            if (tabuleiro6x6) {
+                startActivity(Intent(this, Historico3x3::class.java))
+                mostrarToastLonga("Histórico para o tabuleiro 6x6 em desenvolvimento", this)
+            }
         }
 
 

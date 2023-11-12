@@ -31,6 +31,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vez" />
 
+    <TextView
+        android:id="@+id/botInteligente_defesa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="Bot Inteligente"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/jogadorX"
+        app:layout_constraintBottom_toBottomOf="@+id/jogadorX" />
+
+
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="0dp"

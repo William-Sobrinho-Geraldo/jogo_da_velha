@@ -59,12 +59,12 @@ class Historico3x3 : AppCompatActivity() {
             val jogador2Venceu = historicoItem.jogador2Venceu
             if (jogador1Venceu) {
                 holder.iconeJogador1.visibility = View.VISIBLE
-                holder.iconeJogador2.visibility = View.GONE
+                holder.iconeJogador2.visibility = View.INVISIBLE
             }
 
             if (jogador2Venceu) {
                 holder.iconeJogador2.visibility = View.VISIBLE
-                holder.iconeJogador1.visibility = View.GONE
+                holder.iconeJogador1.visibility = View.INVISIBLE
             }
             //lógica de cores dos nomes para cada jogador
         }
