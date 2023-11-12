@@ -61,7 +61,6 @@ class Historico4x4 : AppCompatActivity() {
                 holder.iconeJogador2.visibility = View.VISIBLE
                 holder.iconeJogador1.visibility = View.GONE
             }
-            //lógica de cores dos nomes para cada jogador
         }
 
         override fun getItemCount(): Int {
@@ -97,9 +96,6 @@ class Historico4x4 : AppCompatActivity() {
         binding.btnExibirRankind4x4.setOnClickListener {
             mostrarToastLonga("Ranking para tabuleiro 4x4 em construção", this)
         }
-
-
-        //buscar dados da tabela de histórico e popular a lista que tá la encima "historicoList"
 
     } //onCreate
 } // Historico4x4

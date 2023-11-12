@@ -124,56 +124,6 @@
 
     </LinearLayout>
 
-    <!--    <androidx.appcompat.widget.AppCompatButton-->
-    <!--        android:id="@+id/vs_jogador"-->
-    <!--        android:background="@color/white"-->
-    <!--        android:layout_width="153dp"-->
-    <!--        android:layout_height="28dp"-->
-    <!--        android:layout_marginStart="2dp"-->
-    <!--        android:layout_marginTop="2dp"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/segmento_tipo_de_jogo"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />-->
-
-    <!--    <TextView-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:elevation="2dp"-->
-    <!--        android:lineHeight="20dp"-->
-    <!--        android:text="@string/vs_jogador"-->
-    <!--        android:textColor="#6821AF"-->
-    <!--        android:textSize="13sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/vs_jogador"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/vs_jogador"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/segmento_tipo_de_jogo"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />-->
-
-    <!--    &lt;!&ndash;    botão vs Bot&ndash;&gt;-->
-    <!--    <androidx.appcompat.widget.AppCompatButton-->
-    <!--        android:id="@+id/vs_bot"-->
-    <!--        android:layout_width="153dp"-->
-    <!--        android:layout_height="28dp"-->
-    <!--        android:layout_marginTop="2dp"-->
-    <!--        android:layout_marginEnd="2dp"-->
-    <!--        android:background="@color/transparente"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/segmento_tipo_de_jogo"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />-->
-
-    <!--    <TextView-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:elevation="2dp"-->
-    <!--        android:lineHeight="20dp"-->
-    <!--        android:text="@string/vs_bot"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        android:textSize="13sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/vs_jogador"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/vs_bot"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/vs_bot"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/segmento_tipo_de_jogo" />-->
-
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -191,27 +141,6 @@
             android:text="@string/nome_dos_jogadores"
             android:textColor="@color/white"
             android:textSize="20sp" />
-
-        <!--        <com.google.android.material.textfield.TextInputLayout-->
-        <!--            android:id="@+id/jogador_1_TextInputLayout_deTeste"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="44dp"-->
-        <!--            android:background="@drawable/rounded_border"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            android:hint="@string/jogador_1"-->
-        <!--            app:hintEnabled="true">-->
-
-        <!--            <EditText-->
-        <!--                android:id="@+id/jogador_1_editText_deTeste"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:inputType="textPersonName"-->
-        <!--                android:layout_marginHorizontal="8dp"-->
-        <!--                android:textSize="16sp"-->
-        <!--                android:textColor="@color/white"-->
-        <!--                android:padding="8dp"-->
-        <!--                />-->
-        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/jogador_1_TextInputLayout"

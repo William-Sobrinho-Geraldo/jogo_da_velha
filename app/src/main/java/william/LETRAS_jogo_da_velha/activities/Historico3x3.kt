@@ -28,8 +28,6 @@ var historicoList3x3 = mutableListOf<HistoricoItemModel>(
     HistoricoItemModel(2, "Juciarano", "Leo", false, true),
 )
 
-//preciso popular a lista  historicoList
-
 
 class Historico3x3 : AppCompatActivity() {
     private lateinit var binding: ActivityHistorico3x3Binding
@@ -66,7 +64,6 @@ class Historico3x3 : AppCompatActivity() {
                 holder.iconeJogador2.visibility = View.VISIBLE
                 holder.iconeJogador1.visibility = View.INVISIBLE
             }
-            //lógica de cores dos nomes para cada jogador
         }
 
         override fun getItemCount(): Int {
@@ -75,7 +72,6 @@ class Historico3x3 : AppCompatActivity() {
     } // class HistoricoAdapter
 
 
-    // JogadoresAdapter.kt
     class JogadoresAdapter(private val listaJogadores: List<JogadoresModel>) :
         RecyclerView.Adapter<JogadoresAdapter.ViewHolder>() {
 
@@ -140,12 +136,9 @@ class Historico3x3 : AppCompatActivity() {
                 //tornar invisivel a recyclerView acima
                 recyclerView.visibility = View.INVISIBLE
 
-                // mostrar outra recyclerview com os maiores ganhadores
-
 
             } // Coroutine
 
-            //            val listaJogadores: List<JogadoresModel> = // Obtenha a lista de jogadores
             val recyclerViewranking: RecyclerView =
                 findViewById(R.id.recyclerView4x4_ranking) // botar Recycler do ranking
             recyclerViewranking.visibility = View.VISIBLE
@@ -153,11 +146,6 @@ class Historico3x3 : AppCompatActivity() {
             val adapterRanking = JogadoresAdapter(listaDeMaioresGanhadores)
             recyclerViewranking.adapter = adapterRanking
 
-
         } //ClickListener Botão Ranking
-
-
-        //buscar dados da tabela de histórico e popular a lista que tá la encima "historicoList"
-
     } //onCreate
 } // Historico3x3

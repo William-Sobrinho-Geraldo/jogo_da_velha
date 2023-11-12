@@ -187,13 +187,6 @@ class MainActivity : AppCompatActivity() {
                         startActivity(vaiProTabuleiro6x6)
                     }
                 }
-
-                //DELETAR TUDO EVENTUALMENTE - MANTENHA COMENTADO
-                //                                viewModel.deletarTodosOsJogadores()
-
-                //DELETAR TUDO O HISTÓRICO DO 3X3
-                //                val dao = AppDatabase.getDatabase(this@MainActivity).historicoDao()
-                //                dao.deletarTodosOHistorico3x3()
             }
 
             //   LOGANDO NOMES DOS USUÁRIOS
