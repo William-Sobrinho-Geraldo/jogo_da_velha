@@ -9,15 +9,15 @@ import william.LETRAS_jogo_da_velha.data.HistoricoItemModel
 import william.LETRAS_jogo_da_velha.data.Repository
 
 class Tabuleiro4x4ViewModel(val repository: Repository) : ViewModel() {
-    fun incrementarVitoria(nome : String) {
+    fun incrementarVitoriaPorNome(nome : String) {
         CoroutineScope(Dispatchers.IO).launch {
             repository.incrementarVitoria(nome)
         }
     }
 
-    fun incrementarDerrota(jogadorId: Long) {
+    fun incrementarDerrotaPorNome(nome : String) {
         CoroutineScope(Dispatchers.IO).launch {
-            repository.incrementarDerrota(jogadorId)
+            repository.incrementarDerrota(nome)
         }
     }
 

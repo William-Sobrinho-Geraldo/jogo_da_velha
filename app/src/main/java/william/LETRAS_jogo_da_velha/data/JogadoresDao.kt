@@ -1,13 +1,9 @@
 package william.LETRAS_jogo_da_velha.data
 
-import android.util.Log
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
-import androidx.room.util.query
 
 private const val TAG = "JogadoresDao"
 
@@ -30,8 +26,8 @@ interface JogadoresDao {
     @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_GANHOS = QUANT_JOGOS_GANHOS + 1 WHERE NOME_DO_JOGADOR = :nome")
     suspend fun incrementarVitoriaPorNome(nome: String)
 
-    @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_PERDIDOS = QUANT_JOGOS_PERDIDOS + 1 WHERE id = :jogadorId")
-    suspend fun incrementarDerrota(jogadorId: Long)
+    @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_PERDIDOS = QUANT_JOGOS_PERDIDOS + 1 WHERE NOME_DO_JOGADOR = :nome")
+    suspend fun incrementarDerrotaPorNome(nome: String)
 
     @Query("SELECT * FROM tabela_de_jogadores ORDER BY QUANT_JOGOS_GANHOS DESC")
     suspend fun buscaJogadoresOrdenadosPorGanhos(): List<JogadoresModel>

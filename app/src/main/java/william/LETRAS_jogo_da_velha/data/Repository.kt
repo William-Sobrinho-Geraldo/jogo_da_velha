@@ -1,7 +1,5 @@
 package william.LETRAS_jogo_da_velha.data
 
-import android.util.Log
-
 class Repository(
     private val jogadoresDao: JogadoresDao,
     private val historicoDao: HistoricoDao,
@@ -26,8 +24,8 @@ class Repository(
         jogadoresDao.incrementarVitoriaPorNome(nome)
     }
 
-    suspend fun incrementarDerrota(jogadorId: Long) {
-        jogadoresDao.incrementarDerrota(jogadorId)
+    suspend fun incrementarDerrota(nome: String) {
+        jogadoresDao.incrementarDerrotaPorNome(nome)
     }
 
 

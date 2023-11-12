@@ -16,9 +16,9 @@ class Tabuleiro3x3ViewModel(val repository: Repository) : ViewModel() {
         }
     }
 
-    fun incrementarDerrota(jogadorId: Long) {
+    fun incrementarDerrota(nome : String) {
         CoroutineScope(Dispatchers.IO).launch {
-            repository.incrementarDerrota(jogadorId)
+            repository.incrementarDerrota(nome)
         }
     }
 
