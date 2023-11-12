@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import william.LETRAS_jogo_da_velha.R
+import william.LETRAS_jogo_da_velha.data.AppDatabase
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityMainBinding
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
@@ -188,7 +189,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 //DELETAR TUDO EVENTUALMENTE - MANTENHA COMENTADO
-                //                viewModel.deletarTodosOsJogadores()
+                //                                viewModel.deletarTodosOsJogadores()
+
+                //DELETAR TUDO O HISTÓRICO DO 3X3
+                //                val dao = AppDatabase.getDatabase(this@MainActivity).historicoDao()
+                //                dao.deletarTodosOHistorico3x3()
             }
 
             //   LOGANDO NOMES DOS USUÁRIOS

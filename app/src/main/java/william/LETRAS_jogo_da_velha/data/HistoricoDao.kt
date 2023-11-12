@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface HistoricoDao {
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun inserirHistorico(historico: HistoricoItemModel): Long
 
     @Query("SELECT * FROM tabela_historico WHERE TABULEIRO_3X3 = 1")
@@ -22,5 +22,8 @@ interface HistoricoDao {
     suspend fun buscaHistorico5x5(): List<HistoricoItemModel>
     @Query("SELECT * FROM tabela_historico WHERE TABULEIRO_6X6 = 1")
     suspend fun buscaHistorico6x6(): List<HistoricoItemModel>
+
+    @Query("DELETE FROM tabela_historico WHERE TABULEIRO_3X3 = 1")
+    fun deletarTodosOHistorico3x3()
 
 }

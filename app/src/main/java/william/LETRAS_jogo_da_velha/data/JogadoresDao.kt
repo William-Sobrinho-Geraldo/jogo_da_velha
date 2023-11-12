@@ -10,7 +10,7 @@ private const val TAG = "JogadoresDao"
 @Dao
 interface JogadoresDao {
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun inserirJogador(jogador: JogadoresModel): Long
 
     @Query("SELECT * FROM tabela_de_jogadores")
