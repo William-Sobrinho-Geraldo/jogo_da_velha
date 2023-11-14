@@ -1,10 +1,13 @@
-<img width=100% height=25px src="https://user-images.githubusercontent.com/111225477/282803485-8d33252d-d61d-4b2f-b1b2-1948808b9c0f.png"/>
+
 <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=c1c701&height=120&section=header"/>
 
-# Teste Técnico - LETRAS.com 
+# Teste Técnico - LETRAS.com <img width=100% height=25px src="https://user-images.githubusercontent.com/111225477/282803485-8d33252d-d61d-4b2f-b1b2-1948808b9c0f.png"/>
 
-## Resumo 
+
+<span style="font-size: 23px;">**Resumo**</span>
+
 Este projeto trata-se de um teste técnico da empresa [LETRAS.com](https://www.letras.mus.br/) no qual o objetivo era construir um App de jogo da velha que permita o usuário decidir se quer jogar contra outro jogador ou contra um BOT. Além disso, o usuário pode escolher o tamanho do tabuleiro entre 3x3, 4x4, 5x5 ou 6x6.
+
 
 ## Imagens do App
 
