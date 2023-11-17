@@ -3,6 +3,7 @@ package william.LETRAS_jogo_da_velha.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -17,6 +18,7 @@ import william.LETRAS_jogo_da_velha.R
 import william.LETRAS_jogo_da_velha.data.AppDatabase
 import william.LETRAS_jogo_da_velha.data.JogadoresModel
 import william.LETRAS_jogo_da_velha.databinding.ActivityMainBinding
+import william.LETRAS_jogo_da_velha.utilidades.Bot
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
 import william.LETRAS_jogo_da_velha.utilidades.mostrarToastLonga
 import william.LETRAS_jogo_da_velha.viewModels.MainActivityViewModel
@@ -33,8 +35,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        val textoBotInteligente3x3 = findViewById<TextView>(R.id.botInteligente_defesa_3x3)
-//        val textoBotInteligente4x4 = findViewById<TextView>(R.id.botInteligente_defesa_4x4)
+        //        val textoBotInteligente3x3 = findViewById<TextView>(R.id.botInteligente_defesa_3x3)
+        //        val textoBotInteligente4x4 = findViewById<TextView>(R.id.botInteligente_defesa_4x4)
 
         val viewModel: MainActivityViewModel by viewModel()
 
@@ -47,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         var tabuleiro4x4 = false
         var tabuleiro5x5 = false
         var tabuleiro6x6 = false
+
 
         val dao = AppDatabase.getDatabase(this).historicoDao()
         val daojogadores = AppDatabase.getDatabase(this).jogadoresDao()
@@ -121,6 +124,10 @@ class MainActivity : AppCompatActivity() {
             binding.btnVsBot.setBackgroundResource(R.drawable.rounded_button_transparente)
             binding.textViewBtnVsBot.setTextColor(resources.getColor(R.color.white))
 
+            //LIMPAR O jogador2
+            binding.jogador2EditText.setText("")
+            binding.jogador2EditText.isEnabled = true
+
             //INDICA QUAL BOTÃO ESTÁ ATIVO ATUALMENTE
             btnVsJogadorAtivo = true
             btnVsBotAtivo = false
@@ -132,6 +139,12 @@ class MainActivity : AppCompatActivity() {
             binding.textViewBtnVsBot.setTextColor(resources.getColor(R.color.roxo))
             binding.btnVsJogador.setBackgroundResource(R.drawable.rounded_button_transparente)
             binding.textViewBtnVsJogador.setTextColor(resources.getColor(R.color.white))
+
+            //BLOQUEIA JOGADOR 2
+            binding.jogador2EditText.setText(Bot.botPadrao.nome)
+            binding.jogador2EditText.isEnabled = false
+            binding.jogador2EditText.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS //or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+
 
             //INDICA QUAL BOTÃO ESTÁ ATIVO ATUALMENTE
             btnVsBotAtivo = true
@@ -161,7 +174,7 @@ class MainActivity : AppCompatActivity() {
                     )
                     delay(600)
                     if (tabuleiro3x3) {
-                       // if (btnVsJogadorAtivo) textoBotInteligente3x3.visibility = View.INVISIBLE
+                        // if (btnVsJogadorAtivo) textoBotInteligente3x3.visibility = View.INVISIBLE
 
                         val vaiProTabuleiro3x3 = Intent(this@MainActivity, Tabuleiro3x3Activity::class.java)
                         vaiProTabuleiro3x3.putExtra("jogador1", jogador1)
@@ -175,7 +188,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     if (tabuleiro4x4) {
-                      //  if (btnVsJogadorAtivo) textoBotInteligente4x4.visibility = View.INVISIBLE
+                        //  if (btnVsJogadorAtivo) textoBotInteligente4x4.visibility = View.INVISIBLE
                         val vaiProTabuleiro4x4 = Intent(this@MainActivity, Tabuleiro4x4Activity::class.java)
                         vaiProTabuleiro4x4.putExtra("jogador1", jogador1)
                         vaiProTabuleiro4x4.putExtra("jogador2", jogador2)

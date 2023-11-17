@@ -9,6 +9,14 @@ data class Bot(
     val cor: Int = 1,
 ) {
 
+    companion object {
+        val botPadrao: Bot by lazy {
+            Bot("TeddyBot")
+        }
+    }
+
+
+
     fun defenderLinhas3x3(): Int? {
         var retorno: Int? = null
         for (i in 0 until 3) {
