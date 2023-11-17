@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/vez" />
 
     <TextView
-        android:id="@+id/botInteligente_defesa"
+        android:id="@+id/botInteligente_defesa_4x4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bot Inteligente"

@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        val textoBotInteligente3x3 = findViewById<TextView>(R.id.botInteligente_defesa_3x3)
+//        val textoBotInteligente4x4 = findViewById<TextView>(R.id.botInteligente_defesa_4x4)
 
         val viewModel: MainActivityViewModel by viewModel()
 
@@ -43,6 +47,9 @@ class MainActivity : AppCompatActivity() {
         var tabuleiro4x4 = false
         var tabuleiro5x5 = false
         var tabuleiro6x6 = false
+
+        val dao = AppDatabase.getDatabase(this).historicoDao()
+        val daojogadores = AppDatabase.getDatabase(this).jogadoresDao()
 
 
         fun escolherBotao(idBotao: Int): Button {
@@ -142,6 +149,10 @@ class MainActivity : AppCompatActivity() {
                 viewModel.inserirJogadores(jogador1)
                 viewModel.inserirJogadores(jogador2)
 
+                //Deletando
+                //                                    daojogadores.deletarTodosOsJogadores()
+                //                                    dao.deletarTodosOHistorico3x3()
+
                 withContext(Dispatchers.Main) {
                     //pode navegar pra outra tela
                     mostrarToast(
@@ -150,6 +161,8 @@ class MainActivity : AppCompatActivity() {
                     )
                     delay(600)
                     if (tabuleiro3x3) {
+                       // if (btnVsJogadorAtivo) textoBotInteligente3x3.visibility = View.INVISIBLE
+
                         val vaiProTabuleiro3x3 = Intent(this@MainActivity, Tabuleiro3x3Activity::class.java)
                         vaiProTabuleiro3x3.putExtra("jogador1", jogador1)
                         vaiProTabuleiro3x3.putExtra("jogador2", jogador2)
@@ -162,6 +175,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     if (tabuleiro4x4) {
+                      //  if (btnVsJogadorAtivo) textoBotInteligente4x4.visibility = View.INVISIBLE
                         val vaiProTabuleiro4x4 = Intent(this@MainActivity, Tabuleiro4x4Activity::class.java)
                         vaiProTabuleiro4x4.putExtra("jogador1", jogador1)
                         vaiProTabuleiro4x4.putExtra("jogador2", jogador2)

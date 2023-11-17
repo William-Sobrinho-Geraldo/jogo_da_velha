@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageButton
@@ -51,6 +52,9 @@ class Tabuleiro3x3Activity : AppCompatActivity() {
         var jogadorAtual = jogador1
         var contadorDeJogadas = 0
 
+        if (btnVsBotAtivo) {
+            binding.botInteligenteDefesa3x3.visibility = View.VISIBLE
+        } else binding.botInteligenteDefesa3x3.visibility = View.INVISIBLE
 
         fun ordenaJogadaDoBot() {
             val defenderLinhas = bot.defenderLinhas3x3()
