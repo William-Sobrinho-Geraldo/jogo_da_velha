@@ -273,6 +273,25 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_limparBD"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:background="@drawable/btn_historico"
+        android:lineHeight="22dp"
+        android:text="Limpar BD"
+        android:textColor="#FFFFFF"
+        android:textFontWeight="600"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="50dp"
+
+
+        android:textSize="17sp"
+
+
+        app:layout_constraintBottom_toTopOf="@+id/btn_comecar_partida"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_comecar_partida"
         android:layout_width="350dp"
         android:layout_height="50dp"

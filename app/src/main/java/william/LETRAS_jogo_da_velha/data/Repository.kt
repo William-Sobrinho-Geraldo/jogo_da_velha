@@ -9,6 +9,10 @@ class Repository(
         jogadoresDao.inserirJogador(jogador)
     }
 
+    suspend fun buscaNomeDoJogadorNoBD(nome: String): Boolean {
+        return jogadoresDao.buscaNomeDoJogadorNoBD(nome)
+    }
+
     suspend fun buscaJogadoresNoBD(): List<JogadoresModel> {
         //        var lista = MutableLiveData<JogadoresModel>()
 
@@ -50,7 +54,7 @@ class Repository(
         return historicoDao.buscaHistorico6x6()
     }
 
-    suspend fun buscaJogadoresOrdenadosPorGanhos() : List<JogadoresModel>{
+    suspend fun buscaJogadoresOrdenadosPorGanhos(): List<JogadoresModel> {
         return jogadoresDao.buscaJogadoresOrdenadosPorGanhos()
     }
 

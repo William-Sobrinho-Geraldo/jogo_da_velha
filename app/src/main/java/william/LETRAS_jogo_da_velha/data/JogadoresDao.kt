@@ -19,6 +19,9 @@ interface JogadoresDao {
     @Query("DELETE FROM tabela_de_jogadores")
     fun deletarTodosOsJogadores()
 
+    @Query("SELECT EXISTS( SELECT 1 FROM tabela_de_jogadores WHERE NOME_DO_JOGADOR = :nome LIMIT 1)")
+    suspend fun buscaNomeDoJogadorNoBD(nome: String): Boolean
+
 
     @Query("UPDATE tabela_de_jogadores SET QUANT_JOGOS_GANHOS = QUANT_JOGOS_GANHOS + 1 WHERE id = :jogadorId")
     suspend fun incrementarVitoria(jogadorId: Long)
