@@ -125,7 +125,7 @@ class Historico3x3 : AppCompatActivity() {
 
 
         //BOTÃO DE RANKING
-        binding.btnExibirRankind.setOnClickListener {
+        binding.btnExibirRanking3x3.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
                 val listaGanhadores = async {
                     viewModel.buscaJogadoresOrdenadosPorGanhos()
@@ -135,7 +135,7 @@ class Historico3x3 : AppCompatActivity() {
 
                 //tornar invisivel a recyclerView acima
                 recyclerView.visibility = View.INVISIBLE
-                binding.btnExibirRankind.visibility = View.INVISIBLE
+                binding.btnExibirRanking3x3.visibility = View.INVISIBLE
 
             } // Coroutine
 
