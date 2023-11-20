@@ -32,26 +32,11 @@ class MainActivity : AppCompatActivity() {
     val listaDeNomesNoBD = mutableListOf<String>()
     val viewModel: MainActivityViewModel by viewModel()
 
-    override fun onResume() {
-        super.onResume()
-
-        //POPULANDO UMA LISTA COM NOMES DOS USUÁRIOS PARA EVITAR DUPLICIDADE
-        viewModel.buscaJogadoresNoBD().observe(this@MainActivity) { listaDeJogadores ->
-            listaDeNomesNoBD.clear()
-            listaDeNomesNoBD.addAll(listaDeJogadores.map { it.nome })
-            Log.i(TAG, "onRESUME: a lista de Nomes de jogadores no bando de dados é:  $listaDeNomesNoBD")
-        }
-
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //        val textoBotInteligente3x3 = findViewById<TextView>(R.id.botInteligente_defesa_3x3)
-        //        val textoBotInteligente4x4 = findViewById<TextView>(R.id.botInteligente_defesa_4x4)
-
 
         //VARIÁVEIS DO MODO DE JOGO
         var btnVsJogadorAtivo = true
@@ -172,24 +157,12 @@ class MainActivity : AppCompatActivity() {
             val jogador1 = JogadoresModel(nome = nomeJogador1)
             val jogador2 = JogadoresModel(nome = nomeJogador2, cor = 1, simbolo = 1)
 
-            //insiro o nome deses jgoadores no BD
             lifecycleScope.launch(Dispatchers.IO) {
-                //faço busca se tem nome tal no banco de dados, se não houver insere no banco de dados.
-                //                val job1 =
-                //                    async { viewModel.buscaNomeDoJogador1NoBD(nome = binding.jogador1EditText.text.toString()) }
-                //                val job2 =
-                //                    async { viewModel.buscaNomeDoJogador2NoBD(nome = binding.jogador2EditText.text.toString()) }
-                //
-                //                val jogador1Encontrado = job1.await()
-                //                val jogador2Encontrado = job2.await()
-
-                //                async { viewModel.buscaNomeDoJogador1NoBD(nome = binding.jogador1EditText.text.toString()) }.await()
-
                 Log.i(TAG, "onCreate: a lista após clicar no botão começar é :  $listaDeNomesNoBD")
                 if (listaDeNomesNoBD.contains(nomeJogador1)) {
                     Log.i(
                         TAG,
-                        "onCreate: Jogador 1 [$nomeJogador1] já está no banco de dados e não vou inseri-lo novamente"
+                        "onCreate: Jogador 1 [ $nomeJogador1 ] já está no banco de dados e não vou inseri-lo novamente"
                     )
                 } else {
                     viewModel.inserirJogadores(jogador1)
@@ -202,7 +175,7 @@ class MainActivity : AppCompatActivity() {
                 if (listaDeNomesNoBD.contains(nomeJogador2)) {
                     Log.i(
                         TAG,
-                        "onCreate: Jogador 2 [$nomeJogador2] já está no banco de dados e não vou inseri-lo novamente"
+                        "onCreate: Jogador 2 [ $nomeJogador2 ] já está no banco de dados e não vou inseri-lo novamente"
                     )
                 } else {
                     viewModel.inserirJogadores(jogador2)
@@ -213,39 +186,6 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
-
-                //                lifecycleScope.launch(Dispatchers.Main) {
-                //                    //                    viewModel.oJogador1FoiEncontrado.observe(this@MainActivity) { oJogador1FoiEncontrado ->
-                //                    //                        if (oJogador1FoiEncontrado == true) {
-                //                    //                            mostrarToast("Jogador ${jogador1.nome} já está cadastrado", this@MainActivity)
-                //                    //                            Log.i(
-                //                    //                                TAG,
-                //                    //                                "onCreate: Jogador 1 já está no banco de dados e não vou iseri-lo novamente"
-                //                    //                            )
-                //                    //                        } else {
-                //                    //                            viewModel.inserirJogadores(jogador1)
-                //                    //                            Log.i(
-                //                    //                                TAG,
-                //                    //                                "onCreate:  o jogador1 foi inserido pois seu nome não estava no BD"
-                //                    //                            )
-                //                    //                        }
-                //                    //                    }
-                //
-                //                    viewModel.oJogador2FoiEncontrado.observe(this@MainActivity) { oJogador2FoiEncontrado ->
-                //                        if (!oJogador2FoiEncontrado) {
-                //                            viewModel.inserirJogadores(jogador2)
-                //                            Log.i(
-                //                                TAG,
-                //                                "onCreate:  o jogador2 foi inserido pois seu nome não estava no BD"
-                //                            )
-                //                        }
-                //                    }
-                //                }
-
-
-                //                viewModel.inserirJogadores(jogador2)
-
-
                 withContext(Dispatchers.Main) {
                     //pode navegar pra outra tela
                     mostrarToast(
@@ -254,8 +194,6 @@ class MainActivity : AppCompatActivity() {
                     )
                     delay(600)
                     if (tabuleiro3x3) {
-                        // if (btnVsJogadorAtivo) textoBotInteligente3x3.visibility = View.INVISIBLE
-
                         val vaiProTabuleiro3x3 = Intent(this@MainActivity, Tabuleiro3x3Activity::class.java)
                         vaiProTabuleiro3x3.putExtra("jogador1", jogador1)
                         vaiProTabuleiro3x3.putExtra("jogador2", jogador2)
@@ -268,7 +206,6 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     if (tabuleiro4x4) {
-                        //  if (btnVsJogadorAtivo) textoBotInteligente4x4.visibility = View.INVISIBLE
                         val vaiProTabuleiro4x4 = Intent(this@MainActivity, Tabuleiro4x4Activity::class.java)
                         vaiProTabuleiro4x4.putExtra("jogador1", jogador1)
                         vaiProTabuleiro4x4.putExtra("jogador2", jogador2)
@@ -295,14 +232,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
-//            viewModel.buscaJogadoresNoBD().observe(this@MainActivity) { listaDeJogadores ->
-//                listaDeNomesNoBD.clear()
-//                listaDeNomesNoBD.addAll(listaDeJogadores.map { it.nome })
-//                Log.i(TAG, "onCreate: a lista de Nomes de jogadores no bando de dados é:  $listaDeNomesNoBD")
-//            }
-
-
         } // Listener do botão começar
 
 
@@ -332,8 +261,7 @@ class MainActivity : AppCompatActivity() {
             botaoVsBotClicado()
         }
 
-        //        //BOTÃO 3X3 CLICADO
-        //        binding.btn3x3.setOnClickListener {
+
         tabuleiro3x3 = true
         tabuleiro4x4 = false
         tabuleiro5x5 = false
@@ -352,10 +280,20 @@ class MainActivity : AppCompatActivity() {
 
     }  //onCreate da Activity
 
+    override fun onResume() {
+        super.onResume()
+
+        //POPULANDO UMA LISTA COM NOMES DOS USUÁRIOS PARA EVITAR DUPLICIDADE
+        viewModel.buscaJogadoresNoBD().observe(this@MainActivity) { listaDeJogadores ->
+            listaDeNomesNoBD.clear()
+            listaDeNomesNoBD.addAll(listaDeJogadores.map { it.nome })
+            Log.i(TAG, "onRESUME: a lista de Nomes de jogadores no bando de dados é:  $listaDeNomesNoBD")
+        }
+
+    }
+
 
     //FUNÇÕES PARA CUSTOMIZAÇÃO DA UI
-
-
     private fun limparEstiloBotao(button: Button) {
         button.setBackgroundResource(R.drawable.rounded_button_transparente)
         button.setTextColor(resources.getColor(R.color.white))

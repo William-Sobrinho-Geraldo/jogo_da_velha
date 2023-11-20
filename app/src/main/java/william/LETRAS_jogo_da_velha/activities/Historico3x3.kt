@@ -106,7 +106,7 @@ class Historico3x3 : AppCompatActivity() {
         val viewModel: Tabuleiro3x3ViewModel by viewModel()
         val listaDeMaioresGanhadores = mutableListOf<JogadoresModel>()
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView4x4)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView3x3)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = HistoricoAdapter(historicoList3x3)
         recyclerView.adapter = adapter
@@ -135,12 +135,12 @@ class Historico3x3 : AppCompatActivity() {
 
                 //tornar invisivel a recyclerView acima
                 recyclerView.visibility = View.INVISIBLE
-
+                binding.btnExibirRankind.visibility = View.INVISIBLE
 
             } // Coroutine
 
             val recyclerViewranking: RecyclerView =
-                findViewById(R.id.recyclerView4x4_ranking) // botar Recycler do ranking
+                findViewById(R.id.recyclerView3x3_ranking) // botar Recycler do ranking
             recyclerViewranking.visibility = View.VISIBLE
             recyclerViewranking.layoutManager = LinearLayoutManager(this)
             val adapterRanking = JogadoresAdapter(listaDeMaioresGanhadores)

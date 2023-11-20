@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView4x4"
+        android:id="@+id/recyclerView3x3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -35,7 +35,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView4x4_ranking"
+        android:id="@+id/recyclerView3x3_ranking"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="12dp"
