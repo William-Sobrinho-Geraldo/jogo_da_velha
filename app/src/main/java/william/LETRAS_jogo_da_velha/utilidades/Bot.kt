@@ -123,29 +123,6 @@ data class Bot(
         return retorno
     }
 
-    fun defenderColunas5x5(): Int? {
-        var retorno: Int? = null
-        // Verifica colunas
-        for (i in 0 until 5) {
-            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "") {
-                retorno = i + 20
-            }
-            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "" && btnMarcList5x5[i + 20] == "x") {
-                retorno = i + 15
-            }
-            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "x") {
-                retorno = i + 10
-            }
-            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "x") {
-                retorno = i + 5
-            }
-            if (btnMarcList5x5[i] == "" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "x") {
-                retorno = i
-            }
-        }
-        return retorno
-    }
-
 
     fun defenderDiagonais4x4(): Int? {
         var retorno: Int? = null
@@ -173,6 +150,35 @@ data class Bot(
         return retorno
     }
 
+    fun defenderDiagonais5x5(): Int? {
+        var retorno: Int? = null
+        // Diagonais
+        val diagonais = listOf(
+            listOf(0, 6, 12, 18, 24),
+            listOf(4, 8, 12, 16, 20)
+        )
+
+        for (indice in diagonais) {
+            val (a, b, c, d, e) = indice
+            if (btnMarcList5x5[a] == "x" && btnMarcList5x5[b] == "x" && btnMarcList5x5[c] == "x" && btnMarcList5x5[d] == "x" && btnMarcList5x5[e] == "") {
+                retorno = e
+            }
+            if (btnMarcList5x5[a] == "x" && btnMarcList5x5[b] == "x" && btnMarcList5x5[c] == "x" && btnMarcList5x5[d] == "" && btnMarcList5x5[e] == "x") {
+                retorno = d
+            }
+            if (btnMarcList5x5[a] == "x" && btnMarcList5x5[b] == "x" && btnMarcList5x5[c] == "" && btnMarcList5x5[d] == "x" && btnMarcList5x5[e] == "x") {
+                retorno = c
+            }
+            if (btnMarcList5x5[a] == "x" && btnMarcList5x5[b] == "" && btnMarcList5x5[c] == "x" && btnMarcList5x5[d] == "x" && btnMarcList5x5[e] == "x") {
+                retorno = b
+            }
+            if (btnMarcList5x5[a] == "" && btnMarcList5x5[b] == "x" && btnMarcList5x5[c] == "x" && btnMarcList5x5[d] == "x" && btnMarcList5x5[e] == "x") {
+                retorno = a
+            }
+        }
+        return retorno
+    }
+
 
     // FUNÇÕES DEFESA 5X5
     fun defenderLinhas5x5(): Int? {
@@ -193,6 +199,29 @@ data class Bot(
             }
             if (btnMarcList5x5[i * 5] == "" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
                 retorno = i * 5
+            }
+        }
+        return retorno
+    }
+
+    fun defenderColunas5x5(): Int? {
+        var retorno: Int? = null
+        // Verifica colunas
+        for (i in 0 until 5) {
+            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "") {
+                retorno = i + 20
+            }
+            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "" && btnMarcList5x5[i + 20] == "x") {
+                retorno = i + 15
+            }
+            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "x") {
+                retorno = i + 10
+            }
+            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "x") {
+                retorno = i + 5
+            }
+            if (btnMarcList5x5[i] == "" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "x") {
+                retorno = i
             }
         }
         return retorno
