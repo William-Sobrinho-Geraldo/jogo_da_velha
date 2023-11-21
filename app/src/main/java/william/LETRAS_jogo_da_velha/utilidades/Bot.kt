@@ -102,29 +102,6 @@ data class Bot(
         return retorno
     }
 
-    fun defenderLinhas5x5(): Int? {
-        var retorno: Int? = null
-        // Verifica linhas
-        for (i in 0 until 5) {
-            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "") {
-                retorno = i * 5 + 4
-            }
-            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "" && btnMarcList5x5[i * 5 + 4] == "x") {
-                retorno = i * 5 + 3
-            }
-            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
-                retorno = i * 5 + 2
-            }
-            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
-                retorno = i * 5 + 1
-            }
-            if (btnMarcList5x5[i * 5] == "" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
-                retorno = i * 5
-            }
-        }
-        return retorno
-    }
-
 
     fun defenderColunas4x4(): Int? {
         var retorno: Int? = null
@@ -133,18 +110,42 @@ data class Bot(
             if (btnMarcList4x4[i] == "x" && btnMarcList4x4[i + 4] == "x" && btnMarcList4x4[i + 8] == "x" && btnMarcList4x4[i + 12] == "") {
                 retorno = i + 12
             }
+            if (btnMarcList4x4[i] == "x" && btnMarcList4x4[i + 8] == "" && btnMarcList4x4[i + 12] == "x" && btnMarcList4x4[i + 4] == "x") {
+                retorno = i + 8
+            }
             if (btnMarcList4x4[i] == "x" && btnMarcList4x4[i + 8] == "x" && btnMarcList4x4[i + 12] == "x" && btnMarcList4x4[i + 4] == "") {
                 retorno = i + 4
             }
             if (btnMarcList4x4[i + 4] == "x" && btnMarcList4x4[i + 8] == "x" && btnMarcList4x4[i + 12] == "x" && btnMarcList4x4[i] == "") {
                 retorno = i
             }
-            if (btnMarcList4x4[i] == "x" && btnMarcList4x4[i + 8] == "" && btnMarcList4x4[i + 12] == "x" && btnMarcList4x4[i + 4] == "x") {
-                retorno = i + 8
+        }
+        return retorno
+    }
+
+    fun defenderColunas5x5(): Int? {
+        var retorno: Int? = null
+        // Verifica colunas
+        for (i in 0 until 5) {
+            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "") {
+                retorno = i + 20
+            }
+            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "" && btnMarcList5x5[i + 20] == "x") {
+                retorno = i + 15
+            }
+            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "x") {
+                retorno = i + 10
+            }
+            if (btnMarcList5x5[i] == "x" && btnMarcList5x5[i + 5] == "" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "x") {
+                retorno = i + 5
+            }
+            if (btnMarcList5x5[i] == "" && btnMarcList5x5[i + 5] == "x" && btnMarcList5x5[i + 10] == "x" && btnMarcList5x5[i + 15] == "x" && btnMarcList5x5[i + 20] == "x") {
+                retorno = i
             }
         }
         return retorno
     }
+
 
     fun defenderDiagonais4x4(): Int? {
         var retorno: Int? = null
@@ -174,7 +175,27 @@ data class Bot(
 
 
     // FUNÇÕES DEFESA 5X5
-
-
+    fun defenderLinhas5x5(): Int? {
+        var retorno: Int? = null
+        // Verifica linhas
+        for (i in 0 until 5) {
+            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "") {
+                retorno = i * 5 + 4
+            }
+            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "" && btnMarcList5x5[i * 5 + 4] == "x") {
+                retorno = i * 5 + 3
+            }
+            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
+                retorno = i * 5 + 2
+            }
+            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
+                retorno = i * 5 + 1
+            }
+            if (btnMarcList5x5[i * 5] == "" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
+                retorno = i * 5
+            }
+        }
+        return retorno
+    }
 
 } //data class Bot
