@@ -210,15 +210,15 @@ class Tabuleiro4x4Activity : AppCompatActivity() {
 
         fun verificaVencedorComX() {
             val linhas = listOf(
-                listOf(0, 1, 2, 3),         //Horizontais
-                listOf(4, 5, 6, 7),        //Horizontais
-                listOf(8, 9, 10, 11),      //Horizontais
+                listOf(0, 1, 2, 3),          //Horizontais
+                listOf(4, 5, 6, 7),         //Horizontais
+                listOf(8, 9, 10, 11),       //Horizontais
                 listOf(12, 13, 14, 15),   //Horizontais
                 listOf(0, 4, 8, 12),       //Verticais
-                listOf(1, 5, 9, 13),       //Verticais
-                listOf(2, 6, 10, 14),       //Verticais
-                listOf(3, 7, 11, 15),       //Verticais
-                listOf(0, 5, 10, 15),       //Diagonais
+                listOf(1, 5, 9, 13),        //Verticais
+                listOf(2, 6, 10, 14),      //Verticais
+                listOf(3, 7, 11, 15),      //Verticais
+                listOf(0, 5, 10, 15),      //Diagonais
                 listOf(3, 6, 9, 12),       //Diagonais
             )
             for (linha in linhas) {

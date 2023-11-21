@@ -17,7 +17,7 @@ import william.LETRAS_jogo_da_velha.utilidades.mostrarToast
 private const val TAG = "Tabu5x5"
 
 //COMEÇANDO O JOGO COM O TABULEIRO LIMPO
-private val btnMarcList5x5 = mutableListOf(
+val btnMarcList5x5 = mutableListOf(
     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
 )
 
@@ -52,6 +52,8 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
         }
 
         fun ordenaJogadaDoBot() {
+            val defenderLinhas = bot.defenderLinhas5x5()
+
             //bot só pode jogar onde estiver vazio
             blocosVazios.clear()
             Log.i(TAG, "ordenaJogadaDoBot:   blocosVazios foi limpa e agora é:  $blocosVazios")
@@ -64,9 +66,15 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
 
 
             if (blocosVazios.isNotEmpty()) {
-                //Escolhendo botão que o bot Vai clicar aleatóriamente
-                botaoEscolhidoPeloBot = blocosVazios.random()
-                Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhidoPeloBot}")
+                if (defenderLinhas != null) {
+                    botaoEscolhidoPeloBot = defenderLinhas + 1
+                    Log.i(TAG, "  BOT DEFENDENDO LINHA NO INDICE $botaoEscolhidoPeloBot")
+                } else {
+                    //Escolhendo botão que o bot Vai clicar aleatóriamente
+                    botaoEscolhidoPeloBot = blocosVazios.random()
+                    Log.i(TAG, "ordenaJogadaDoBot:  botãoEscolhido foi  ${botaoEscolhidoPeloBot}")
+                }
+
 
                 Handler(Looper.getMainLooper()).postDelayed({
                     for (indice in 0 until botoes.size) {
@@ -111,6 +119,7 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
                         botao.setImageResource(R.drawable.imagem_fundo_branco)
                         botao.isEnabled = true // Ativando os botões
                     }
+
                     override fun onAnimationRepeat(animation: Animation?) {}
                 })
 
@@ -265,7 +274,6 @@ class Tabuleiro5x5Activity : AppCompatActivity() {
                         override fun onAnimationRepeat(animation: Animation?) {}
                     })
                     botao.startAnimation(fadeIn)
-
 
                 } else {
                     mostrarToast("o jogo acabou", this)

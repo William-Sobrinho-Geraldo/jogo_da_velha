@@ -2,6 +2,7 @@ package william.LETRAS_jogo_da_velha.utilidades
 
 import william.LETRAS_jogo_da_velha.activities.btnMarcList3x3
 import william.LETRAS_jogo_da_velha.activities.btnMarcList4x4
+import william.LETRAS_jogo_da_velha.activities.btnMarcList5x5
 
 data class Bot(
     val nome: String = "RichardBot",
@@ -16,7 +17,7 @@ data class Bot(
     }
 
 
-
+    // FUNÇÕES DEFESA 3X3
     fun defenderLinhas3x3(): Int? {
         var retorno: Int? = null
         for (i in 0 until 3) {
@@ -79,6 +80,8 @@ data class Bot(
         return retorno
     }
 
+
+    // FUNÇÕES DEFESA 4X4
     fun defenderLinhas4x4(): Int? {
         var retorno: Int? = null
         // Verifica linhas
@@ -98,6 +101,30 @@ data class Bot(
         }
         return retorno
     }
+
+    fun defenderLinhas5x5(): Int? {
+        var retorno: Int? = null
+        // Verifica linhas
+        for (i in 0 until 5) {
+            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "") {
+                retorno = i * 5 + 4
+            }
+            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "" && btnMarcList5x5[i * 5 + 4] == "x") {
+                retorno = i * 5 + 3
+            }
+            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
+                retorno = i * 5 + 2
+            }
+            if (btnMarcList5x5[i * 5] == "x" && btnMarcList5x5[i * 5 + 1] == "" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
+                retorno = i * 5 + 1
+            }
+            if (btnMarcList5x5[i * 5] == "" && btnMarcList5x5[i * 5 + 1] == "x" && btnMarcList5x5[i * 5 + 2] == "x" && btnMarcList5x5[i * 5 + 3] == "x" && btnMarcList5x5[i * 5 + 4] == "x") {
+                retorno = i * 5
+            }
+        }
+        return retorno
+    }
+
 
     fun defenderColunas4x4(): Int? {
         var retorno: Int? = null
@@ -144,6 +171,9 @@ data class Bot(
         }
         return retorno
     }
+
+
+    // FUNÇÕES DEFESA 5X5
 
 
 
