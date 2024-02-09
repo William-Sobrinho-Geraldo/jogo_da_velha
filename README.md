@@ -8,6 +8,14 @@
 
 Este projeto trata-se de um teste técnico da empresa [LETRAS.com](https://www.letras.mus.br/) no qual o objetivo era construir um App de jogo da velha que permita o usuário decidir se quer jogar contra outro jogador ou contra um BOT. Além disso, o usuário pode escolher o tamanho do tabuleiro entre 3x3, 4x4, 5x5 ou 6x6.
 
+## Vídeo de resumo
+
+A seguir temos um GIF  que demonstra de forma resumida das funcionalidades do App. Para acessar o vídeo completo com audio, basta clicar no link ao lado: 
+ [Link do vídeo](https://www.youtube.com/watch?v=3yA5LpdyGO4)
+
+<div align="center"> 
+<img src = "https://private-user-images.githubusercontent.com/111225477/303634929-c34f49c0-ecf2-4086-91ee-d0d10401dd2d.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDc0Nzc5ODcsIm5iZiI6MTcwNzQ3NzY4NywicGF0aCI6Ii8xMTEyMjU0NzcvMzAzNjM0OTI5LWMzNGY0OWMwLWVjZjItNDA4Ni05MWVlLWQwZDEwNDAxZGQyZC5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwMjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDIwOVQxMTIxMjdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mY2NhYzI5ZDRiNjYzM2JjNDI3MDZmM2Q0NGUyY2NkNDAxOTI3MWZjNTNiOTZhNDA3YTRiY2FjODhjMjE5MjhiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.6bInVCDND3FoMIhPotMeiy93N4D_llHomL_2R3bW1eI" width = "150px" >
+</div>
 
 ## Imagens do App
 
